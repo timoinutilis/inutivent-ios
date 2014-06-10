@@ -13,7 +13,11 @@
 #import "INUDataManager.h"
 
 @interface INUEventsTableViewController ()
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property NSArray *selectedIndexPathsWhenViewAppeared;
+@property Bookmark *lastOpenedBookmark;
+
 @end
 
 @implementation INUEventsTableViewController
@@ -40,8 +44,25 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
     [INUDataManager sharedInstance].delegate = self;
+    _selectedIndexPathsWhenViewAppeared = self.tableView.indexPathsForSelectedRows;
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (_selectedIndexPathsWhenViewAppeared)
+    {
+        if (_lastOpenedBookmark && _lastOpenedBookmark.wasChanged)
+        {
+            NSLog(@"bookmark update");
+            [[self tableView] reloadRowsAtIndexPaths:_selectedIndexPathsWhenViewAppeared withRowAnimation:UITableViewRowAnimationFade];
+            _lastOpenedBookmark.wasChanged = NO;
+        }
+        _lastOpenedBookmark = nil;
+        _selectedIndexPathsWhenViewAppeared = nil;
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -143,7 +164,9 @@
     {
         INUEventInfoTableViewController *infoController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        infoController.bookmark = [[[INUDataManager sharedInstance] bookmarks] objectAtIndex:indexPath.row];
+        Bookmark *selectedBookmark = [[[INUDataManager sharedInstance] bookmarks] objectAtIndex:indexPath.row];
+        infoController.bookmark = selectedBookmark;
+        _lastOpenedBookmark = selectedBookmark;
     }
 }
 

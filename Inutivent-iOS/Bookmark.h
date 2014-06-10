@@ -10,6 +10,8 @@
 
 @interface Bookmark : NSObject
 
+@property BOOL wasChanged;
+
 @property NSString *eventId;
 @property NSString *userId;
 @property NSString *eventName;

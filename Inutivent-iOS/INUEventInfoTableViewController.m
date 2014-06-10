@@ -219,7 +219,8 @@
         if (![_bookmark.eventName isEqualToString:_event.title])
         {
             _bookmark.eventName = _event.title;
-            _bookmark.ownerUserId = data[@"event"][@"owner"];
+            _bookmark.ownerUserId = _event.owner;
+            _bookmark.wasChanged = YES;
             [[INUDataManager sharedInstance] saveBookmarks];
         }
         
