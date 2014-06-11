@@ -8,6 +8,7 @@
 
 #import "INUEventInfoTableViewController.h"
 #import "INUGuestsTableViewController.h"
+#import "INUPostsTableViewController.h"
 #import "Bookmark.h"
 #import "Event.h"
 #import "User.h"
@@ -136,7 +137,6 @@
         [_detailsCell layoutIfNeeded];
         
         CGSize size = [_detailsCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-        NSLog(@"row height: %f", size.height);
         return size.height + 1; // +1 for separator line (bah!)
     }
     return UITableViewAutomaticDimension;
@@ -187,6 +187,11 @@
     if ([segue.identifier isEqualToString:@"ShowGuests"])
     {
         INUGuestsTableViewController *viewController = segue.destinationViewController;
+        viewController.event = _event;
+    }
+    else if ([segue.identifier isEqualToString:@"ShowPosts"])
+    {
+        INUPostsTableViewController *viewController = segue.destinationViewController;
         viewController.event = _event;
     }
 }

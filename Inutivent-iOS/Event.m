@@ -8,6 +8,7 @@
 
 #import "Event.h"
 #import "User.h"
+#import "Post.h"
 #import "INUUtils.h"
 
 @implementation Event
@@ -18,6 +19,7 @@
     if (self)
     {
         _users = [[NSMutableArray alloc] init];
+        _posts = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -45,6 +47,19 @@
             User *user = [[User alloc] init];
             [user parseFromDictionary:users[key]];
             [_users addObject:user];
+        }
+    }
+    
+    NSArray *posts = dict[@"posts"];
+    if (posts)
+    {
+        _posts = [[NSMutableArray alloc] init];
+        int count = (int)[posts count];
+        for (int i = 0; i < count; i++)
+        {
+            Post *post = [[Post alloc] init];
+            [post parseFromDictionary:posts[i]];
+            [_posts addObject:post];
         }
     }
 }

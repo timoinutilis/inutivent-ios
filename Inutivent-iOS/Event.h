@@ -23,6 +23,7 @@
 @property NSDate *created;
 
 @property (readonly) NSMutableArray *users;
+@property (readonly) NSMutableArray *posts;
 
 - (void)parseFromDictionary:(NSDictionary *)dict;
 - (User *)getUserWithId:(NSString *)userId;
