@@ -193,6 +193,7 @@
     {
         INUPostsTableViewController *viewController = segue.destinationViewController;
         viewController.event = _event;
+        viewController.bookmark = _bookmark;
     }
 }
 

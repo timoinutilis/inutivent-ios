@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @class Event;
+@class Bookmark;
 
 @interface INUPostsTableViewController : UITableViewController
 
 @property Event *event;
+@property Bookmark *bookmark;
 
 @end

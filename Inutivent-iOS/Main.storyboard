@@ -348,6 +348,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="lZn-Sw-RQg">
+                            <rect key="frame" x="0.0" y="174" width="320" height="88"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKe-9X-hJG">
+                                    <rect key="frame" x="8" y="8" width="236" height="72"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IM6-VW-4nr">
+                                    <rect key="frame" x="252" y="8" width="60" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="NtP-yM-OWP"/>
+                                    </constraints>
+                                    <state key="normal" title="Post">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="onTapPost:" destination="pPT-im-HkY" eventType="touchUpInside" id="gYP-ph-pdY"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="IM6-VW-4nr" firstAttribute="top" secondItem="lZn-Sw-RQg" secondAttribute="top" constant="8" id="Hcf-Mm-aRX"/>
+                                <constraint firstItem="aKe-9X-hJG" firstAttribute="top" secondItem="lZn-Sw-RQg" secondAttribute="top" constant="8" id="L4H-eG-GKd"/>
+                                <constraint firstItem="aKe-9X-hJG" firstAttribute="leading" secondItem="lZn-Sw-RQg" secondAttribute="leading" constant="8" id="cil-6r-lmn"/>
+                                <constraint firstAttribute="bottom" secondItem="aKe-9X-hJG" secondAttribute="bottom" constant="8" id="d5v-WF-4FP"/>
+                                <constraint firstItem="IM6-VW-4nr" firstAttribute="leading" secondItem="aKe-9X-hJG" secondAttribute="trailing" constant="8" id="p8r-Pb-j4j"/>
+                                <constraint firstAttribute="trailing" secondItem="IM6-VW-4nr" secondAttribute="trailing" constant="8" id="xSZ-Li-X7B"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" id="dlO-Pd-2t6" customClass="INUPostTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="88"/>
@@ -371,7 +405,7 @@
                                                 </fragment>
                                             </attributedString>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                                         </textView>
                                     </subviews>
                                     <constraints>
@@ -392,6 +426,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Comments" id="OfL-ld-Z7T"/>
+                    <connections>
+                        <outlet property="editorTextView" destination="aKe-9X-hJG" id="9XK-lV-UMU"/>
+                        <outlet property="tableView" destination="tgS-Le-QHC" id="gTb-X6-X6d"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMj-Ln-oK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
