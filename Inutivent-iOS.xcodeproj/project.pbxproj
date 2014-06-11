@@ -28,6 +28,8 @@
 		928375A5193A6C670000CCD6 /* INUEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */; };
 		928375A8193A6F030000CCD6 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 928375A7193A6F030000CCD6 /* Event.m */; };
 		92BCB0331947478300A1E882 /* UI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BCB0321947478300A1E882 /* UI.xcassets */; };
+		92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */; };
+		92CB1F29194791A100309850 /* INUListSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F28194791A100309850 /* INUListSection.m */; };
 		92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E0E2BB1940D1B100D9ACDD /* INUUtils.m */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,10 @@
 		928375A6193A6F030000CCD6 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		928375A7193A6F030000CCD6 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		92BCB0321947478300A1E882 /* UI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UI.xcassets; sourceTree = "<group>"; };
+		92CB1F2419478A5800309850 /* INUGuestsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUGuestsTableViewController.h; sourceTree = "<group>"; };
+		92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUGuestsTableViewController.m; sourceTree = "<group>"; };
+		92CB1F27194791A100309850 /* INUListSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUListSection.h; sourceTree = "<group>"; };
+		92CB1F28194791A100309850 /* INUListSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUListSection.m; sourceTree = "<group>"; };
 		92E0E2BA1940D1B100D9ACDD /* INUUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUUtils.h; sourceTree = "<group>"; };
 		92E0E2BB1940D1B100D9ACDD /* INUUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -143,12 +149,16 @@
 				9283757C193A494D0000CCD6 /* INUAppDelegate.h */,
 				9283757D193A494D0000CCD6 /* INUAppDelegate.m */,
 				9283759E193A66E00000CCD6 /* Main.storyboard */,
+				92CB1F2419478A5800309850 /* INUGuestsTableViewController.h */,
+				92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */,
 				9206DA43193F2A7900DA0F24 /* INUEventInfoTableViewController.h */,
 				9206DA44193F2A7900DA0F24 /* INUEventInfoTableViewController.m */,
 				928375A3193A6C670000CCD6 /* INUEventsTableViewController.h */,
 				928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */,
 				92E0E2BA1940D1B100D9ACDD /* INUUtils.h */,
 				92E0E2BB1940D1B100D9ACDD /* INUUtils.m */,
+				92CB1F27194791A100309850 /* INUListSection.h */,
+				92CB1F28194791A100309850 /* INUListSection.m */,
 				92837574193A494D0000CCD6 /* Supporting Files */,
 			);
 			path = "Inutivent-iOS";
@@ -310,6 +320,7 @@
 			files = (
 				928375A5193A6C670000CCD6 /* INUEventsTableViewController.m in Sources */,
 				927F59DF193E2E5300EEEC62 /* User.m in Sources */,
+				92CB1F29194791A100309850 /* INUListSection.m in Sources */,
 				9283757A193A494D0000CCD6 /* main.m in Sources */,
 				927F59E4193E56B600EEEC62 /* Bookmark.m in Sources */,
 				92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */,
@@ -317,6 +328,7 @@
 				928375A8193A6F030000CCD6 /* Event.m in Sources */,
 				9283757E193A494D0000CCD6 /* INUAppDelegate.m in Sources */,
 				9206DA45193F2A7900DA0F24 /* INUEventInfoTableViewController.m in Sources */,
+				92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "INUEventInfoTableViewController.h"
+#import "INUGuestsTableViewController.h"
 #import "Bookmark.h"
 #import "Event.h"
 #import "User.h"
@@ -174,7 +175,7 @@
     return [_event getUserWithId:_bookmark.userId];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -182,8 +183,14 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"ShowGuests"])
+    {
+        INUGuestsTableViewController *viewController = segue.destinationViewController;
+        viewController.event = _event;
+    }
 }
-*/
+
 
 #pragma mark - Actions
 
@@ -231,6 +238,7 @@
         if (data[@"status"])
         {
             me.status = [me parseStatus:data[@"status"]];
+            me.statusChanged = [[NSDate alloc] init];
         }
         if (data[@"name"])
         {
