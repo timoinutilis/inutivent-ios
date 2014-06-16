@@ -152,28 +152,36 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventDetails" rowHeight="44" id="SdF-qf-66Z">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventDetails" id="SdF-qf-66Z">
                                         <rect key="frame" x="0.0" y="316" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" verticalCompressionResistancePriority="1000" tableViewCell="SdF-qf-66Z" id="3G7-AN-MY8">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SdF-qf-66Z" id="3G7-AN-MY8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Details" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="4Tm-ql-qE9">
-                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C7V-nL-Rzh">
+                                                    <rect key="frame" x="8" y="4" width="304" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" priority="250" constant="25" id="mQ0-8R-81c"/>
+                                                        <constraint firstAttribute="height" constant="35" id="3YD-Kh-DRg"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Details">
+                                                            <attributes>
+                                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="4Tm-ql-qE9" secondAttribute="bottom" constant="11" id="G6W-tS-aHI"/>
-                                                <constraint firstItem="4Tm-ql-qE9" firstAttribute="leading" secondItem="3G7-AN-MY8" secondAttribute="leading" constant="20" id="Jg2-KR-fHH"/>
-                                                <constraint firstAttribute="trailing" secondItem="4Tm-ql-qE9" secondAttribute="trailing" constant="20" id="MCw-il-o8p"/>
-                                                <constraint firstItem="4Tm-ql-qE9" firstAttribute="top" secondItem="3G7-AN-MY8" secondAttribute="top" constant="11" id="zOg-pS-pKP"/>
+                                                <constraint firstAttribute="trailing" secondItem="C7V-nL-Rzh" secondAttribute="trailing" constant="8" id="505-gN-wqC"/>
+                                                <constraint firstAttribute="bottom" secondItem="C7V-nL-Rzh" secondAttribute="bottom" priority="750" constant="4" id="dcP-02-Ady"/>
+                                                <constraint firstItem="C7V-nL-Rzh" firstAttribute="top" secondItem="3G7-AN-MY8" secondAttribute="top" priority="750" constant="4" id="fnH-cK-x0p"/>
+                                                <constraint firstItem="C7V-nL-Rzh" firstAttribute="leading" secondItem="3G7-AN-MY8" secondAttribute="leading" constant="8" id="iIW-CQ-RGW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -325,7 +333,8 @@
                         <outlet property="coverImage" destination="B4k-Dq-yFX" id="yoz-M3-8ur"/>
                         <outlet property="dateCell" destination="sNW-nL-fqv" id="91d-ct-AMh"/>
                         <outlet property="detailsCell" destination="SdF-qf-66Z" id="q4g-1x-Wus"/>
-                        <outlet property="detailsLabel" destination="4Tm-ql-qE9" id="0c5-tj-ItE"/>
+                        <outlet property="detailsHeightConstraint" destination="3YD-Kh-DRg" id="Fch-xb-34G"/>
+                        <outlet property="detailsText" destination="C7V-nL-Rzh" id="3TA-bM-iMe"/>
                         <outlet property="hourCell" destination="4u8-j6-LQc" id="5lx-RX-kDY"/>
                         <outlet property="nameField" destination="25A-YI-gnp" id="91C-m9-GAU"/>
                         <outlet property="ownerCell" destination="Egq-ZB-ALz" id="Ll3-nX-cav"/>

@@ -23,7 +23,8 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *dateCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *hourCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *detailsCell;
-@property (weak, nonatomic) IBOutlet UILabel *detailsLabel;
+@property (weak, nonatomic) IBOutlet UITextView *detailsText;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailsHeightConstraint;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITableViewCell *status1Cell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *status2Cell;
@@ -83,7 +84,7 @@
     _dateCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle];
     _hourCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     
-    _detailsLabel.text = _event.details;
+    _detailsText.attributedText = [[NSAttributedString alloc] initWithString:_event.details attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17]}];
     
     [self updateUserView];
     [self.tableView reloadData];
@@ -134,6 +135,9 @@
 {
     if (indexPath.section == 0 && indexPath.row == 3)
     {
+        CGSize textViewSize = [_detailsText sizeThatFits:CGSizeMake([_detailsText frame].size.width, FLT_MAX)];
+        _detailsHeightConstraint.constant = textViewSize.height;
+
         [_detailsCell layoutIfNeeded];
         
         CGSize size = [_detailsCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
