@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Event;
+
 @interface Bookmark : NSObject
 
 @property BOOL wasChanged;
@@ -16,9 +18,12 @@
 @property NSString *userId;
 @property NSString *eventName;
 @property NSString *ownerUserId;
+@property NSDate *time;
 
 - (id)initWithEventId:(NSString *)eventId userId:(NSString *)userId;
 - (id)initFromDictionary:(NSDictionary *)dict;
 - (NSMutableDictionary *)toDictionary;
+
+- (void)updateFromEvent:(Event *)event;
 
 @end

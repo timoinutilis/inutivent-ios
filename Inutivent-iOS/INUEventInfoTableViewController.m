@@ -233,11 +233,9 @@
         _event = [[Event alloc] init];
         [_event parseFromDictionary:data];
         
-        if (![_bookmark.eventName isEqualToString:_event.title])
+        [_bookmark updateFromEvent:_event];
+        if (_bookmark.wasChanged)
         {
-            _bookmark.eventName = _event.title;
-            _bookmark.ownerUserId = _event.owner;
-            _bookmark.wasChanged = YES;
             [[INUDataManager sharedInstance] saveBookmarks];
         }
         

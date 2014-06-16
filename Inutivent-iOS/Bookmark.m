@@ -7,6 +7,7 @@
 //
 
 #import "Bookmark.h"
+#import "Event.h"
 
 @implementation Bookmark
 
@@ -29,6 +30,7 @@
     {
         _eventName = dict[@"eventName"];
         _ownerUserId = dict[@"ownerUserId"];
+        _time = dict[@"time"];
     }
     return self;
 }
@@ -40,7 +42,23 @@
     dict[@"userId"] = _userId;
     dict[@"eventName"] = _eventName;
     dict[@"ownerUserId"] = _ownerUserId;
+    if (_time)
+    {
+        dict[@"time"] = _time;
+    }
     return dict;
+}
+
+- (void)updateFromEvent:(Event *)event
+{
+    if (![_eventName isEqualToString:event.title] || ![_time isEqualToDate:event.time])
+    {
+        _eventName = event.title;
+        _ownerUserId = event.owner;
+        _time = event.time;
+        
+        _wasChanged = YES;
+    }
 }
 
 @end

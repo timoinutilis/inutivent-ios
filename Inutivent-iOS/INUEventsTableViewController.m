@@ -11,12 +11,15 @@
 #import "Bookmark.h"
 #import "Event.h"
 #import "INUDataManager.h"
+#import "INUListSection.h"
 
 @interface INUEventsTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property NSArray *selectedIndexPathsWhenViewAppeared;
 @property Bookmark *lastOpenedBookmark;
+@property NSMutableArray *sections;
 
 @end
 
@@ -25,7 +28,8 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -40,6 +44,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [self updateSections];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -56,8 +62,7 @@
     {
         if (_lastOpenedBookmark && _lastOpenedBookmark.wasChanged)
         {
-            NSLog(@"bookmark update");
-            [[self tableView] reloadRowsAtIndexPaths:_selectedIndexPathsWhenViewAppeared withRowAnimation:UITableViewRowAnimationFade];
+            [self bookmarksChanged];
             _lastOpenedBookmark.wasChanged = NO;
         }
         _lastOpenedBookmark = nil;
@@ -77,81 +82,77 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)updateSections
+{
+    _sections = [[NSMutableArray alloc] init];
+    [self addEventsWithIsOwner:YES title:@"Your Events"];
+    [self addEventsWithIsOwner:NO title:@"Events"];
+}
+
+- (void)addEventsWithIsOwner:(BOOL)isOwner title:(NSString *)title
+{
+    NSMutableArray *bookmarks = [[INUDataManager sharedInstance] bookmarks];
+    NSMutableArray *sectionEvents = [[NSMutableArray alloc] init];
+    int count = (int)[bookmarks count];
+    for (int i = 0; i < count; i++)
+    {
+        Bookmark *bookmark = bookmarks[i];
+        BOOL bookmarkIsOwner = [bookmark.userId isEqualToString:bookmark.ownerUserId];
+        if (bookmarkIsOwner == isOwner)
+        {
+            [sectionEvents addObject:bookmark];
+        }
+    }
+    if ([sectionEvents count] > 0)
+    {
+        [sectionEvents sortUsingComparator:^NSComparisonResult(Bookmark *bookmark1, Bookmark *bookmark2) {
+            if (!bookmark1.time && !bookmark2.time)
+            {
+                return NSOrderedSame;
+            }
+            if (!bookmark1.time)
+            {
+                return NSOrderedDescending;
+            }
+            if (!bookmark2.time)
+            {
+                return NSOrderedAscending;
+            }
+            return [bookmark1.time compare:bookmark2.time];
+        }];
+        [_sections addObject:[[INUListSection alloc] initWithTitle:title array:sectionEvents]];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return [_sections count];
 }
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;
-{
-    return nil;
-}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [[[INUDataManager sharedInstance] bookmarks] count];
+    return [[(INUListSection *)_sections[section] array] count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [(INUListSection *)_sections[section] title];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
     
-    Bookmark *bookmark = [[[INUDataManager sharedInstance] bookmarks] objectAtIndex:indexPath.row];
+    Bookmark *bookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
     cell.textLabel.text = bookmark.eventName.length > 0 ? bookmark.eventName : bookmark.eventId;
+    cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:bookmark.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterShortStyle];
     
     return cell;
 }
-
-/*
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    INUEvent *tappedEvent = [self.events objectAtIndex:indexPath.row];
-}*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
 
@@ -164,7 +165,8 @@
     {
         INUEventInfoTableViewController *infoController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Bookmark *selectedBookmark = [[[INUDataManager sharedInstance] bookmarks] objectAtIndex:indexPath.row];
+
+        Bookmark *selectedBookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
         infoController.bookmark = selectedBookmark;
         _lastOpenedBookmark = selectedBookmark;
     }
@@ -174,6 +176,7 @@
 
 - (void)bookmarksChanged
 {
+    [self updateSections];
     [[self tableView] reloadData];
 }
 
