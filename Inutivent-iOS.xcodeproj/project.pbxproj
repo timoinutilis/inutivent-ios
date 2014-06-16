@@ -150,6 +150,7 @@
 		92837573193A494D0000CCD6 /* Inutivent-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				9283759E193A66E00000CCD6 /* Main.storyboard */,
 				92BCB02B1947205F00A1E882 /* Images */,
 				928375A9193A6F090000CCD6 /* Models */,
 				92A5C31D1948AD5100D40CAC /* Controllers */,
@@ -158,7 +159,6 @@
 				927F59E7193E647500EEEC62 /* INUDataManagerDelegate.h */,
 				9283757C193A494D0000CCD6 /* INUAppDelegate.h */,
 				9283757D193A494D0000CCD6 /* INUAppDelegate.m */,
-				9283759E193A66E00000CCD6 /* Main.storyboard */,
 				92E0E2BA1940D1B100D9ACDD /* INUUtils.h */,
 				92E0E2BB1940D1B100D9ACDD /* INUUtils.m */,
 				92CB1F27194791A100309850 /* INUListSection.h */,

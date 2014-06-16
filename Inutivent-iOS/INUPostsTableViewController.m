@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *editorTextView;
 
+@property INUPostTableViewCell *layoutCell;
+
 @end
 
 @implementation INUPostsTableViewController
@@ -45,6 +47,8 @@
     _editorTextView.layer.cornerRadius = 4.0f;
     _editorTextView.layer.borderColor = [[UIColor blackColor] CGColor];
     _editorTextView.layer.backgroundColor = [[UIColor whiteColor] CGColor];
+    
+    _layoutCell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -76,6 +80,18 @@
     [cell setPost:_event.posts[indexPath.row] event:_event];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [_layoutCell setPost:_event.posts[indexPath.row] event:_event];
+ 
+    _layoutCell.bounds = CGRectMake(0.0f, 0.0f, self.tableView.bounds.size.width, _layoutCell.bounds.size.height);
+    [_layoutCell setNeedsLayout];
+    [_layoutCell layoutIfNeeded];
+    
+    CGSize size = [_layoutCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height;
 }
 
 /*

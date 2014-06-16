@@ -353,12 +353,12 @@
         <scene sceneID="gmw-Pz-tgY">
             <objects>
                 <tableViewController id="pPT-im-HkY" customClass="INUPostsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="88" sectionHeaderHeight="22" sectionFooterHeight="22" id="tgS-Le-QHC">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="tgS-Le-QHC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="lZn-Sw-RQg">
-                            <rect key="frame" x="0.0" y="174" width="320" height="88"/>
+                            <rect key="frame" x="0.0" y="130" width="320" height="88"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKe-9X-hJG">
@@ -393,17 +393,17 @@
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" id="dlO-Pd-2t6" customClass="INUPostTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="88"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dlO-Pd-2t6" id="adp-Da-ikK">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VqD-po-9U0">
-                                            <rect key="frame" x="4" y="0.0" width="312" height="33"/>
+                                            <rect key="frame" x="4" y="0.0" width="312" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="33" id="gJ9-CL-1Gc"/>
+                                                <constraint firstAttribute="height" constant="44" id="gJ9-CL-1Gc"/>
                                             </constraints>
                                             <attributedString key="attributedText">
                                                 <fragment content="Label Text bla bla bla bla">
@@ -419,6 +419,7 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="VqD-po-9U0" firstAttribute="leading" secondItem="adp-Da-ikK" secondAttribute="leading" constant="4" id="3zV-aB-cFE"/>
+                                        <constraint firstAttribute="bottom" secondItem="VqD-po-9U0" secondAttribute="bottom" priority="750" id="OYD-oD-bg4"/>
                                         <constraint firstAttribute="trailing" secondItem="VqD-po-9U0" secondAttribute="trailing" constant="4" id="rta-Br-Cbg"/>
                                         <constraint firstItem="VqD-po-9U0" firstAttribute="top" secondItem="adp-Da-ikK" secondAttribute="top" id="yjW-mQ-fbl"/>
                                     </constraints>
