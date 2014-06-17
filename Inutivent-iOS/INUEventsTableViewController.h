@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "INUDataManagerDelegate.h"
 
-@interface INUEventsTableViewController : UITableViewController <INUDataManagerDelegate>
+@interface INUEventsTableViewController : UITableViewController
 
 @end

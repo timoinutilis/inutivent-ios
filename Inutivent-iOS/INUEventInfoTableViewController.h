@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "INUDataManagerDelegate.h"
 
 @class Bookmark;
 
-@interface INUEventInfoTableViewController : UITableViewController <INUDataManagerDelegate>
+@interface INUEventInfoTableViewController : UITableViewController
 
 @property Bookmark *bookmark;
 

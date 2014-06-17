@@ -33,6 +33,7 @@ static INUDataManager *_sharedInstance;
     if (self)
     {
         _bookmarks = [[NSMutableArray alloc] init];
+        _events = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
@@ -71,7 +72,7 @@ static INUDataManager *_sharedInstance;
     {
         bookmark = [[Bookmark alloc] initWithEventId:eventId userId:userId];
         [_bookmarks addObject:bookmark];
-        [self delegateBookmarksChanged];
+        [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarksChangedNotification object:self];
     }
     return bookmark;
 }
@@ -89,30 +90,10 @@ static INUDataManager *_sharedInstance;
     return nil;
 }
 
-- (void)delegateBookmarksChanged
+- (Event *)getEventById:(NSString *)eventId
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(bookmarksChanged)])
-    {
-        [_delegate bookmarksChanged];
-    }
+    return _events[eventId];
 }
-
-- (void)delegateRequestCompleteService:(NSString *)service data:(NSDictionary *)data
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(requestCompleteService:data:)])
-    {
-        [_delegate requestCompleteService:service data:data];
-    }
-}
-
-- (void)delegateRequestErrorService:(NSString *)service error:(NSString *)error
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(requestErrorService:error:)])
-    {
-        [_delegate requestErrorService:service error:error];
-    }
-}
-
 
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict
 {
@@ -143,7 +124,7 @@ static INUDataManager *_sharedInstance;
         {
             NSLog(@"connection error");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self delegateRequestErrorService:service error:@"connection error"];
+                [self requestErrorService:service error:@"connection error"];
             });
         }
         else
@@ -154,7 +135,7 @@ static INUDataManager *_sharedInstance;
             {
                 NSLog(@"format error");
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self delegateRequestErrorService:service error:@"format error"];
+                    [self requestErrorService:service error:@"format error"];
                 });
             }
             else
@@ -165,19 +146,83 @@ static INUDataManager *_sharedInstance;
                 {
                     NSLog(@"data error: %@", dataError);
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self delegateRequestErrorService:service error:dataError];
+                        [self requestErrorService:service error:dataError];
                     });
                 }
                 else
                 {
                     NSLog(@"data ok");
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self delegateRequestCompleteService:service data:dataDict];
+                        [self requestCompleteService:service data:dataDict];
                     });
                 }
             }
         }
     }];
+}
+
+- (void)requestCompleteService:(NSString *)service data:(NSDictionary *)data
+{
+    if ([service isEqualToString:@"getevent.php"])
+    {
+        NSString *eventId = data[@"event"][@"id"];
+        Event *event = [self getEventById:eventId];
+        if (!event)
+        {
+            event = [[Event alloc] init];
+            _events[eventId] = event;
+        }
+        [event parseFromDictionary:data];
+        
+        // update bookmarks
+        int count = (int)[_bookmarks count];
+        BOOL anyChanged = NO;
+        for (int i = 0; i < count; i++)
+        {
+            Bookmark *bookmark = _bookmarks[i];
+            if ([bookmark.eventId isEqualToString:eventId])
+            {
+                [bookmark updateFromEvent:event];
+                if (bookmark.wasChanged)
+                {
+                    anyChanged = YES;
+                }
+
+            }
+        }
+        if (anyChanged)
+        {
+            [self saveBookmarks];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:INUEventLoadedNotification object:self userInfo:@{@"eventId": eventId}];
+    }
+    else if ([service isEqualToString:@"updateuser.php"])
+    {
+/*        User *me = [self getMe];
+        if (data[@"status"])
+        {
+            me.status = [me parseStatus:data[@"status"]];
+            me.statusChanged = [[NSDate alloc] init];
+        }
+        if (data[@"name"])
+        {
+            me.name = data[@"name"];
+        }
+        [self updateUserView];
+        
+        if (_selectedRow)
+        {
+            [self.tableView deselectRowAtIndexPath:_selectedRow animated:YES];
+            _selectedRow = nil;
+        }*/
+    }
+}
+
+- (void)requestErrorService:(NSString *)service error:(NSString *)error
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void) beginActivity
@@ -199,3 +244,6 @@ static INUDataManager *_sharedInstance;
 }
 
 @end
+
+NSString *const INUBookmarksChangedNotification = @"INUBookmarksChanged";
+NSString *const INUEventLoadedNotification = @"INUEventLoaded";

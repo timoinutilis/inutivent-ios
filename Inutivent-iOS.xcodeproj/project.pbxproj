@@ -56,7 +56,6 @@
 		927F59DE193E2E5300EEEC62 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		927F59E2193E56B600EEEC62 /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
 		927F59E3193E56B600EEEC62 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
-		927F59E7193E647500EEEC62 /* INUDataManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INUDataManagerDelegate.h; sourceTree = "<group>"; };
 		9283756A193A494D0000CCD6 /* Inutivent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inutivent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9283756D193A494D0000CCD6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9283756F193A494D0000CCD6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -156,7 +155,6 @@
 				92A5C31D1948AD5100D40CAC /* Controllers */,
 				927F59DA193E2A0100EEEC62 /* INUDataManager.h */,
 				927F59DB193E2A0100EEEC62 /* INUDataManager.m */,
-				927F59E7193E647500EEEC62 /* INUDataManagerDelegate.h */,
 				9283757C193A494D0000CCD6 /* INUAppDelegate.h */,
 				9283757D193A494D0000CCD6 /* INUAppDelegate.m */,
 				92E0E2BA1940D1B100D9ACDD /* INUUtils.h */,

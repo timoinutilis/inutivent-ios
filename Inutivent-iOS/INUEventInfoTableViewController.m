@@ -31,7 +31,6 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *status3Cell;
 
 @property Event *event;
-@property NSIndexPath *selectedRow;
 
 @end
 
@@ -55,19 +54,33 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [INUDataManager sharedInstance].delegate = self;
-    [self loadEvent];
+    
+    _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
+    if (_event)
+    {
+        [self updateView];
+    }
+    else
+    {
+        [self loadEvent];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [INUDataManager sharedInstance].delegate = nil;
 }
 
 - (void)loadEvent
@@ -79,7 +92,8 @@
 {
     [self updateCoverImage];
     _titleLabel.text = _event.title;
-    _ownerCell.textLabel.text = [_event getUserWithId:_event.owner].name;
+    
+    [self updateOwner];
     
     _dateCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle];
     _hourCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
@@ -114,6 +128,11 @@
             }
         }];
     }
+}
+
+- (void)updateOwner
+{
+    _ownerCell.textLabel.text = [_event getUserWithId:_event.owner].name;
 }
 
 - (void)updateUserView
@@ -154,8 +173,6 @@
     }
     else if (indexPath.section == 2)
     {
-        _selectedRow = indexPath;
-
         NSString *newStatus = @"U";
         if (indexPath.row == 0)
         {
@@ -169,6 +186,14 @@
         {
             newStatus = @"N";
         }
+        
+        User *me = [self getMe];
+        me.status = [me parseStatus:newStatus];
+        me.statusChanged = [[NSDate alloc] init];
+        [self updateUserView];
+        
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
         NSDictionary *paramsDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                     _bookmark.eventId, @"event_id",
                                     _bookmark.userId, @"user_id",
@@ -219,6 +244,9 @@
     User *me = [self getMe];
     if (![self.nameField.text isEqualToString:me.name])
     {
+        me.name = self.nameField.text;
+        [self updateOwner];
+        
         NSDictionary *paramsDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                     _bookmark.eventId, @"event_id",
                                     _bookmark.userId, @"user_id",
@@ -228,56 +256,15 @@
     }
 }
 
-#pragma mark - Data Manager
+#pragma mark - INUDataManager
 
-- (void)requestCompleteService:(NSString *)service data:(NSDictionary *)data
+- (void)receivedNotification:(NSNotification *)notification
 {
-    User *me = [self getMe];
-    if ([service isEqualToString:@"getevent.php"])
+    if (notification.name == INUEventLoadedNotification)
     {
-        _event = [[Event alloc] init];
-        [_event parseFromDictionary:data];
-        
-        [_bookmark updateFromEvent:_event];
-        if (_bookmark.wasChanged)
-        {
-            [[INUDataManager sharedInstance] saveBookmarks];
-        }
-        
+        _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
         [self updateView];
     }
-    else if ([service isEqualToString:@"updateuser.php"])
-    {
-        if (data[@"status"])
-        {
-            me.status = [me parseStatus:data[@"status"]];
-            me.statusChanged = [[NSDate alloc] init];
-        }
-        if (data[@"name"])
-        {
-            me.name = data[@"name"];
-        }
-        [self updateUserView];
-        
-        if (_selectedRow)
-        {
-            [self.tableView deselectRowAtIndexPath:_selectedRow animated:YES];
-            _selectedRow = nil;
-        }
-        
-    }
-}
-
-- (void)requestErrorService:(NSString *)service error:(NSString *)error
-{
-    if (_selectedRow)
-    {
-        [self.tableView deselectRowAtIndexPath:_selectedRow animated:YES];
-        _selectedRow = nil;
-    }
-
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
 }
 
 @end

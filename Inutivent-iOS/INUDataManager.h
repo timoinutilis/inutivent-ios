@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "INUDataManagerDelegate.h"
 
 @class Bookmark;
+@class Event;
 
 @interface INUDataManager : NSObject
 
 @property (readonly) NSMutableArray *bookmarks;
-@property (weak) id<INUDataManagerDelegate> delegate;
+@property (readonly) NSMutableDictionary *events;
 
 + (INUDataManager *)sharedInstance;
 
@@ -23,6 +23,11 @@
 - (Bookmark *)addBookmarkWithEventId:(NSString *)eventId userId:(NSString *)userId;
 - (Bookmark *)getBookmarkByEventId:(NSString *)eventId userId:(NSString *)userId;
 
+- (Event *)getEventById:(NSString *)eventId;
+
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict;
 
 @end
+
+extern NSString *const INUBookmarksChangedNotification;
+extern NSString *const INUEventLoadedNotification;

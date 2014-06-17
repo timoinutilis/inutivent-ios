@@ -46,11 +46,17 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self updateSections];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [INUDataManager sharedInstance].delegate = self;
     _selectedIndexPathsWhenViewAppeared = self.tableView.indexPathsForSelectedRows;
     [super viewWillAppear:animated];
 }
@@ -62,18 +68,13 @@
     {
         if (_lastOpenedBookmark && _lastOpenedBookmark.wasChanged)
         {
-            [self bookmarksChanged];
+            [self updateSections];
+            [[self tableView] reloadData];
             _lastOpenedBookmark.wasChanged = NO;
         }
         _lastOpenedBookmark = nil;
         _selectedIndexPathsWhenViewAppeared = nil;
     }
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [INUDataManager sharedInstance].delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -172,12 +173,15 @@
     }
 }
 
-#pragma mark - INUEventManager delegate
+#pragma mark - INUDataManager
 
-- (void)bookmarksChanged
+- (void)receivedNotification:(NSNotification *)notification
 {
-    [self updateSections];
-    [[self tableView] reloadData];
+    if (notification.name == INUBookmarksChangedNotification)
+    {
+        [self updateSections];
+        [[self tableView] reloadData];
+    }
 }
 
 @end
