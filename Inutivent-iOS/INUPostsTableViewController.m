@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextView *editorTextView;
+@property (weak, nonatomic) IBOutlet UIButton *postButton;
 
 @property INUPostTableViewCell *layoutCell;
 
@@ -45,10 +46,32 @@
     
     _editorTextView.layer.borderWidth = 1.0f;
     _editorTextView.layer.cornerRadius = 4.0f;
-    _editorTextView.layer.borderColor = [[UIColor blackColor] CGColor];
+    _editorTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     _editorTextView.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     
+    _postButton.layer.cornerRadius = 4.0f;
+    
     _layoutCell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
+    tapGesture.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,12 +128,40 @@
 }
 */
 
+#pragma mark - Notifications
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGFloat contentHeight = self.tableView.contentSize.height;
+    CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGFloat viewHeight = self.tableView.frame.size.height;
+    
+    [self.tableView setContentOffset:CGPointMake(0.0f, contentHeight - viewHeight + keyboardSize.height) animated:YES];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    
+}
+
 #pragma mark - Actions
+
+- (void)onTap:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint location = [sender locationInView:self.tableView.tableFooterView];
+        if (location.y < 0)
+        {
+            NSLog(@"dismiss");
+            [[self view] endEditing:YES];
+        }
+    }
+}
 
 - (IBAction)onTapPost:(id)sender
 {
-//    [_editorTextView resignFirstResponder];
-    
+    NSLog(@"post");
     NSString *text = [_editorTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if (text.length > 0)
@@ -142,6 +193,5 @@
         [self.tableView endUpdates];
     }
 }
-
 
 @end

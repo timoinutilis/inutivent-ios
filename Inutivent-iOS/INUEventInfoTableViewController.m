@@ -84,7 +84,7 @@
     _dateCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle];
     _hourCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     
-    _detailsText.attributedText = [[NSAttributedString alloc] initWithString:_event.details attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17]}];
+    _detailsText.attributedText = [[NSAttributedString alloc] initWithString:_event.details attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18]}];
     
     [self updateUserView];
     [self.tableView reloadData];
@@ -148,9 +148,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    _selectedRow = indexPath;
-    if (indexPath.section == 2)
+    if (indexPath.section == 1)
     {
+        [_nameField becomeFirstResponder];
+    }
+    else if (indexPath.section == 2)
+    {
+        _selectedRow = indexPath;
+
         NSString *newStatus = @"U";
         if (indexPath.row == 0)
         {
