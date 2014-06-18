@@ -9,8 +9,12 @@
 #import "INUEventTabBarController.h"
 #import "INUDataManager.h"
 #import "Bookmark.h"
+#import "Event.h"
+#import "INUSpinnerView.h"
 
 @interface INUEventTabBarController ()
+
+@property INUSpinnerView *spinnerView;
 
 @end
 
@@ -31,10 +35,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    if ([[INUDataManager sharedInstance] getEventById:_bookmark.eventId] == nil)
+    if ([[INUDataManager sharedInstance] getEventById:_bookmark.eventId])
     {
+        [self updateView];
+    }
+    else
+    {
+        _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
         [self loadEvent];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,9 +75,33 @@
     [[INUDataManager sharedInstance] requestFromServer:@"getevent.php" params:[NSDictionary dictionaryWithObjectsAndKeys:_bookmark.eventId, @"event_id", _bookmark.userId, @"user_id", nil]];
 }
 
+- (void)updateView
+{
+    Event *event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
+    if (event)
+    {
+        self.navigationItem.title = event.title;
+    }
+}
+
 - (IBAction)onTapRefresh:(id)sender
 {
     [self loadEvent];
+}
+
+#pragma mark - INUDataManager
+
+- (void)receivedNotification:(NSNotification *)notification
+{
+    if (notification.name == INUEventLoadedNotification)
+    {
+        [self updateView];
+        if (_spinnerView)
+        {
+            [_spinnerView removeFromSuperview];
+            _spinnerView = nil;
+        }
+    }
 }
 
 @end

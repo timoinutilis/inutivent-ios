@@ -58,18 +58,18 @@
             </objects>
             <point key="canvasLocation" x="594" y="18"/>
         </scene>
-        <!--Event Tab Bar Controller - Event-->
+        <!--Event Tab Bar Controller-->
         <scene sceneID="5e1-f0-nDl">
             <objects>
                 <tabBarController definesPresentationContext="YES" id="xGb-bj-q7O" customClass="INUEventTabBarController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Event" id="CW0-bb-6RF">
+                    <navigationItem key="navigationItem" id="CW0-bb-6RF">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="qpt-IV-NIR">
                             <connections>
                                 <action selector="onTapRefresh:" destination="xGb-bj-q7O" id="e6x-ys-hIh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="mfL-gx-aCZ">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
