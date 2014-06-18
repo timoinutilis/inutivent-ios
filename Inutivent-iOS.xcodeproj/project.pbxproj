@@ -34,6 +34,7 @@
 		92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */; };
 		92CB1F29194791A100309850 /* INUListSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F28194791A100309850 /* INUListSection.m */; };
 		92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E0E2BB1940D1B100D9ACDD /* INUUtils.m */; };
+		92F68FD21950D0CE00DCACB7 /* INUEventTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F68FD11950D0CE00DCACB7 /* INUEventTabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		92CB1F28194791A100309850 /* INUListSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUListSection.m; sourceTree = "<group>"; };
 		92E0E2BA1940D1B100D9ACDD /* INUUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUUtils.h; sourceTree = "<group>"; };
 		92E0E2BB1940D1B100D9ACDD /* INUUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUUtils.m; sourceTree = "<group>"; };
+		92F68FD01950D0CE00DCACB7 /* INUEventTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUEventTabBarController.h; sourceTree = "<group>"; };
+		92F68FD11950D0CE00DCACB7 /* INUEventTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUEventTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +218,8 @@
 			children = (
 				928375A3193A6C670000CCD6 /* INUEventsTableViewController.h */,
 				928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */,
+				92F68FD01950D0CE00DCACB7 /* INUEventTabBarController.h */,
+				92F68FD11950D0CE00DCACB7 /* INUEventTabBarController.m */,
 				9206DA43193F2A7900DA0F24 /* INUEventInfoTableViewController.h */,
 				9206DA44193F2A7900DA0F24 /* INUEventInfoTableViewController.m */,
 				92CB1F2419478A5800309850 /* INUGuestsTableViewController.h */,
@@ -349,6 +354,7 @@
 				927F59DC193E2A0100EEEC62 /* INUDataManager.m in Sources */,
 				92A5C3231948B2EB00D40CAC /* INUPostTableViewCell.m in Sources */,
 				92A5C31C19489FFB00D40CAC /* Post.m in Sources */,
+				92F68FD21950D0CE00DCACB7 /* INUEventTabBarController.m in Sources */,
 				928375A8193A6F030000CCD6 /* Event.m in Sources */,
 				9283757E193A494D0000CCD6 /* INUAppDelegate.m in Sources */,
 				9206DA45193F2A7900DA0F24 /* INUEventInfoTableViewController.m in Sources */,

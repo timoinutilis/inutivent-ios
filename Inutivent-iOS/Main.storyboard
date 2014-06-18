@@ -38,7 +38,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="fb1-U5-Cxx" kind="push" identifier="ShowEvent" id="jtm-mc-HOW"/>
+                                    <segue destination="xGb-bj-q7O" kind="push" identifier="ShowEvent" id="aFQ-aD-rqd"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -57,6 +57,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6G6-LK-pXx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="594" y="18"/>
+        </scene>
+        <!--Event Tab Bar Controller - Event-->
+        <scene sceneID="5e1-f0-nDl">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="xGb-bj-q7O" customClass="INUEventTabBarController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Event" id="CW0-bb-6RF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="qpt-IV-NIR">
+                            <connections>
+                                <action selector="onTapRefresh:" destination="xGb-bj-q7O" id="e6x-ys-hIh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="mfL-gx-aCZ">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="fb1-U5-Cxx" kind="relationship" relationship="viewControllers" id="322-8o-bQZ"/>
+                        <segue destination="nbx-xv-1TR" kind="relationship" relationship="viewControllers" id="VH0-JI-Djz"/>
+                        <segue destination="pPT-im-HkY" kind="relationship" relationship="viewControllers" id="G4i-5S-iAe"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bAq-AS-ZIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1143" y="18"/>
         </scene>
         <!--Event Info Table View Controller - Info-->
         <scene sceneID="Nsv-uE-p30">
@@ -289,63 +316,13 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection id="YPK-iM-amn">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="E4M-pI-rsQ" style="IBUITableViewCellStyleDefault" id="lxO-Cg-fIm">
-                                        <rect key="frame" x="0.0" y="596" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lxO-Cg-fIm" id="sAh-sG-QOu">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Guests" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="E4M-pI-rsQ">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="nbx-xv-1TR" kind="push" identifier="ShowGuests" id="1b7-do-vEg"/>
-                                        </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="S0y-by-s1N" style="IBUITableViewCellStyleDefault" id="Ce3-iX-mbG">
-                                        <rect key="frame" x="0.0" y="640" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ce3-iX-mbG" id="SXV-Bk-eNP">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S0y-by-s1N">
-                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="pPT-im-HkY" kind="push" identifier="ShowPosts" id="pcK-xF-q1U"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="fb1-U5-Cxx" id="KGA-3n-Y0g"/>
                             <outlet property="delegate" destination="fb1-U5-Cxx" id="fQA-tr-a8H"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Info" id="ZAv-2n-HSr">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="drP-Ve-scb">
-                            <connections>
-                                <action selector="onTapRefresh:" destination="fb1-U5-Cxx" id="o67-B2-nSZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <tabBarItem key="tabBarItem" title="Info" image="info" id="6Us-Vd-Hd0"/>
                     <connections>
                         <outlet property="coverImage" destination="B4k-Dq-yFX" id="yoz-M3-8ur"/>
                         <outlet property="dateCell" destination="sNW-nL-fqv" id="91d-ct-AMh"/>
@@ -364,7 +341,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XyJ-9B-Han" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1043" y="18"/>
+            <point key="canvasLocation" x="1739" y="18"/>
         </scene>
         <!--Posts Table View Controller - Comments-->
         <scene sceneID="gmw-Pz-tgY">
@@ -455,7 +432,7 @@
                             <outlet property="delegate" destination="pPT-im-HkY" id="inT-M2-gYS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Comments" id="OfL-ld-Z7T"/>
+                    <tabBarItem key="tabBarItem" title="Comments" image="comments" id="7XI-tV-pR7"/>
                     <connections>
                         <outlet property="editorTextView" destination="aKe-9X-hJG" id="9XK-lV-UMU"/>
                         <outlet property="postButton" destination="IM6-VW-4nr" id="WLZ-HK-fX5"/>
@@ -464,7 +441,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMj-Ln-oK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1490" y="452"/>
+            <point key="canvasLocation" x="2484" y="18"/>
         </scene>
         <!--Guests Table View Controller - Guests-->
         <scene sceneID="ZvV-tp-6kw">
@@ -498,11 +475,11 @@
                             <outlet property="delegate" destination="nbx-xv-1TR" id="Qh7-02-8If"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Guests" id="JQX-QX-wlh"/>
+                    <tabBarItem key="tabBarItem" title="Guests" image="guests" id="AWu-SE-V3b"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nwJ-Je-xv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1490" y="-265"/>
+            <point key="canvasLocation" x="2105" y="18"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="m0g-hL-TuQ">
@@ -525,7 +502,10 @@
     </scenes>
     <resources>
         <image name="calendar" width="32" height="32"/>
+        <image name="comments" width="32" height="32"/>
         <image name="default_header.jpg" width="1024" height="256"/>
+        <image name="guests" width="32" height="32"/>
+        <image name="info" width="32" height="32"/>
         <image name="time" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
     </resources>

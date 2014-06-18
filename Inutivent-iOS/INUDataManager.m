@@ -51,7 +51,7 @@ static INUDataManager *_sharedInstance;
     }
     else
     {
-        [self addBookmarkWithEventId:@"c38073287c5243c6b7743224e38814a1" userId:@"4ce1cffb"];
+        [self addBookmarkWithEventId:@"cb852c9195962267613bc110e08abfad" userId:@"03727bee"];
     }
 }
 

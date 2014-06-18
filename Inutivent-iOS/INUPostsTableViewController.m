@@ -7,6 +7,7 @@
 //
 
 #import "INUPostsTableViewController.h"
+#import "INUEventTabBarController.h"
 #import "Bookmark.h"
 #import "Event.h"
 #import "Post.h"
@@ -56,6 +57,22 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)];
     tapGesture.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGesture];
+    
+    INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.tabBarController;
+    _bookmark = eventTabBarController.bookmark;
+    _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (INUEventTabBarController *)eventTabBarController
+{
+    return (INUEventTabBarController *)self.tabBarController;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -191,6 +208,16 @@
         [self.tableView beginUpdates];
         [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
+    }
+}
+
+#pragma mark - INUDataManager
+
+- (void)receivedNotification:(NSNotification *)notification
+{
+    if (notification.name == INUEventLoadedNotification)
+    {
+        [[self tableView] reloadData];
     }
 }
 

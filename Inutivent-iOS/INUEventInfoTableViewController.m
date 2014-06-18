@@ -7,6 +7,7 @@
 //
 
 #import "INUEventInfoTableViewController.h"
+#import "INUEventTabBarController.h"
 #import "INUGuestsTableViewController.h"
 #import "INUPostsTableViewController.h"
 #import "Bookmark.h"
@@ -55,6 +56,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.tabBarController;
+    _bookmark = eventTabBarController.bookmark;
+    _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
+    if (_event)
+    {
+        [self updateView];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
 }
 
@@ -66,26 +75,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
-    if (_event)
-    {
-        [self updateView];
-    }
-    else
-    {
-        [self loadEvent];
-    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-}
-
-- (void)loadEvent
-{
-    [[INUDataManager sharedInstance] requestFromServer:@"getevent.php" params:[NSDictionary dictionaryWithObjectsAndKeys:_bookmark.eventId, @"event_id", _bookmark.userId, @"user_id", nil]];
 }
 
 - (void)updateView
@@ -233,11 +227,6 @@
 
 
 #pragma mark - Actions
-
-- (IBAction)onTapRefresh:(id)sender
-{
-    [self loadEvent];
-}
 
 - (IBAction)onExitName:(id)sender
 {

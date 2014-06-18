@@ -7,12 +7,16 @@
 //
 
 #import "INUGuestsTableViewController.h"
+#import "INUEventTabBarController.h"
+#import "INUDataManager.h"
+#import "Bookmark.h"
 #import "User.h"
 #import "Event.h"
 #import "INUListSection.h"
 
 @interface INUGuestsTableViewController ()
 
+@property Bookmark *bookmark;
 @property NSMutableArray *guestSections;
 
 @end
@@ -38,11 +42,30 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.tabBarController;
+    _bookmark = eventTabBarController.bookmark;
+    _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
+    if (_event)
+    {
+        [self updateSections];
+    }
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)updateSections
+{
     _guestSections = [[NSMutableArray alloc] init];
     [self addGuestsWithStatus:UserStatusAttending title:@"Going"];
     [self addGuestsWithStatus:UserStatusMaybeAttending title:@"Maybe"];
     [self addGuestsWithStatus:UserStatusNotAttending title:@"Not Going"];
     [self addGuestsWithStatus:UserStatusUnknown title:@"Invited"];
+    [self.tableView reloadData];
 }
 
 - (void)addGuestsWithStatus:(UserStatus)status title:(NSString *)title
@@ -121,5 +144,16 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - INUDataManager
+
+- (void)receivedNotification:(NSNotification *)notification
+{
+    if (notification.name == INUEventLoadedNotification)
+    {
+        [self updateSections];
+        [[self tableView] reloadData];
+    }
+}
 
 @end

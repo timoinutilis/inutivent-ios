@@ -7,7 +7,7 @@
 //
 
 #import "INUEventsTableViewController.h"
-#import "INUEventInfoTableViewController.h"
+#import "INUEventTabBarController.h"
 #import "Bookmark.h"
 #import "Event.h"
 #import "INUDataManager.h"
@@ -164,7 +164,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"ShowEvent"])
     {
-        INUEventInfoTableViewController *infoController = segue.destinationViewController;
+        INUEventTabBarController *infoController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
         Bookmark *selectedBookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
