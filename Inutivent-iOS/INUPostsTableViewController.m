@@ -58,7 +58,7 @@
     tapGesture.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGesture];
     
-    INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.tabBarController;
+    INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.parentViewController;
     _bookmark = eventTabBarController.bookmark;
     _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
 
@@ -170,8 +170,7 @@
         CGPoint location = [sender locationInView:self.tableView.tableFooterView];
         if (location.y < 0)
         {
-            NSLog(@"dismiss");
-            [[self view] endEditing:YES];
+            [self.view endEditing:YES];
         }
     }
 }

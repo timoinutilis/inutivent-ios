@@ -10,7 +10,7 @@
 
 @class Bookmark;
 
-@interface INUEventTabBarController : UITabBarController
+@interface INUEventTabBarController : UIViewController
 
 @property Bookmark *bookmark;
 
