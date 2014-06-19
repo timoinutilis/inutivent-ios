@@ -95,7 +95,6 @@
     _detailsText.attributedText = [[NSAttributedString alloc] initWithString:_event.details attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18]}];
     
     [self updateUserView];
-    [self.tableView reloadData];
 }
 
 - (void)updateCoverImage
@@ -253,6 +252,7 @@
     {
         _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
         [self updateView];
+        [self.tableView reloadData];
     }
 }
 

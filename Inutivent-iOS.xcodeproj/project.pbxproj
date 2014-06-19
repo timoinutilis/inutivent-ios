@@ -125,6 +125,7 @@
 		922454841951CB2A0058FF50 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9283759E193A66E00000CCD6 /* Main.storyboard */,
 				922454851951CB4D0058FF50 /* INUSpinnerView.h */,
 				922454861951CB4D0058FF50 /* INUSpinnerView.m */,
 			);
@@ -164,7 +165,6 @@
 		92837573193A494D0000CCD6 /* Inutivent-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				9283759E193A66E00000CCD6 /* Main.storyboard */,
 				92BCB02B1947205F00A1E882 /* Images */,
 				928375A9193A6F090000CCD6 /* Models */,
 				922454841951CB2A0058FF50 /* Views */,

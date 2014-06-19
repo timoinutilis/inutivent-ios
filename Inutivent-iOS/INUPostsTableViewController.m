@@ -217,7 +217,7 @@
 {
     if (notification.name == INUEventLoadedNotification)
     {
-        [[self tableView] reloadData];
+        [self.tableView reloadData];
     }
 }
 

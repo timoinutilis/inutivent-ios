@@ -65,7 +65,6 @@
     [self addGuestsWithStatus:UserStatusMaybeAttending title:@"Maybe"];
     [self addGuestsWithStatus:UserStatusNotAttending title:@"Not Going"];
     [self addGuestsWithStatus:UserStatusUnknown title:@"Invited"];
-    [self.tableView reloadData];
 }
 
 - (void)addGuestsWithStatus:(UserStatus)status title:(NSString *)title
@@ -152,7 +151,7 @@
     if (notification.name == INUEventLoadedNotification)
     {
         [self updateSections];
-        [[self tableView] reloadData];
+        [self.tableView reloadData];
     }
 }
 
