@@ -90,6 +90,12 @@ static INUDataManager *_sharedInstance;
     return nil;
 }
 
+- (void)deleteBookmark:(Bookmark *)bookmark
+{
+    [_bookmarks removeObject:bookmark];
+    [self saveBookmarks];
+}
+
 - (Event *)getEventById:(NSString *)eventId
 {
     return _events[eventId];

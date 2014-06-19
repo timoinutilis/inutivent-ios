@@ -22,6 +22,7 @@
 - (void)saveBookmarks;
 - (Bookmark *)addBookmarkWithEventId:(NSString *)eventId userId:(NSString *)userId;
 - (Bookmark *)getBookmarkByEventId:(NSString *)eventId userId:(NSString *)userId;
+- (void)deleteBookmark:(Bookmark *)bookmark;
 
 - (Event *)getEventById:(NSString *)eventId;
 
