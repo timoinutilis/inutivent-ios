@@ -8,6 +8,14 @@
 
 #import "INUSpinnerView.h"
 
+@interface INUSpinnerView ()
+
+@property UILabel *titleLabel;
+@property UILabel *messageLabel;
+@property UIActivityIndicatorView *indicator;
+
+@end
+
 @implementation INUSpinnerView
 
 - (id)initWithFrame:(CGRect)frame
@@ -17,27 +25,18 @@
     {
         // Initialization code
         self.backgroundColor = [UIColor whiteColor];
-        UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
+        self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         
-        // Set the resizing mask so it's not stretched
-        indicator.autoresizingMask =
-            UIViewAutoresizingFlexibleTopMargin |
-            UIViewAutoresizingFlexibleRightMargin |
-            UIViewAutoresizingFlexibleBottomMargin |
-            UIViewAutoresizingFlexibleLeftMargin;
-        
-        // Place it in the middle of the view
-        indicator.center = CGPointMake(self.center.x, self.frame.size.height * 0.3);
-        
-        [self addSubview:indicator];
-        [indicator startAnimating];
+        _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
+        [self addSubview:_indicator];
+        [_indicator startAnimating];
     }
     return self;
 }
 
 + (INUSpinnerView *)addNewSpinnerToView:(UIView *)superView
 {
-    INUSpinnerView *view = [[INUSpinnerView alloc] initWithFrame:superView.bounds];
+    INUSpinnerView *view = [[INUSpinnerView alloc] initWithFrame:superView.frame];
     if (view)
     {
         [superView addSubview:view];
@@ -45,13 +44,45 @@
     return view;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)showErrorWithTitle:(NSString *)title message:(NSString *)message
 {
-    // Drawing code
+    [_indicator removeFromSuperview];
+    [_indicator stopAnimating];
+    
+    if (!_titleLabel)
+    {
+        _titleLabel = [[UILabel alloc] init];
+        _titleLabel.font = [UIFont boldSystemFontOfSize:20];
+        _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _titleLabel.numberOfLines = 0;
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        _titleLabel.textColor = [UIColor grayColor];
+        
+        _messageLabel = [[UILabel alloc] init];
+        _messageLabel.font = [UIFont systemFontOfSize:18];
+        _messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        _messageLabel.numberOfLines = 0;
+        _messageLabel.textAlignment = NSTextAlignmentCenter;
+        _messageLabel.textColor = [UIColor grayColor];
+        
+        [self addSubview:_titleLabel];
+        [self addSubview:_messageLabel];
+    }
+    
+    _titleLabel.text = title;
+    _messageLabel.text = message;
+    
+    [self layoutIfNeeded];
 }
-*/
+
+- (void)layoutSubviews
+{
+    _indicator.center = CGPointMake(self.center.x, self.frame.size.height * 0.4);
+    if (_titleLabel)
+    {
+        _titleLabel.frame = CGRectMake(10, self.frame.size.height * 0.2, self.frame.size.width - 20, 60);
+        _messageLabel.frame = CGRectMake(10, _titleLabel.frame.origin.y + _titleLabel.frame.size.height, self.frame.size.width - 20, 100);
+    }
+}
 
 @end

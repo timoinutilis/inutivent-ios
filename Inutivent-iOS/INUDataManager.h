@@ -31,3 +31,4 @@
 
 extern NSString *const INUBookmarksChangedNotification;
 extern NSString *const INUEventLoadedNotification;
+extern NSString *const INUErrorNotification;

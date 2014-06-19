@@ -12,4 +12,6 @@
 
 + (INUSpinnerView *)addNewSpinnerToView:(UIView *)superView;
 
+- (void)showErrorWithTitle:(NSString *)title message:(NSString *)message;
+
 @end

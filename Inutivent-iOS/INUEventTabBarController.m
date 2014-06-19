@@ -83,7 +83,7 @@
 
 - (IBAction)onTapTab:(id)sender
 {
-    int index = _tabControl.selectedSegmentIndex;
+    int index = (int)_tabControl.selectedSegmentIndex;
     if (_selectedViewController)
     {
         [self hideContentController:_selectedViewController];
@@ -157,6 +157,20 @@
         {
             [_spinnerView removeFromSuperview];
             _spinnerView = nil;
+        }
+    }
+    else if (notification.name == INUErrorNotification)
+    {
+        NSString *title = notification.userInfo[@"title"];
+        NSString *message = notification.userInfo[@"message"];
+        if (_spinnerView)
+        {
+            [_spinnerView showErrorWithTitle:title message:message];
+        }
+        else
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
         }
     }
 }

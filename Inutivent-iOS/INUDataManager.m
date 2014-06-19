@@ -124,7 +124,7 @@ static INUDataManager *_sharedInstance;
         {
             NSLog(@"connection error");
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self requestErrorService:service error:@"connection error"];
+                [self requestErrorService:service errorId:@"failed_connection" error:@"Connection error"];
             });
         }
         else
@@ -135,18 +135,19 @@ static INUDataManager *_sharedInstance;
             {
                 NSLog(@"format error");
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self requestErrorService:service error:@"format error"];
+                    [self requestErrorService:service errorId:@"invalid_response" error:@"Format error"];
                 });
             }
             else
             {
                 NSDictionary *dataDict = dataObject;
+                NSString *dataErrorId = dataObject[@"error_id"];
                 NSString *dataError = dataObject[@"error"];
-                if (dataError)
+                if (dataErrorId)
                 {
-                    NSLog(@"data error: %@", dataError);
+                    NSLog(@"data error: (%@) %@", dataErrorId, dataError);
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self requestErrorService:service error:dataError];
+                        [self requestErrorService:service errorId:dataErrorId error:dataError];
                     });
                 }
                 else
@@ -197,32 +198,30 @@ static INUDataManager *_sharedInstance;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:INUEventLoadedNotification object:self userInfo:@{@"eventId": eventId}];
     }
-    else if ([service isEqualToString:@"updateuser.php"])
-    {
-/*        User *me = [self getMe];
-        if (data[@"status"])
-        {
-            me.status = [me parseStatus:data[@"status"]];
-            me.statusChanged = [[NSDate alloc] init];
-        }
-        if (data[@"name"])
-        {
-            me.name = data[@"name"];
-        }
-        [self updateUserView];
-        
-        if (_selectedRow)
-        {
-            [self.tableView deselectRowAtIndexPath:_selectedRow animated:YES];
-            _selectedRow = nil;
-        }*/
-    }
 }
 
-- (void)requestErrorService:(NSString *)service error:(NSString *)error
+- (void)requestErrorService:(NSString *)service errorId:(NSString *)errorId error:(NSString *)error
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    NSString *title = nil;
+    NSString *message = nil;
+    
+    if ([errorId isEqualToString:@"not_found"])
+    {
+        title = @"This Event Doesn't Exist Anymore";
+        message = @"Maybe the host deleted it or it was too old already.";
+    }
+    else if ([errorId isEqualToString:@"failed_connection"])
+    {
+        title = @"Couldn't Connect To Internet";
+        message = @"Please check if you are connected to any network or WiFi.";
+    }
+    else
+    {
+        title = @"Sorry, Something Went Wrong";
+        message = @"Please try again later.";
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:INUErrorNotification object:self userInfo:@{@"title":title, @"message":message, @"errorId":errorId}];
 }
 
 - (void) beginActivity
@@ -247,3 +246,4 @@ static INUDataManager *_sharedInstance;
 
 NSString *const INUBookmarksChangedNotification = @"INUBookmarksChanged";
 NSString *const INUEventLoadedNotification = @"INUEventLoaded";
+NSString *const INUErrorNotification = @"INUError";
