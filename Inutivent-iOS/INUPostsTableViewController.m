@@ -216,6 +216,7 @@
 {
     if (notification.name == INUEventLoadedNotification)
     {
+        _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
         [self.tableView reloadData];
     }
 }

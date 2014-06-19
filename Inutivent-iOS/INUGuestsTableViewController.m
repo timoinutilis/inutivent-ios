@@ -153,6 +153,7 @@
 {
     if (notification.name == INUEventLoadedNotification)
     {
+        _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
         [self updateSections];
         [self.tableView reloadData];
     }

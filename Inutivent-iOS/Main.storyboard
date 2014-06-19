@@ -250,7 +250,6 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="C7V-nL-Rzh" secondAttribute="trailing" constant="8" id="505-gN-wqC"/>
-                                                <constraint firstAttribute="bottom" secondItem="C7V-nL-Rzh" secondAttribute="bottom" priority="750" constant="4" id="dcP-02-Ady"/>
                                                 <constraint firstItem="C7V-nL-Rzh" firstAttribute="top" secondItem="3G7-AN-MY8" secondAttribute="top" priority="750" constant="4" id="fnH-cK-x0p"/>
                                                 <constraint firstItem="C7V-nL-Rzh" firstAttribute="leading" secondItem="3G7-AN-MY8" secondAttribute="leading" constant="8" id="iIW-CQ-RGW"/>
                                             </constraints>
@@ -405,9 +404,11 @@
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="NtP-yM-OWP"/>
                                         <constraint firstAttribute="height" constant="44" id="z6e-8S-y8D"/>
                                     </constraints>
-                                    <state key="normal" title="Post"/>
-                                    <state key="highlighted">
+                                    <state key="normal" title="Post">
                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
                                         <action selector="onTapPost:" destination="pPT-im-HkY" eventType="touchUpInside" id="gYP-ph-pdY"/>

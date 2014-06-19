@@ -14,6 +14,7 @@
 #import "Event.h"
 #import "User.h"
 #import "INUDataManager.h"
+#import "INUUtils.h"
 
 @interface INUEventInfoTableViewController ()
 
@@ -147,13 +148,16 @@
 {
     if (indexPath.section == 0 && indexPath.row == 3)
     {
-        CGSize textViewSize = [_detailsText sizeThatFits:CGSizeMake([_detailsText frame].size.width, FLT_MAX)];
+        CGFloat width = self.view.frame.size.width - 16; // 2*8 horiz space arount text view
+        if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+        {
+            // iOS <=6
+            width -= 20; // 2*10 text view insets
+        }
+        CGSize textViewSize = [_detailsText sizeThatFits:CGSizeMake(width, FLT_MAX)];
         _detailsHeightConstraint.constant = textViewSize.height;
-
-        [_detailsCell layoutIfNeeded];
         
-        CGSize size = [_detailsCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-        return size.height + 1; // +1 for separator line (bah!)
+        return textViewSize.height + 8 + 1; // 2*4 vert space around text view, 1 for separator line
     }
     return UITableViewAutomaticDimension;
 }

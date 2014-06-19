@@ -50,7 +50,10 @@
                          [storyboard instantiateViewControllerWithIdentifier:@"EventGuests"],
                          [storyboard instantiateViewControllerWithIdentifier:@"EventPosts"]
                          ];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
     _selectedViewController = _viewControllers[0];
     [self displayContentController:_selectedViewController];
     
