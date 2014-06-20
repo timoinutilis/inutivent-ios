@@ -13,12 +13,18 @@
 #import "INUDataManager.h"
 #import "INUListSection.h"
 
+typedef NS_ENUM(int, INUEventsAlertTag)
+{
+    INUEventsAlertTagCreate = 1,
+    INUEventsAlertTagDelete
+};
+
 @interface INUEventsTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property NSArray *selectedIndexPathsWhenViewAppeared;
 @property Bookmark *lastOpenedBookmark;
+@property NSIndexPath *tappedIndexPath;
 @property NSMutableArray *sections;
 
 @end
@@ -57,24 +63,26 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    _selectedIndexPathsWhenViewAppeared = self.tableView.indexPathsForSelectedRows;
+    if (_lastOpenedBookmark && _lastOpenedBookmark.wasChanged)
+    {
+        [self updateSections];
+        [[self tableView] reloadData];
+        _lastOpenedBookmark.wasChanged = NO;
+        
+        NSIndexPath *indexPath = [self getPathIndexOfBookmark:_lastOpenedBookmark];
+        if (indexPath)
+        {
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+    }
+    _lastOpenedBookmark = nil;
+
     [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (_selectedIndexPathsWhenViewAppeared)
-    {
-        if (_lastOpenedBookmark && _lastOpenedBookmark.wasChanged)
-        {
-            [self updateSections];
-            [[self tableView] reloadData];
-            _lastOpenedBookmark.wasChanged = NO;
-        }
-        _lastOpenedBookmark = nil;
-        _selectedIndexPathsWhenViewAppeared = nil;
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,6 +133,21 @@
     }
 }
 
+- (NSIndexPath *)getPathIndexOfBookmark:(Bookmark *)bookmark
+{
+    int count = (int)[_sections count];
+    for (int section = 0; section < count; section++)
+    {
+        NSArray *sectionBookmarks = [(INUListSection *)_sections[section] array];
+        NSUInteger row = [sectionBookmarks indexOfObject:bookmark];
+        if (row != NSNotFound)
+        {
+            return [NSIndexPath indexPathForRow:row inSection:section];
+        }
+    }
+    return nil;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -160,17 +183,6 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    Bookmark *bookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
-    [[INUDataManager sharedInstance] deleteBookmark:bookmark];
-    
-    [self updateSections];
-    [self.tableView beginUpdates];
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [self.tableView endUpdates];
-}
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -180,11 +192,11 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"ShowEvent"])
     {
-        INUEventTabBarController *infoController = segue.destinationViewController;
+        INUEventTabBarController *tabController = segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
         Bookmark *selectedBookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
-        infoController.bookmark = selectedBookmark;
+        tabController.bookmark = selectedBookmark;
         _lastOpenedBookmark = selectedBookmark;
     }
 }
@@ -193,18 +205,58 @@
 
 - (IBAction)onTapCreate:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Create New Event" message:@"The app can only show events, but you can create new ones on the website." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Go to Website", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Create New Event" message:@"You can create new events on the website only." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Go to Website", nil];
+    alert.tag = INUEventsAlertTagCreate;
     [alert show];
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    _tappedIndexPath = indexPath;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remove Event from List?" message:@"The event will not be deleted from the website." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Remove", nil];
+    alert.tag = INUEventsAlertTagDelete;
+    [alert show];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == alertView.firstOtherButtonIndex)
+    if (alertView.tag == INUEventsAlertTagCreate)
     {
-        NSURL *url = [NSURL URLWithString:@"http://events.inutilis.com/create.php"];
-        [[UIApplication sharedApplication] openURL:url];
+        if (buttonIndex == alertView.firstOtherButtonIndex)
+        {
+            NSURL *url = [NSURL URLWithString:@"http://events.inutilis.com/create.php"];
+            [[UIApplication sharedApplication] openURL:url];
+        }
     }
+    else if (alertView.tag == INUEventsAlertTagDelete)
+    {
+        if (buttonIndex == alertView.firstOtherButtonIndex)
+        {
+            [self deleteBookmarkFromIndexPath:_tappedIndexPath];
+        }
+        _tappedIndexPath = nil;
+    }
+}
+
+- (void)deleteBookmarkFromIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *sectionBookmarks = [(INUListSection *)_sections[indexPath.section] array];
+    BOOL wasLastInSection = [sectionBookmarks count] == 1;
+
+    Bookmark *bookmark = sectionBookmarks[indexPath.row];
+    [[INUDataManager sharedInstance] deleteBookmark:bookmark];
+    [self updateSections];
+    
+    [self.tableView beginUpdates];
+    if (wasLastInSection)
+    {
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else
+    {
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    [self.tableView endUpdates];
 }
 
 #pragma mark - INUDataManager
@@ -214,7 +266,19 @@
     if (notification.name == INUBookmarksChangedNotification)
     {
         [self updateSections];
-        [[self tableView] reloadData];
+        [self.tableView reloadData];
+    }
+    else if (notification.name == INUBookmarkAddedByURLNotification)
+    {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        
+        Bookmark *bookmark = notification.userInfo[@"bookmark"];
+        NSIndexPath *indexPath = [self getPathIndexOfBookmark:bookmark];
+        if (indexPath)
+        {
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            [self performSegueWithIdentifier:@"ShowEvent" sender:self];
+        }
     }
 }
 

@@ -74,6 +74,7 @@ static INUDataManager *_sharedInstance;
         [_bookmarks addObject:bookmark];
         [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarksChangedNotification object:self];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkAddedByURLNotification object:self userInfo:@{@"bookmark":bookmark}];
     return bookmark;
 }
 
@@ -92,6 +93,7 @@ static INUDataManager *_sharedInstance;
 
 - (void)deleteBookmark:(Bookmark *)bookmark
 {
+    [_events removeObjectForKey:bookmark.eventId];
     [_bookmarks removeObject:bookmark];
     [self saveBookmarks];
 }
@@ -251,5 +253,6 @@ static INUDataManager *_sharedInstance;
 @end
 
 NSString *const INUBookmarksChangedNotification = @"INUBookmarksChanged";
+NSString *const INUBookmarkAddedByURLNotification = @"INUBookmarkAddedByURL";
 NSString *const INUEventLoadedNotification = @"INUEventLoaded";
 NSString *const INUErrorNotification = @"INUError";
