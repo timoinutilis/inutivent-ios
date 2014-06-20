@@ -10,9 +10,8 @@
 
 @interface INUSpinnerView ()
 
-@property UILabel *titleLabel;
-@property UILabel *messageLabel;
 @property UIActivityIndicatorView *indicator;
+@property UITextView *messageTextView;
 
 @end
 
@@ -49,28 +48,30 @@
     [_indicator removeFromSuperview];
     [_indicator stopAnimating];
     
-    if (!_titleLabel)
+    if (!_messageTextView)
     {
-        _titleLabel = [[UILabel alloc] init];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _titleLabel.numberOfLines = 0;
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.textColor = [UIColor grayColor];
-        
-        _messageLabel = [[UILabel alloc] init];
-        _messageLabel.font = [UIFont systemFontOfSize:18];
-        _messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _messageLabel.numberOfLines = 0;
-        _messageLabel.textAlignment = NSTextAlignmentCenter;
-        _messageLabel.textColor = [UIColor grayColor];
-        
-        [self addSubview:_titleLabel];
-        [self addSubview:_messageLabel];
+        _messageTextView = [[UITextView alloc] init];
+        [self addSubview:_messageTextView];
     }
     
-    _titleLabel.text = title;
-    _messageLabel.text = message;
+    NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
+    paragraph.alignment = NSTextAlignmentCenter;
+    UIColor *color = [UIColor lightGrayColor];
+    
+    
+    NSMutableAttributedString *attrMessage = [[NSMutableAttributedString alloc] initWithString:title attributes:@{
+        NSFontAttributeName:[UIFont boldSystemFontOfSize:20],
+        NSForegroundColorAttributeName: color,
+        NSParagraphStyleAttributeName: paragraph
+    }];
+    
+    [attrMessage appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"\n\n%@", message] attributes:@{
+        NSFontAttributeName:[UIFont systemFontOfSize:18],
+        NSForegroundColorAttributeName: color,
+        NSParagraphStyleAttributeName: paragraph
+    }]];
+    
+    _messageTextView.attributedText = attrMessage;
     
     [self layoutIfNeeded];
 }
@@ -78,10 +79,9 @@
 - (void)layoutSubviews
 {
     _indicator.center = CGPointMake(self.center.x, self.frame.size.height * 0.4);
-    if (_titleLabel)
+    if (_messageTextView)
     {
-        _titleLabel.frame = CGRectMake(10, self.frame.size.height * 0.2, self.frame.size.width - 20, 60);
-        _messageLabel.frame = CGRectMake(10, _titleLabel.frame.origin.y + _titleLabel.frame.size.height, self.frame.size.width - 20, 100);
+        _messageTextView.frame = CGRectMake(10, self.frame.size.height * 0.5 - 75, self.frame.size.width - 20, 150);
     }
 }
 

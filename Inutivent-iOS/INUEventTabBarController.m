@@ -54,11 +54,10 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    _selectedViewController = _viewControllers[0];
-    [self displayContentController:_selectedViewController];
-    
     if ([[INUDataManager sharedInstance] getEventById:_bookmark.eventId])
     {
+        _selectedViewController = _viewControllers[0];
+        [self displayContentController:_selectedViewController];
         [self updateView];
     }
     else
@@ -157,6 +156,11 @@
         {
             [_spinnerView removeFromSuperview];
             _spinnerView = nil;
+        }
+        if (!_selectedViewController)
+        {
+            _selectedViewController = _viewControllers[0];
+            [self displayContentController:_selectedViewController];
         }
     }
     else if (notification.name == INUErrorNotification)

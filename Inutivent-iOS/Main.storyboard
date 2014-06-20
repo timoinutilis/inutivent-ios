@@ -49,6 +49,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Inutivent" id="ucB-Rl-WtX">
                         <barButtonItem key="backBarButtonItem" title="Events" id="D2h-91-brL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="KaU-Uz-eaC">
+                            <connections>
+                                <action selector="onTapCreate:" destination="uT4-Ub-1Uq" id="Wmf-Ke-gdL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="hY8-Rr-Ux7" id="3yW-Fz-lE3"/>
@@ -74,8 +79,8 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <segmentedControl contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3LW-K0-LFW">
-                                        <rect key="frame" x="8" y="6" width="304" height="29"/>
+                                    <segmentedControl contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="3LW-K0-LFW">
+                                        <rect key="frame" x="9" y="6" width="302" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
                                             <segment title="Info"/>
@@ -89,8 +94,8 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="3LW-K0-LFW" secondAttribute="trailing" constant="8" id="4ik-Ha-Yak"/>
-                                    <constraint firstItem="3LW-K0-LFW" firstAttribute="leading" secondItem="ghq-7f-cjU" secondAttribute="leading" constant="8" id="Tll-ns-cy8"/>
+                                    <constraint firstAttribute="trailing" secondItem="3LW-K0-LFW" secondAttribute="trailing" constant="9" id="4ik-Ha-Yak"/>
+                                    <constraint firstItem="3LW-K0-LFW" firstAttribute="leading" secondItem="ghq-7f-cjU" secondAttribute="leading" constant="9" id="Tll-ns-cy8"/>
                                     <constraint firstItem="3LW-K0-LFW" firstAttribute="top" secondItem="ghq-7f-cjU" secondAttribute="top" constant="6" id="hHY-Kr-z8C"/>
                                     <constraint firstAttribute="height" constant="40" id="vVF-wS-SVy"/>
                                     <constraint firstAttribute="bottom" secondItem="3LW-K0-LFW" secondAttribute="bottom" constant="6" id="yGD-It-CLQ"/>
@@ -120,7 +125,7 @@
             </objects>
             <point key="canvasLocation" x="1192" y="18"/>
         </scene>
-        <!--Event Info Table View Controller - Info-->
+        <!--Event Info Table View Controller-->
         <scene sceneID="Nsv-uE-p30">
             <objects>
                 <tableViewController storyboardIdentifier="EventInfo" automaticallyAdjustsScrollViewInsets="NO" id="fb1-U5-Cxx" customClass="INUEventInfoTableViewController" sceneMemberID="viewController">
@@ -137,13 +142,12 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Event Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="304" translatesAutoresizingMaskIntoConstraints="NO" id="1R9-1P-obq">
-                                    <rect key="frame" x="8" y="90" width="304" height="22"/>
+                                    <rect key="frame" x="8" y="91" width="304" height="21"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
-                                    <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="shadowOffset" width="0.0" height="1"/>
+                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -356,7 +360,6 @@
                             <outlet property="delegate" destination="fb1-U5-Cxx" id="fQA-tr-a8H"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Info" image="info" id="6Us-Vd-Hd0"/>
                     <connections>
                         <outlet property="coverImage" destination="B4k-Dq-yFX" id="yoz-M3-8ur"/>
                         <outlet property="dateCell" destination="sNW-nL-fqv" id="91d-ct-AMh"/>
@@ -377,7 +380,7 @@
             </objects>
             <point key="canvasLocation" x="1739" y="18"/>
         </scene>
-        <!--Posts Table View Controller - Comments-->
+        <!--Posts Table View Controller-->
         <scene sceneID="gmw-Pz-tgY">
             <objects>
                 <tableViewController storyboardIdentifier="EventPosts" automaticallyAdjustsScrollViewInsets="NO" id="pPT-im-HkY" customClass="INUPostsTableViewController" sceneMemberID="viewController">
@@ -468,7 +471,6 @@
                             <outlet property="delegate" destination="pPT-im-HkY" id="inT-M2-gYS"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Comments" image="comments" id="7XI-tV-pR7"/>
                     <connections>
                         <outlet property="editorTextView" destination="aKe-9X-hJG" id="9XK-lV-UMU"/>
                         <outlet property="postButton" destination="IM6-VW-4nr" id="WLZ-HK-fX5"/>
@@ -479,16 +481,16 @@
             </objects>
             <point key="canvasLocation" x="2484" y="18"/>
         </scene>
-        <!--Guests Table View Controller - Guests-->
+        <!--Guests Table View Controller-->
         <scene sceneID="ZvV-tp-6kw">
             <objects>
                 <tableViewController storyboardIdentifier="EventGuests" automaticallyAdjustsScrollViewInsets="NO" id="nbx-xv-1TR" customClass="INUGuestsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3BH-Cd-8vv">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3BH-Cd-8vv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" textLabel="5FI-Ff-QSi" style="IBUITableViewCellStyleDefault" id="yWo-4l-wYs">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" textLabel="5FI-Ff-QSi" style="IBUITableViewCellStyleDefault" id="yWo-4l-wYs">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yWo-4l-wYs" id="5Cy-Ns-HOV">
@@ -511,7 +513,6 @@
                             <outlet property="delegate" destination="nbx-xv-1TR" id="Qh7-02-8If"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Guests" image="guests" id="AWu-SE-V3b"/>
                     <connections>
                         <outlet property="tableView" destination="3BH-Cd-8vv" id="oNp-Ub-dMi"/>
                     </connections>
@@ -541,10 +542,7 @@
     </scenes>
     <resources>
         <image name="calendar" width="32" height="32"/>
-        <image name="comments" width="32" height="32"/>
         <image name="default_header.jpg" width="1024" height="256"/>
-        <image name="guests" width="32" height="32"/>
-        <image name="info" width="32" height="32"/>
         <image name="time" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
     </resources>

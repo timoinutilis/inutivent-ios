@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface INUEventsTableViewController : UITableViewController
+@interface INUEventsTableViewController : UITableViewController <UIAlertViewDelegate>
 
 @end

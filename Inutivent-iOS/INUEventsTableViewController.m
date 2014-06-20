@@ -149,7 +149,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
     
     Bookmark *bookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
-    cell.textLabel.text = bookmark.eventName.length > 0 ? bookmark.eventName : bookmark.eventId;
+    cell.textLabel.text = bookmark.eventName.length > 0 ? bookmark.eventName : @"Event";
     cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:bookmark.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterShortStyle];
     
     return cell;
@@ -186,6 +186,24 @@
         Bookmark *selectedBookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
         infoController.bookmark = selectedBookmark;
         _lastOpenedBookmark = selectedBookmark;
+    }
+}
+
+#pragma mark - Actions
+
+- (IBAction)onTapCreate:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Create New Event" message:@"The app can only show events, but you can create new ones on the website." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Go to Website", nil];
+    [alert show];
+
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == alertView.firstOtherButtonIndex)
+    {
+        NSURL *url = [NSURL URLWithString:@"http://events.inutilis.com/create.php"];
+        [[UIApplication sharedApplication] openURL:url];
     }
 }
 

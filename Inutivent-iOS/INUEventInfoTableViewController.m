@@ -57,6 +57,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    _titleLabel.layer.shadowOpacity = 1;
+    _titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
+    _titleLabel.layer.shadowRadius = 1.5;
+    
     INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.parentViewController;
     _bookmark = eventTabBarController.bookmark;
     _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];

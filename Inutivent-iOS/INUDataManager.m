@@ -213,17 +213,17 @@ static INUDataManager *_sharedInstance;
     
     if ([errorId isEqualToString:@"not_found"])
     {
-        title = @"This Event Doesn't Exist Anymore";
+        title = @"Event Doesn't Exist Anymore";
         message = @"Maybe the host deleted it or it was too old already.";
     }
     else if ([errorId isEqualToString:@"failed_connection"])
     {
-        title = @"Couldn't Connect To Internet";
-        message = @"Please check if you are connected to any network or WiFi.";
+        title = @"Couldn't Connect to Internet";
+        message = @"Please check if your device is connected to any network.";
     }
     else
     {
-        title = @"Sorry, Something Went Wrong";
+        title = @"Something Went Wrong";
         message = @"Please try again later.";
     }
     
