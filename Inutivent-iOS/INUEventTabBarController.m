@@ -17,7 +17,6 @@
 
 @property INUSpinnerView *spinnerView;
 
-@property (weak, nonatomic) IBOutlet UIView *barView;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tabControl;
 
 @property NSArray *viewControllers;
@@ -41,8 +40,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    _barView.layer.shadowOpacity = 1;
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.viewControllers = @[
@@ -100,17 +97,16 @@
     {
         UITableView *contentTableView = (UITableView *)[content performSelector:@selector(tableView)];
         
-        CGFloat topUIHeight = _barView.frame.size.height;
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
         {
             CGRect navBarFrame = self.navigationController.navigationBar.frame;
-            topUIHeight += navBarFrame.origin.y + navBarFrame.size.height;
-        }
-        if (contentTableView.contentInset.top != topUIHeight)
-        {
-            UIEdgeInsets insets = UIEdgeInsetsMake(topUIHeight, 0.0, 0, 0.0);
-            contentTableView.contentInset = insets;
-            contentTableView.scrollIndicatorInsets = insets;
+            CGFloat topUIHeight = navBarFrame.origin.y + navBarFrame.size.height;
+            if (contentTableView.contentInset.top != topUIHeight)
+            {
+                UIEdgeInsets insets = UIEdgeInsetsMake(topUIHeight, 0.0, 0, 0.0);
+                contentTableView.contentInset = insets;
+                contentTableView.scrollIndicatorInsets = insets;
+            }
         }
     }
     
@@ -136,7 +132,7 @@
     Event *event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
     if (event)
     {
-        self.navigationItem.title = event.title;
+//        self.navigationItem.title = event.title;
     }
 }
 
