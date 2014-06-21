@@ -51,7 +51,9 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if ([[INUDataManager sharedInstance] getEventById:_bookmark.eventId])
+    Event *event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
+
+    if (event)
     {
         _selectedViewController = _viewControllers[0];
         [self displayContentController:_selectedViewController];
@@ -60,6 +62,11 @@
     else
     {
         _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
+    }
+    
+    NSDate *now = [[NSDate alloc] init];
+    if (!event || [now timeIntervalSinceDate:event.lastUpdate] >= 60 * 60)
+    {
         [self loadEvent];
     }
     
@@ -79,13 +86,16 @@
 
 - (IBAction)onTapTab:(id)sender
 {
-    int index = (int)_tabControl.selectedSegmentIndex;
-    if (_selectedViewController)
+    if (!_spinnerView)
     {
-        [self hideContentController:_selectedViewController];
+        int index = (int)_tabControl.selectedSegmentIndex;
+        if (_selectedViewController)
+        {
+            [self hideContentController:_selectedViewController];
+        }
+        _selectedViewController = _viewControllers[index];
+        [self displayContentController:_selectedViewController];
     }
-    _selectedViewController = _viewControllers[index];
-    [self displayContentController:_selectedViewController];
 }
 
 - (void) displayContentController: (UIViewController*)content
@@ -132,7 +142,6 @@
     Event *event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
     if (event)
     {
-//        self.navigationItem.title = event.title;
     }
 }
 
@@ -155,7 +164,7 @@
         }
         if (!_selectedViewController)
         {
-            _selectedViewController = _viewControllers[0];
+            _selectedViewController = _viewControllers[_tabControl.selectedSegmentIndex];
             [self displayContentController:_selectedViewController];
         }
     }

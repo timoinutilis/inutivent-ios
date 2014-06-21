@@ -20,12 +20,15 @@
     {
         _users = [[NSMutableArray alloc] init];
         _posts = [[NSMutableArray alloc] init];
+        _lastUpdate = [[NSDate alloc] init];
     }
     return self;
 }
 
 - (void)parseFromDictionary:(NSDictionary *)dict
 {
+    _lastUpdate = [[NSDate alloc] init];
+    
     NSDictionary *event = dict[@"event"];
     if (event)
     {

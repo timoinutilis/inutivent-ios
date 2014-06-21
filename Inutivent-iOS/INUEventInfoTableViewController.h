@@ -10,7 +10,7 @@
 
 @class Bookmark;
 
-@interface INUEventInfoTableViewController : UITableViewController
+@interface INUEventInfoTableViewController : UITableViewController <UIAlertViewDelegate>
 
 @property Bookmark *bookmark;
 

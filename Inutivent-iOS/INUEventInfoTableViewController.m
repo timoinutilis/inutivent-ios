@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *status1Cell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *status2Cell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *status3Cell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *editCell;
 
 @property Event *event;
 
@@ -60,6 +61,11 @@
     _titleLabel.layer.shadowOpacity = 1;
     _titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
     _titleLabel.layer.shadowRadius = 1.5;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+    {
+        self.editCell.textLabel.textColor = self.view.tintColor;
+    }
     
     INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.parentViewController;
     _bookmark = eventTabBarController.bookmark;
@@ -166,6 +172,19 @@
     return UITableViewAutomaticDimension;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    if (_event && [_bookmark.userId isEqualToString:_event.owner])
+    {
+        return 4;
+    }
+    else
+    {
+        return 3;
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1)
@@ -193,8 +212,6 @@
         me.statusChanged = [[NSDate alloc] init];
         [self updateUserView];
         
-        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-
         NSDictionary *paramsDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                     _bookmark.eventId, @"event_id",
                                     _bookmark.userId, @"user_id",
@@ -202,6 +219,25 @@
                                     nil];
         [[INUDataManager sharedInstance] requestFromServer:@"updateuser.php" params:paramsDict];
 
+    }
+    else if (indexPath.section == 3)
+    {
+        if (indexPath.row == 0)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Edit or Invite" message:@"You can edit your event or invite people on the website only." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Go to Website", nil];
+            [alert show];
+        }
+    }
+
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == alertView.firstOtherButtonIndex)
+    {
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://events.inutilis.com/event.php?event=%@&user=%@", _bookmark.eventId, _bookmark.userId]];
+        [[UIApplication sharedApplication] openURL:url];
     }
 }
 

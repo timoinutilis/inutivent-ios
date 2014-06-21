@@ -51,6 +51,7 @@
     if (!_messageTextView)
     {
         _messageTextView = [[UITextView alloc] init];
+        _messageTextView.editable = NO;
         [self addSubview:_messageTextView];
     }
     

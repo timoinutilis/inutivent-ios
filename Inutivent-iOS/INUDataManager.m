@@ -130,7 +130,6 @@ static INUDataManager *_sharedInstance;
         
         if (connectionError)
         {
-            NSLog(@"connection error");
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self requestErrorService:service errorId:@"failed_connection" error:@"Connection error"];
             });
@@ -141,7 +140,6 @@ static INUDataManager *_sharedInstance;
             id dataObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&nsError];
             if (nsError)
             {
-                NSLog(@"format error");
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self requestErrorService:service errorId:@"invalid_response" error:@"Format error"];
                 });
@@ -153,14 +151,12 @@ static INUDataManager *_sharedInstance;
                 NSString *dataError = dataObject[@"error"];
                 if (dataErrorId)
                 {
-                    NSLog(@"data error: (%@) %@", dataErrorId, dataError);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self requestErrorService:service errorId:dataErrorId error:dataError];
                     });
                 }
                 else
                 {
-                    NSLog(@"data ok");
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self requestCompleteService:service data:dataDict];
                     });

@@ -22,6 +22,8 @@
 @property NSString *cover;
 @property NSDate *created;
 
+@property NSDate *lastUpdate;
+
 @property (readonly) NSMutableArray *users;
 @property (readonly) NSMutableArray *posts;
 

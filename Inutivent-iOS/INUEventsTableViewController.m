@@ -213,7 +213,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _tappedIndexPath = indexPath;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remove Event from List?" message:@"The event will not be deleted from the website." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Remove", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remove Event from List" message:@"The event will not be deleted from the website." delegate:self cancelButtonTitle:@"Remove" otherButtonTitles:@"Cancel", nil];
     alert.tag = INUEventsAlertTagDelete;
     [alert show];
 }
@@ -230,7 +230,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     }
     else if (alertView.tag == INUEventsAlertTagDelete)
     {
-        if (buttonIndex == alertView.firstOtherButtonIndex)
+        if (buttonIndex == alertView.cancelButtonIndex)
         {
             [self deleteBookmarkFromIndexPath:_tappedIndexPath];
         }
