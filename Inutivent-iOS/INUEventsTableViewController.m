@@ -96,6 +96,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     _sections = [[NSMutableArray alloc] init];
     [self addEventsWithIsOwner:YES title:@"Your Events"];
     [self addEventsWithIsOwner:NO title:@"Events"];
+    [_sections addObject:[[INUListSection alloc] initWithTitle:@"Information" array:[NSMutableArray arrayWithObjects:@"Welcome", @"About", nil]]];
 }
 
 - (void)addEventsWithIsOwner:(BOOL)isOwner title:(NSString *)title
@@ -169,11 +170,22 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
+    UITableViewCell *cell;
     
-    Bookmark *bookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
-    cell.textLabel.text = bookmark.eventName.length > 0 ? bookmark.eventName : @"Event";
-    cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:bookmark.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterShortStyle];
+    id item = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
+    if (indexPath.section < [_sections count] - 1)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
+        Bookmark *bookmark = item;
+        cell.textLabel.text = bookmark.eventName.length > 0 ? bookmark.eventName : @"Event";
+        cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:bookmark.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterShortStyle];
+    }
+    else
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"NavPrototypeCell" forIndexPath:indexPath];
+        NSString *label = item;
+        cell.textLabel.text = label;
+    }
     
     return cell;
 }
@@ -181,6 +193,21 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == [_sections count] - 1)
+    {
+        if (indexPath.row == 0)
+        {
+            [self performSegueWithIdentifier:@"ShowWelcome" sender:self];
+        }
+        else if (indexPath.row == 1)
+        {
+            [self performSegueWithIdentifier:@"ShowAbout" sender:self];
+        }
+    }
 }
 
 #pragma mark - Navigation

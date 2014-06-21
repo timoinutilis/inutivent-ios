@@ -10,6 +10,9 @@
 		9206DA42193F280C00DA0F24 /* default_header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9206DA41193F280C00DA0F24 /* default_header.jpg */; };
 		9206DA45193F2A7900DA0F24 /* INUEventInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9206DA44193F2A7900DA0F24 /* INUEventInfoTableViewController.m */; };
 		922454871951CB4D0058FF50 /* INUSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 922454861951CB4D0058FF50 /* INUSpinnerView.m */; };
+		9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9248830E1955BDB20034BFDD /* INUAboutTableViewController.m */; };
+		924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */; };
+		924883151955CD890034BFDD /* Version-History.txt in Resources */ = {isa = PBXBuildFile; fileRef = 924883141955CD890034BFDD /* Version-History.txt */; };
 		927F59DC193E2A0100EEEC62 /* INUDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F59DB193E2A0100EEEC62 /* INUDataManager.m */; };
 		927F59DF193E2E5300EEEC62 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F59DE193E2E5300EEEC62 /* User.m */; };
 		927F59E4193E56B600EEEC62 /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F59E3193E56B600EEEC62 /* Bookmark.m */; };
@@ -54,6 +57,11 @@
 		9206DA44193F2A7900DA0F24 /* INUEventInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUEventInfoTableViewController.m; sourceTree = "<group>"; };
 		922454851951CB4D0058FF50 /* INUSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUSpinnerView.h; sourceTree = "<group>"; };
 		922454861951CB4D0058FF50 /* INUSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUSpinnerView.m; sourceTree = "<group>"; };
+		9248830D1955BDB20034BFDD /* INUAboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUAboutTableViewController.h; sourceTree = "<group>"; };
+		9248830E1955BDB20034BFDD /* INUAboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUAboutTableViewController.m; sourceTree = "<group>"; };
+		924883101955CCB80034BFDD /* INUVersionHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUVersionHistoryViewController.h; sourceTree = "<group>"; };
+		924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUVersionHistoryViewController.m; sourceTree = "<group>"; };
+		924883141955CD890034BFDD /* Version-History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Version-History.txt"; sourceTree = "<group>"; };
 		927F59DA193E2A0100EEEC62 /* INUDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUDataManager.h; sourceTree = "<group>"; };
 		927F59DB193E2A0100EEEC62 /* INUDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUDataManager.m; sourceTree = "<group>"; };
 		927F59DD193E2E5300EEEC62 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -132,6 +140,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		924883131955CD610034BFDD /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				924883141955CD890034BFDD /* Version-History.txt */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
 		92837561193A494D0000CCD6 = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +181,7 @@
 		92837573193A494D0000CCD6 /* Inutivent-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				924883131955CD610034BFDD /* Files */,
 				92BCB02B1947205F00A1E882 /* Images */,
 				928375A9193A6F090000CCD6 /* Models */,
 				922454841951CB2A0058FF50 /* Views */,
@@ -241,6 +258,10 @@
 				92A5C31F1948AD9B00D40CAC /* INUPostsTableViewController.m */,
 				92A5C3211948B2EB00D40CAC /* INUPostTableViewCell.h */,
 				92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */,
+				9248830D1955BDB20034BFDD /* INUAboutTableViewController.h */,
+				9248830E1955BDB20034BFDD /* INUAboutTableViewController.m */,
+				924883101955CCB80034BFDD /* INUVersionHistoryViewController.h */,
+				924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -336,6 +357,7 @@
 			files = (
 				9283759F193A66E00000CCD6 /* Main.storyboard in Resources */,
 				92837578193A494D0000CCD6 /* InfoPlist.strings in Resources */,
+				924883151955CD890034BFDD /* Version-History.txt in Resources */,
 				92BCB0331947478300A1E882 /* UI.xcassets in Resources */,
 				9206DA42193F280C00DA0F24 /* default_header.jpg in Resources */,
 				92837580193A494D0000CCD6 /* Images.xcassets in Resources */,
@@ -362,6 +384,8 @@
 				927F59DF193E2E5300EEEC62 /* User.m in Sources */,
 				92CB1F29194791A100309850 /* INUListSection.m in Sources */,
 				92A5C3201948AD9B00D40CAC /* INUPostsTableViewController.m in Sources */,
+				924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */,
+				9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */,
 				9283757A193A494D0000CCD6 /* main.m in Sources */,
 				927F59E4193E56B600EEEC62 /* Bookmark.m in Sources */,
 				92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */,
