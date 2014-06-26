@@ -18,6 +18,8 @@ typedef NS_ENUM(int, INUWelcomeButtonType)
 @interface INUWelcomeContentViewController : UIViewController
 
 @property NSString *text;
+@property NSString *image;
+@property NSString *bubbleText;
 @property int pageIndex;
 @property INUWelcomeButtonType buttonType;
 

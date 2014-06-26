@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Events Table View Controller - Inutivent-->
+        <!--Events Table View Controller - Gromf-->
         <scene sceneID="eVm-Jf-k9Q">
             <objects>
                 <tableViewController id="uT4-Ub-1Uq" customClass="INUEventsTableViewController" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                             <outlet property="delegate" destination="uT4-Ub-1Uq" id="9Ml-SR-jxw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Inutivent" id="ucB-Rl-WtX">
+                    <navigationItem key="navigationItem" title="Gromf" id="ucB-Rl-WtX">
                         <barButtonItem key="backBarButtonItem" title="Events" id="D2h-91-brL"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KaU-Uz-eaC">
                             <connections>
@@ -104,38 +104,57 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_header.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-Uw-oKt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="introduction_welcome.png" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-Uw-oKt">
+                                <rect key="frame" x="0.0" y="100" width="320" height="434"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDI-3v-LWJ">
-                                <rect key="frame" x="139" y="274" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="zDI-3v-LWJ">
+                                <rect key="frame" x="20" y="28" width="280" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VFX-fJ-kpg">
-                                <rect key="frame" x="133" y="514" width="55" height="34"/>
+                                <rect key="frame" x="133" y="534" width="55" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <state key="highlighted">
+                                <state key="normal" title="Button">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onTapSkip:" destination="PYF-y3-bL8" eventType="touchUpInside" id="wr6-dd-nqW"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQX-xr-pBY">
+                                <rect key="frame" x="50" y="100" width="260" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="Dj4-Y2-gbI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="zDI-3v-LWJ" secondAttribute="centerY" id="6BV-rt-RVO"/>
-                            <constraint firstAttribute="centerX" secondItem="zDI-3v-LWJ" secondAttribute="centerX" id="YN1-Tq-Hme"/>
-                            <constraint firstItem="YMb-t0-J98" firstAttribute="top" secondItem="VFX-fJ-kpg" secondAttribute="bottom" constant="20" id="d5f-Wa-4lX"/>
+                            <constraint firstAttribute="trailing" secondItem="zDI-3v-LWJ" secondAttribute="trailing" constant="20" id="3Xo-SB-6RR"/>
+                            <constraint firstItem="D0e-Uw-oKt" firstAttribute="top" secondItem="DNM-l6-TVR" secondAttribute="bottom" constant="80" id="3am-wK-0Kn"/>
+                            <constraint firstItem="VFX-fJ-kpg" firstAttribute="top" secondItem="D0e-Uw-oKt" secondAttribute="bottom" id="KrG-w7-qsx"/>
+                            <constraint firstItem="zDI-3v-LWJ" firstAttribute="top" secondItem="DNM-l6-TVR" secondAttribute="bottom" constant="8" id="Ky2-bk-wG3"/>
+                            <constraint firstItem="YMb-t0-J98" firstAttribute="top" secondItem="VFX-fJ-kpg" secondAttribute="bottom" id="d5f-Wa-4lX"/>
+                            <constraint firstAttribute="trailing" secondItem="D0e-Uw-oKt" secondAttribute="trailing" id="gA2-Y9-BVN"/>
                             <constraint firstAttribute="centerX" secondItem="VFX-fJ-kpg" secondAttribute="centerX" id="pqj-VT-AT4"/>
+                            <constraint firstAttribute="centerX" secondItem="LQX-xr-pBY" secondAttribute="centerX" constant="-20" id="u0q-Hy-Wq0"/>
+                            <constraint firstItem="D0e-Uw-oKt" firstAttribute="leading" secondItem="NXj-h3-zOq" secondAttribute="leading" id="uVm-wY-gK9"/>
+                            <constraint firstItem="LQX-xr-pBY" firstAttribute="top" secondItem="DNM-l6-TVR" secondAttribute="bottom" constant="80" id="utw-N1-v2J"/>
+                            <constraint firstItem="zDI-3v-LWJ" firstAttribute="leading" secondItem="NXj-h3-zOq" secondAttribute="leading" constant="20" id="ze1-eT-STV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bubbleLabel" destination="LQX-xr-pBY" id="1l2-GZ-GTu"/>
                         <outlet property="imageView" destination="D0e-Uw-oKt" id="fd0-cb-TYU"/>
                         <outlet property="skipButton" destination="VFX-fJ-kpg" id="EA8-RP-Q6m"/>
                         <outlet property="textLabel" destination="zDI-3v-LWJ" id="LqB-xP-gap"/>
@@ -163,7 +182,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Inutivent in App Store" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kss-tQ-D3d">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Gromf in App Store" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Kss-tQ-D3d">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -824,6 +843,7 @@ Inutilis Software</string>
         <image name="default_header.jpg" width="1024" height="256"/>
         <image name="guests" width="31" height="22"/>
         <image name="info" width="22" height="22"/>
+        <image name="introduction_welcome.png" width="640" height="960"/>
         <image name="time" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
     </resources>

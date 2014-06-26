@@ -33,6 +33,10 @@
 		928375A8193A6F030000CCD6 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 928375A7193A6F030000CCD6 /* Event.m */; };
 		928D1DAE195B0BCA0087EAA5 /* INUWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D1DAD195B0BCA0087EAA5 /* INUWelcomeViewController.m */; };
 		928D1DB1195B11650087EAA5 /* INUWelcomeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D1DB0195B11650087EAA5 /* INUWelcomeContentViewController.m */; };
+		92A27756195C8CEE0016CCDB /* introduction_event_comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A27752195C8CEE0016CCDB /* introduction_event_comments.png */; };
+		92A27758195C8CEE0016CCDB /* introduction_event_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A27754195C8CEE0016CCDB /* introduction_event_info.png */; };
+		92A2775C195C9AAF0016CCDB /* introduction_event_guests.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A2775A195C9AAF0016CCDB /* introduction_event_guests.png */; };
+		92A2775D195C9AAF0016CCDB /* introduction_welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A2775B195C9AAF0016CCDB /* introduction_welcome.png */; };
 		92A5C31C19489FFB00D40CAC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C31B19489FFB00D40CAC /* Post.m */; };
 		92A5C3201948AD9B00D40CAC /* INUPostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C31F1948AD9B00D40CAC /* INUPostsTableViewController.m */; };
 		92A5C3231948B2EB00D40CAC /* INUPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */; };
@@ -71,7 +75,7 @@
 		927F59DE193E2E5300EEEC62 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		927F59E2193E56B600EEEC62 /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
 		927F59E3193E56B600EEEC62 /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
-		9283756A193A494D0000CCD6 /* Inutivent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inutivent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9283756A193A494D0000CCD6 /* Gromf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gromf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9283756D193A494D0000CCD6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9283756F193A494D0000CCD6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		92837571193A494D0000CCD6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -96,6 +100,10 @@
 		928D1DAD195B0BCA0087EAA5 /* INUWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUWelcomeViewController.m; sourceTree = "<group>"; };
 		928D1DAF195B11650087EAA5 /* INUWelcomeContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUWelcomeContentViewController.h; sourceTree = "<group>"; };
 		928D1DB0195B11650087EAA5 /* INUWelcomeContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUWelcomeContentViewController.m; sourceTree = "<group>"; };
+		92A27752195C8CEE0016CCDB /* introduction_event_comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_event_comments.png; sourceTree = "<group>"; };
+		92A27754195C8CEE0016CCDB /* introduction_event_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_event_info.png; sourceTree = "<group>"; };
+		92A2775A195C9AAF0016CCDB /* introduction_event_guests.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_event_guests.png; sourceTree = "<group>"; };
+		92A2775B195C9AAF0016CCDB /* introduction_welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_welcome.png; sourceTree = "<group>"; };
 		92A5C31A19489FFB00D40CAC /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		92A5C31B19489FFB00D40CAC /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		92A5C31E1948AD9B00D40CAC /* INUPostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUPostsTableViewController.h; sourceTree = "<group>"; };
@@ -170,7 +178,7 @@
 		9283756B193A494D0000CCD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9283756A193A494D0000CCD6 /* Inutivent.app */,
+				9283756A193A494D0000CCD6 /* Gromf.app */,
 				92837585193A494D0000CCD6 /* Inutivent-Tests.xctest */,
 			);
 			name = Products;
@@ -287,6 +295,10 @@
 				9283757F193A494D0000CCD6 /* Images.xcassets */,
 				92BCB0321947478300A1E882 /* UI.xcassets */,
 				9206DA41193F280C00DA0F24 /* default_header.jpg */,
+				92A27752195C8CEE0016CCDB /* introduction_event_comments.png */,
+				92A27754195C8CEE0016CCDB /* introduction_event_info.png */,
+				92A2775A195C9AAF0016CCDB /* introduction_event_guests.png */,
+				92A2775B195C9AAF0016CCDB /* introduction_welcome.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -294,9 +306,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		92837569193A494D0000CCD6 /* Inutivent */ = {
+		92837569193A494D0000CCD6 /* Gromf */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92837596193A494D0000CCD6 /* Build configuration list for PBXNativeTarget "Inutivent" */;
+			buildConfigurationList = 92837596193A494D0000CCD6 /* Build configuration list for PBXNativeTarget "Gromf" */;
 			buildPhases = (
 				92837566193A494D0000CCD6 /* Sources */,
 				92837567193A494D0000CCD6 /* Frameworks */,
@@ -306,9 +318,9 @@
 			);
 			dependencies = (
 			);
-			name = Inutivent;
+			name = Gromf;
 			productName = "Inutivent-iOS";
-			productReference = 9283756A193A494D0000CCD6 /* Inutivent.app */;
+			productReference = 9283756A193A494D0000CCD6 /* Gromf.app */;
 			productType = "com.apple.product-type.application";
 		};
 		92837584193A494D0000CCD6 /* Inutivent-Tests */ = {
@@ -359,7 +371,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				92837569193A494D0000CCD6 /* Inutivent */,
+				92837569193A494D0000CCD6 /* Gromf */,
 				92837584193A494D0000CCD6 /* Inutivent-Tests */,
 			);
 		};
@@ -370,11 +382,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92A2775D195C9AAF0016CCDB /* introduction_welcome.png in Resources */,
 				9283759F193A66E00000CCD6 /* Main.storyboard in Resources */,
+				92A27756195C8CEE0016CCDB /* introduction_event_comments.png in Resources */,
+				92A27758195C8CEE0016CCDB /* introduction_event_info.png in Resources */,
 				92837578193A494D0000CCD6 /* InfoPlist.strings in Resources */,
 				924883151955CD890034BFDD /* Version-History.txt in Resources */,
 				92BCB0331947478300A1E882 /* UI.xcassets in Resources */,
 				9206DA42193F280C00DA0F24 /* default_header.jpg in Resources */,
+				92A2775C195C9AAF0016CCDB /* introduction_event_guests.png in Resources */,
 				92837580193A494D0000CCD6 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,7 +447,7 @@
 /* Begin PBXTargetDependency section */
 		9283758B193A494D0000CCD6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 92837569193A494D0000CCD6 /* Inutivent */;
+			target = 92837569193A494D0000CCD6 /* Gromf */;
 			targetProxy = 9283758A193A494D0000CCD6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -608,7 +624,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92837596193A494D0000CCD6 /* Build configuration list for PBXNativeTarget "Inutivent" */ = {
+		92837596193A494D0000CCD6 /* Build configuration list for PBXNativeTarget "Gromf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92837597193A494D0000CCD6 /* Debug */,

@@ -12,6 +12,8 @@
 @interface INUWelcomeViewController ()
 
 @property NSArray *texts;
+@property NSArray *bubbleTexts;
+@property NSArray *images;
 
 @end
 
@@ -31,9 +33,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _texts = @[@"Page 1", @"Page 2", @"Page 3"];
+    _texts = @[@"Gromf helps you inviting friends to your events.",
+               @"Check all event information and say if you're going.",
+               @"See who is going.",
+               @"Talk with all invited guests."];
+    
+    _bubbleTexts = @[@"Bla bla bla", @"", @"", @""];
+    
+    _images = @[@"introduction_welcome.png", @"introduction_event_info.png", @"introduction_event_guests.png", @"introduction_event_comments.png"];
     
     self.dataSource = self;
+    
+    self.view.backgroundColor = [UIColor whiteColor];
 
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
@@ -57,7 +68,7 @@
 {
     int index = ((INUWelcomeContentViewController *)viewController).pageIndex;
     
-    if ((index == 0) || (index == NSNotFound))
+    if (index == 0)
     {
         return nil;
     }
@@ -69,11 +80,6 @@
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
     int index = ((INUWelcomeContentViewController *)viewController).pageIndex;
-    
-    if (index == -1)
-    {
-        return nil;
-    }
     
     index++;
     if (index == [_texts count])
@@ -93,8 +99,10 @@
     
     // Create a new view controller and pass suitable data.
     INUWelcomeContentViewController *contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WelcomeContentView"];
-    contentViewController.pageIndex = index;
+    contentViewController.pageIndex = (int)index;
     contentViewController.text = _texts[index];
+    contentViewController.bubbleText = _bubbleTexts[index];
+    contentViewController.image = _images[index];
     if (self.presentingViewController != nil)
     {
         // is modal, show skip/start button

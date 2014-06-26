@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
+@property (weak, nonatomic) IBOutlet UILabel *bubbleLabel;
 
 @end
 
@@ -34,6 +35,12 @@
     // Do any additional setup after loading the view.
     
     _textLabel.text = _text;
+    _bubbleLabel.text = _bubbleText;
+    _bubbleLabel.hidden = [_bubbleText isEqualToString:@""];
+    
+    NSString *filename = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], _image];
+    _imageView.image = [UIImage imageWithContentsOfFile:filename];
+
     if (_buttonType == INUWelcomeButtonTypeNone)
     {
         _skipButton.hidden = YES;
