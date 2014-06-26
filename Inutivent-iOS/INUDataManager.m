@@ -10,10 +10,12 @@
 #import "Event.h"
 #import "User.h"
 #import "Bookmark.h"
+#import "ExampleEvent.h"
 
 @implementation INUDataManager
 {
     int _numNumActivities;
+    ExampleEvent *_exampleEvent;
 }
 
 static INUDataManager *_sharedInstance;
@@ -51,7 +53,10 @@ static INUDataManager *_sharedInstance;
     }
     else
     {
-        [self addBookmarkWithEventId:@"cb852c9195962267613bc110e08abfad" userId:@"03727bee"];
+        Bookmark *bookmark = [[Bookmark alloc] initWithEventId:ExampleEventId userId:ExampleUserId];
+        Event *exampleEvent = [self getEventById:ExampleEventId];
+        [bookmark updateFromEvent:exampleEvent];
+        [_bookmarks addObject:bookmark];
     }
 }
 
@@ -110,11 +115,27 @@ static INUDataManager *_sharedInstance;
 
 - (Event *)getEventById:(NSString *)eventId
 {
+    if ([eventId isEqualToString:ExampleEventId])
+    {
+        if (!_exampleEvent)
+        {
+            _exampleEvent = [[ExampleEvent alloc] init];
+        }
+        return _exampleEvent;
+    }
+    
+    // real event
     return _events[eventId];
 }
 
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict
 {
+    if ([paramsDict[@"event_id"] isEqualToString:ExampleEventId])
+    {
+        NSLog(@"Server request canceled for example event.");
+        return;
+    }
+    
     [self beginActivity];
     
     NSMutableArray *paramsArray = [[NSMutableArray alloc] init];

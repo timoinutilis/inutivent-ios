@@ -136,7 +136,7 @@
 
 - (void)updateOwner
 {
-    _ownerCell.textLabel.text = [_event getUserWithId:_event.owner].name;
+    _ownerCell.textLabel.text = [NSString stringWithFormat:@"Host: %@", [_event getUserWithId:_event.owner].name];
 }
 
 - (void)updateUserView
