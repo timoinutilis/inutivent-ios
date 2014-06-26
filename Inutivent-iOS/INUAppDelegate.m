@@ -8,6 +8,7 @@
 
 #import "INUAppDelegate.h"
 #import "INUDataManager.h"
+#import "INUUtils.h"
 
 @implementation INUAppDelegate
 
@@ -49,7 +50,7 @@
 {
     if ([[url scheme] isEqualToString:@"inutivent"])
     {
-        NSMutableDictionary *params = [self getParamsFromURL:url];
+        NSMutableDictionary *params = [INUUtils getParamsFromURL:url];
         NSString *eventId = params[@"event"];
         NSString *userId = params[@"user"];
         if (eventId && userId)
@@ -60,25 +61,6 @@
         return YES;
     }
     return NO;
-}
-
-- ()getParamsFromURL:(NSURL *)url
-{
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    NSString *query = [url query];
-    if (query)
-    {
-        NSArray *components = [query componentsSeparatedByString:@"&"];
-        for (NSString *param in components)
-        {
-            NSArray *elts = [param componentsSeparatedByString:@"="];
-            if ([elts count] == 2)
-            {
-                [params setObject:[elts objectAtIndex:1] forKey:[elts objectAtIndex:0]];
-            }
-        }
-    }
-    return params;
 }
 
 @end

@@ -12,6 +12,7 @@
 #import "Event.h"
 #import "INUDataManager.h"
 #import "INUListSection.h"
+#import "INUWelcomeViewController.h"
 
 typedef NS_ENUM(int, INUEventsAlertTag)
 {
@@ -54,6 +55,13 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     [self updateSections];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+    
+    // Show introduction on first app start
+    if ([[INUDataManager sharedInstance] needsIntroduction])
+    {
+        INUWelcomeViewController *welcomeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WelcomeView"];
+        [self presentViewController:welcomeViewController animated:NO completion:nil];
+    }
 }
 
 - (void)dealloc
@@ -96,7 +104,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     _sections = [[NSMutableArray alloc] init];
     [self addEventsWithIsOwner:YES title:@"Your Events"];
     [self addEventsWithIsOwner:NO title:@"Events"];
-    [_sections addObject:[[INUListSection alloc] initWithTitle:@"Information" array:[NSMutableArray arrayWithObjects:@"Welcome", @"About", nil]]];
+    [_sections addObject:[[INUListSection alloc] initWithTitle:@"Information" array:[NSMutableArray arrayWithObjects:@"Introduction", @"About", nil]]];
 }
 
 - (void)addEventsWithIsOwner:(BOOL)isOwner title:(NSString *)title

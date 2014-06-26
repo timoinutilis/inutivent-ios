@@ -24,6 +24,9 @@
 - (Bookmark *)getBookmarkByEventId:(NSString *)eventId userId:(NSString *)userId;
 - (void)deleteBookmark:(Bookmark *)bookmark;
 
+- (BOOL)needsIntroduction;
+- (void)setIntroductionDone;
+
 - (Event *)getEventById:(NSString *)eventId;
 
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict;

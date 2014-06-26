@@ -110,7 +110,7 @@
 
 - (void)updateCoverImage
 {
-    if (![_event.cover isEqualToString:@""])
+    if (_event.cover && ![_event.cover isEqualToString:@""])
     {
         NSString *path = [NSString stringWithFormat:@"http://events.inutilis.com/uploads/%@/%@", _event.eventId, _event.cover];
         NSURL *url = [NSURL URLWithString:path];

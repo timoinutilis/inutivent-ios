@@ -98,6 +98,16 @@ static INUDataManager *_sharedInstance;
     [self saveBookmarks];
 }
 
+- (BOOL)needsIntroduction
+{
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:@"introductionDone"];
+}
+    
+- (void)setIntroductionDone
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@YES forKey:@"introductionDone"];
+}
+
 - (Event *)getEventById:(NSString *)eventId
 {
     return _events[eventId];

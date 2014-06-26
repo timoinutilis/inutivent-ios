@@ -13,5 +13,6 @@
 @interface INUUtils : NSObject
 
 + (NSDate *)dateFromDatetime:(NSString *)datetime;
++ (NSMutableDictionary *)getParamsFromURL:(NSURL *)url;
 
 @end

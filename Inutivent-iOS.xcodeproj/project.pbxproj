@@ -31,6 +31,8 @@
 		9283759F193A66E00000CCD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9283759E193A66E00000CCD6 /* Main.storyboard */; };
 		928375A5193A6C670000CCD6 /* INUEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */; };
 		928375A8193A6F030000CCD6 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 928375A7193A6F030000CCD6 /* Event.m */; };
+		928D1DAE195B0BCA0087EAA5 /* INUWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D1DAD195B0BCA0087EAA5 /* INUWelcomeViewController.m */; };
+		928D1DB1195B11650087EAA5 /* INUWelcomeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D1DB0195B11650087EAA5 /* INUWelcomeContentViewController.m */; };
 		92A5C31C19489FFB00D40CAC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C31B19489FFB00D40CAC /* Post.m */; };
 		92A5C3201948AD9B00D40CAC /* INUPostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C31F1948AD9B00D40CAC /* INUPostsTableViewController.m */; };
 		92A5C3231948B2EB00D40CAC /* INUPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */; };
@@ -89,6 +91,10 @@
 		928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUEventsTableViewController.m; sourceTree = "<group>"; };
 		928375A6193A6F030000CCD6 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		928375A7193A6F030000CCD6 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		928D1DAC195B0BCA0087EAA5 /* INUWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUWelcomeViewController.h; sourceTree = "<group>"; };
+		928D1DAD195B0BCA0087EAA5 /* INUWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUWelcomeViewController.m; sourceTree = "<group>"; };
+		928D1DAF195B11650087EAA5 /* INUWelcomeContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUWelcomeContentViewController.h; sourceTree = "<group>"; };
+		928D1DB0195B11650087EAA5 /* INUWelcomeContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUWelcomeContentViewController.m; sourceTree = "<group>"; };
 		92A5C31A19489FFB00D40CAC /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		92A5C31B19489FFB00D40CAC /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		92A5C31E1948AD9B00D40CAC /* INUPostsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUPostsTableViewController.h; sourceTree = "<group>"; };
@@ -262,6 +268,10 @@
 				9248830E1955BDB20034BFDD /* INUAboutTableViewController.m */,
 				924883101955CCB80034BFDD /* INUVersionHistoryViewController.h */,
 				924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */,
+				928D1DAC195B0BCA0087EAA5 /* INUWelcomeViewController.h */,
+				928D1DAD195B0BCA0087EAA5 /* INUWelcomeViewController.m */,
+				928D1DAF195B11650087EAA5 /* INUWelcomeContentViewController.h */,
+				928D1DB0195B11650087EAA5 /* INUWelcomeContentViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -382,8 +392,10 @@
 				928375A5193A6C670000CCD6 /* INUEventsTableViewController.m in Sources */,
 				922454871951CB4D0058FF50 /* INUSpinnerView.m in Sources */,
 				927F59DF193E2E5300EEEC62 /* User.m in Sources */,
+				928D1DAE195B0BCA0087EAA5 /* INUWelcomeViewController.m in Sources */,
 				92CB1F29194791A100309850 /* INUListSection.m in Sources */,
 				92A5C3201948AD9B00D40CAC /* INUPostsTableViewController.m in Sources */,
+				928D1DB1195B11650087EAA5 /* INUWelcomeContentViewController.m in Sources */,
 				924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */,
 				9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */,
 				9283757A193A494D0000CCD6 /* main.m in Sources */,

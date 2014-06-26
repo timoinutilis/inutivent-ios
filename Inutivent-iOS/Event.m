@@ -37,7 +37,7 @@
         _details = event[@"details"];
         _owner = event[@"owner"];
         _time = [INUUtils dateFromDatetime:event[@"time"]];
-        _cover = event[@"cover"];
+        _cover = event[@"cover"] != [NSNull null] ? event[@"cover"] : nil;
         _created = [INUUtils dateFromDatetime:event[@"created"]];
     }
     
