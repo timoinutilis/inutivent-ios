@@ -211,6 +211,7 @@
         me.status = [me parseStatus:newStatus];
         me.statusChanged = [[NSDate alloc] init];
         [self updateUserView];
+        [[INUDataManager sharedInstance] notifyUserUpdate];
         
         NSDictionary *paramsDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                     _bookmark.eventId, @"event_id",
@@ -278,6 +279,7 @@
     {
         me.name = self.nameField.text;
         [self updateOwner];
+        [[INUDataManager sharedInstance] notifyUserUpdate];
         
         NSDictionary *paramsDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                     _bookmark.eventId, @"event_id",

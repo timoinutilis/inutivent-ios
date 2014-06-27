@@ -214,7 +214,7 @@
 
 - (void)receivedNotification:(NSNotification *)notification
 {
-    if (notification.name == INUEventLoadedNotification)
+    if (notification.name == INUEventLoadedNotification || notification.name == INUUserUpdatedNotification)
     {
         _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
         [self.tableView reloadData];

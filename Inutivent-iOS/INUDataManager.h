@@ -31,9 +31,12 @@
 
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict;
 
+- (void)notifyUserUpdate;
+
 @end
 
 extern NSString *const INUBookmarksChangedNotification;
 extern NSString *const INUBookmarkAddedByURLNotification;
 extern NSString *const INUEventLoadedNotification;
+extern NSString *const INUUserUpdatedNotification;
 extern NSString *const INUErrorNotification;

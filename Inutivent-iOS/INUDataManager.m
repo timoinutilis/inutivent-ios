@@ -259,6 +259,11 @@ static INUDataManager *_sharedInstance;
     [[NSNotificationCenter defaultCenter] postNotificationName:INUErrorNotification object:self userInfo:@{@"title":title, @"message":message, @"errorId":errorId}];
 }
 
+- (void)notifyUserUpdate
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:INUUserUpdatedNotification object:self userInfo:nil];
+}
+
 - (void) beginActivity
 {
     _numNumActivities++;
@@ -282,4 +287,5 @@ static INUDataManager *_sharedInstance;
 NSString *const INUBookmarksChangedNotification = @"INUBookmarksChanged";
 NSString *const INUBookmarkAddedByURLNotification = @"INUBookmarkAddedByURL";
 NSString *const INUEventLoadedNotification = @"INUEventLoaded";
+NSString *const INUUserUpdatedNotification = @"INUUserUpdated";
 NSString *const INUErrorNotification = @"INUError";
