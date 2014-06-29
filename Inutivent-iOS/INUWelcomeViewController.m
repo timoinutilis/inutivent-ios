@@ -13,7 +13,7 @@
 
 @property NSArray *texts;
 @property NSArray *bubbleTexts;
-@property NSArray *images;
+@property NSMutableArray *images;
 
 @end
 
@@ -39,9 +39,18 @@
                @"Talk with all invited guests."];
     
     _bubbleTexts = @[@"Bla bla bla", @"", @"", @""];
-    
-    _images = @[@"introduction_welcome.png", @"introduction_event_info.png", @"introduction_event_guests.png", @"introduction_event_comments.png"];
-    
+
+    NSArray *filenames = @[@"introduction_welcome.png", @"introduction_event_info.png", @"introduction_event_guests.png", @"introduction_event_comments.png"];
+
+    _images = [NSMutableArray array];
+    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+    for (int i = 0; i < [filenames count]; i++)
+    {
+        NSString *filename = [NSString stringWithFormat:@"%@/%@", bundlePath, filenames[i]];
+        UIImage *image = [UIImage imageWithContentsOfFile:filename];
+        [_images addObject:image];
+    }
+
     self.dataSource = self;
     
     self.view.backgroundColor = [UIColor whiteColor];

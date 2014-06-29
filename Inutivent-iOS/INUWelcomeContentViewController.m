@@ -8,12 +8,15 @@
 
 #import "INUWelcomeContentViewController.h"
 #import "INUDataManager.h"
+#import "INUUtils.h"
 
 @interface INUWelcomeContentViewController ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topLayoutConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *skipButtonHeightConstraint;
 @property (weak, nonatomic) IBOutlet UILabel *bubbleLabel;
 
 @end
@@ -38,12 +41,12 @@
     _bubbleLabel.text = _bubbleText;
     _bubbleLabel.hidden = [_bubbleText isEqualToString:@""];
     
-    NSString *filename = [NSString stringWithFormat:@"%@/%@", [[NSBundle mainBundle] bundlePath], _image];
-    _imageView.image = [UIImage imageWithContentsOfFile:filename];
+    _imageView.image = _image;
 
     if (_buttonType == INUWelcomeButtonTypeNone)
     {
         _skipButton.hidden = YES;
+        _skipButtonHeightConstraint.constant = 0;
     }
     else
     {
@@ -56,6 +59,20 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillLayoutSubviews
+{
+    if (   SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")
+        && _buttonType == INUWelcomeButtonTypeNone ) // if skip button -> no navigation bar
+    {
+        // topLayoutGuide isn't working correctly, hack to fix it.
+        CGRect navBarFrame = self.navigationController.navigationBar.frame;
+        CGFloat topUIHeight = navBarFrame.origin.y + navBarFrame.size.height - self.topLayoutGuide.length;
+        _topLayoutConstraint.constant = topUIHeight + 8;
+    }
+    
+    [super viewWillLayoutSubviews];
 }
 
 /*

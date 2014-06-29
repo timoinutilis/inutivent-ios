@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KWM-Dz-TqW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KWM-Dz-TqW">
     <dependencies>
         <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -104,8 +104,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="introduction_welcome.png" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-Uw-oKt">
-                                <rect key="frame" x="0.0" y="100" width="320" height="434"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="D0e-Uw-oKt">
+                                <rect key="frame" x="0.0" y="60" width="320" height="474"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="zDI-3v-LWJ">
@@ -117,6 +117,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VFX-fJ-kpg">
                                 <rect key="frame" x="133" y="534" width="55" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="Dmg-Q2-Nnf"/>
+                                </constraints>
                                 <state key="normal" title="Button">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -128,7 +131,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQX-xr-pBY">
-                                <rect key="frame" x="50" y="100" width="260" height="21"/>
+                                <rect key="frame" x="50" y="84" width="260" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="260" id="Dj4-Y2-gbI"/>
@@ -141,15 +144,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zDI-3v-LWJ" secondAttribute="trailing" constant="20" id="3Xo-SB-6RR"/>
-                            <constraint firstItem="D0e-Uw-oKt" firstAttribute="top" secondItem="DNM-l6-TVR" secondAttribute="bottom" constant="80" id="3am-wK-0Kn"/>
+                            <constraint firstItem="zDI-3v-LWJ" firstAttribute="top" secondItem="DNM-l6-TVR" secondAttribute="bottom" constant="8" id="8c2-bv-muO"/>
+                            <constraint firstItem="D0e-Uw-oKt" firstAttribute="top" secondItem="zDI-3v-LWJ" secondAttribute="bottom" constant="8" id="B9P-ue-fi3"/>
                             <constraint firstItem="VFX-fJ-kpg" firstAttribute="top" secondItem="D0e-Uw-oKt" secondAttribute="bottom" id="KrG-w7-qsx"/>
-                            <constraint firstItem="zDI-3v-LWJ" firstAttribute="top" secondItem="DNM-l6-TVR" secondAttribute="bottom" constant="8" id="Ky2-bk-wG3"/>
                             <constraint firstItem="YMb-t0-J98" firstAttribute="top" secondItem="VFX-fJ-kpg" secondAttribute="bottom" id="d5f-Wa-4lX"/>
                             <constraint firstAttribute="trailing" secondItem="D0e-Uw-oKt" secondAttribute="trailing" id="gA2-Y9-BVN"/>
+                            <constraint firstItem="LQX-xr-pBY" firstAttribute="top" secondItem="zDI-3v-LWJ" secondAttribute="bottom" constant="32" id="gOS-qT-gDR"/>
                             <constraint firstAttribute="centerX" secondItem="VFX-fJ-kpg" secondAttribute="centerX" id="pqj-VT-AT4"/>
                             <constraint firstAttribute="centerX" secondItem="LQX-xr-pBY" secondAttribute="centerX" constant="-20" id="u0q-Hy-Wq0"/>
                             <constraint firstItem="D0e-Uw-oKt" firstAttribute="leading" secondItem="NXj-h3-zOq" secondAttribute="leading" id="uVm-wY-gK9"/>
-                            <constraint firstItem="LQX-xr-pBY" firstAttribute="top" secondItem="DNM-l6-TVR" secondAttribute="bottom" constant="80" id="utw-N1-v2J"/>
                             <constraint firstItem="zDI-3v-LWJ" firstAttribute="leading" secondItem="NXj-h3-zOq" secondAttribute="leading" constant="20" id="ze1-eT-STV"/>
                         </constraints>
                     </view>
@@ -157,7 +160,9 @@
                         <outlet property="bubbleLabel" destination="LQX-xr-pBY" id="1l2-GZ-GTu"/>
                         <outlet property="imageView" destination="D0e-Uw-oKt" id="fd0-cb-TYU"/>
                         <outlet property="skipButton" destination="VFX-fJ-kpg" id="EA8-RP-Q6m"/>
+                        <outlet property="skipButtonHeightConstraint" destination="Dmg-Q2-Nnf" id="NHD-ZX-OsF"/>
                         <outlet property="textLabel" destination="zDI-3v-LWJ" id="LqB-xP-gap"/>
+                        <outlet property="topLayoutConstraint" destination="8c2-bv-muO" id="DgG-zv-JCl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4k-J4-OSp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -843,7 +848,6 @@ Inutilis Software</string>
         <image name="default_header.jpg" width="1024" height="256"/>
         <image name="guests" width="31" height="22"/>
         <image name="info" width="22" height="22"/>
-        <image name="introduction_welcome.png" width="640" height="960"/>
         <image name="time" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
     </resources>
