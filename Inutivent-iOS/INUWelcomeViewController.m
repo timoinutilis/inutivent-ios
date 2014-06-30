@@ -12,7 +12,6 @@
 @interface INUWelcomeViewController ()
 
 @property NSArray *texts;
-@property NSArray *bubbleTexts;
 @property NSMutableArray *images;
 
 @end
@@ -33,14 +32,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _texts = @[@"Gromf helps you inviting friends to your events.",
-               @"Check all event information and say if you're going.",
-               @"See who is going.",
-               @"Talk with all invited guests."];
+    _texts = @[NSLocalizedString(@"Welcome1Text", nil),
+               NSLocalizedString(@"Welcome2Text", nil),
+               NSLocalizedString(@"Welcome3Text", nil),
+               NSLocalizedString(@"Welcome4Text", nil),
+               NSLocalizedString(@"Welcome5Text", nil)];
     
-    _bubbleTexts = @[@"Bla bla bla", @"", @"", @""];
-
-    NSArray *filenames = @[@"introduction_welcome.png", @"introduction_event_info.png", @"introduction_event_guests.png", @"introduction_event_comments.png"];
+    NSArray *filenames = @[@"introduction_welcome.png", @"introduction_email.png", @"introduction_event_info.png", @"introduction_event_guests.png", @"introduction_event_comments.png"];
 
     _images = [NSMutableArray array];
     NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
@@ -110,7 +108,6 @@
     INUWelcomeContentViewController *contentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WelcomeContentView"];
     contentViewController.pageIndex = (int)index;
     contentViewController.text = _texts[index];
-    contentViewController.bubbleText = _bubbleTexts[index];
     contentViewController.image = _images[index];
     if (self.presentingViewController != nil)
     {

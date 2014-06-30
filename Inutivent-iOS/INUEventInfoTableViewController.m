@@ -136,7 +136,7 @@
 
 - (void)updateOwner
 {
-    _ownerCell.textLabel.text = [NSString stringWithFormat:@"Host: %@", [_event getUserWithId:_event.owner].name];
+    _ownerCell.textLabel.text = [_event getUserWithId:_event.owner].name;
 }
 
 - (void)updateUserView
@@ -225,7 +225,11 @@
     {
         if (indexPath.row == 0)
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Edit or Invite" message:@"You can edit your event or invite people on the website only." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Go to Website", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Edit or Invite", nil)
+                                                            message:NSLocalizedString(@"You can edit your event or invite people on the website only.", nil)
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                                  otherButtonTitles:NSLocalizedString(@"Go to Website", nil), nil];
             [alert show];
         }
     }

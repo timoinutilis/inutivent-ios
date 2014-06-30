@@ -132,7 +132,7 @@ static INUDataManager *_sharedInstance;
 {
     if ([paramsDict[@"event_id"] isEqualToString:ExampleEventId])
     {
-        NSLog(@"Server request canceled for example event.");
+        // cancel server requests for example event
         return;
     }
     
@@ -242,18 +242,18 @@ static INUDataManager *_sharedInstance;
     
     if ([errorId isEqualToString:@"not_found"])
     {
-        title = @"Event Doesn't Exist Anymore";
-        message = @"Maybe the host deleted it or it was too old already.";
+        title = NSLocalizedString(@"Event Doesn't Exist Anymore", nil);
+        message = NSLocalizedString(@"Maybe the host deleted it or it was too old already.", nil);
     }
     else if ([errorId isEqualToString:@"failed_connection"])
     {
-        title = @"Couldn't Connect to Internet";
-        message = @"Please check if your device is connected to any network.";
+        title = NSLocalizedString(@"Couldn't Connect to Internet", nil);
+        message = NSLocalizedString(@"Please check if your device is connected to any network.", nil);
     }
     else
     {
-        title = @"Something Went Wrong";
-        message = @"Please try again later.";
+        title = NSLocalizedString(@"Something Went Wrong", nil);
+        message = NSLocalizedString(@"Please try again later.", nil);
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:INUErrorNotification object:self userInfo:@{@"title":title, @"message":message, @"errorId":errorId}];

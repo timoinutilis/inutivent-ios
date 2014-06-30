@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *skipButtonHeightConstraint;
-@property (weak, nonatomic) IBOutlet UILabel *bubbleLabel;
 
 @end
 
@@ -38,8 +37,6 @@
     // Do any additional setup after loading the view.
     
     _textLabel.text = _text;
-    _bubbleLabel.text = _bubbleText;
-    _bubbleLabel.hidden = [_bubbleText isEqualToString:@""];
     
     _imageView.image = _image;
 
@@ -51,7 +48,8 @@
     else
     {
         _skipButton.hidden = NO;
-        [_skipButton setTitle:(_buttonType == INUWelcomeButtonTypeStart) ? @"Start" : @"Skip" forState:UIControlStateNormal];
+        [_skipButton setTitle:(_buttonType == INUWelcomeButtonTypeStart) ? NSLocalizedString(@"Start", nil) : NSLocalizedString(@"Skip", nil)
+                     forState:UIControlStateNormal];
     }
 }
 

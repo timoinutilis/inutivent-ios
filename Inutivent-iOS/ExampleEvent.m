@@ -20,8 +20,8 @@
         
         self.eventId = ExampleEventId;
         self.owner = ExampleOwnerId;
-        self.title = @"Example";
-        self.details = @"This is how an event looks, but it's just an example. You can try everything here, nothing will be sent.\nYou can delete this event by swiping over its list entry on the start screen.";
+        self.title = NSLocalizedString(@"Example", nil);
+        self.details = NSLocalizedString(@"ExampleDetailsText", nil);
         self.time = [[NSDate alloc] initWithTimeIntervalSinceNow:100 * 24 * 60 * 60];
         self.cover = nil;
         self.created = [NSDate date];
@@ -47,7 +47,7 @@
 
         user = [[User alloc] init];
         user.userId = @"3";
-        user.name = @"Flompi";
+        user.name = NSLocalizedString(@"Timo", nil);
         user.status = UserStatusMaybeAttending;
         user.statusChanged = [NSDate date];
         user.visited = [NSDate date];
@@ -55,7 +55,7 @@
 
         user = [[User alloc] init];
         user.userId = @"4";
-        user.name = @"Fumpa";
+        user.name = NSLocalizedString(@"Mara", nil);
         user.status = UserStatusAttending;
         user.statusChanged = [NSDate date];
         user.visited = [NSDate date];
@@ -68,14 +68,14 @@
         post = [[Post alloc] init];
         post.userId = ExampleOwnerId;
         post.type = PostTypeText;
-        post.data = @"So everything is good?";
+        post.data = NSLocalizedString(@"ExamplePost1Text", nil);
         post.created = [NSDate date];
         [self.posts addObject:post];
 
         post = [[Post alloc] init];
         post.userId = @"4";
         post.type = PostTypeText;
-        post.data = @"Let's convince Flompi to come!";
+        post.data = NSLocalizedString(@"ExamplePost2Text", nil);
         post.created = [NSDate date];
         [self.posts addObject:post];
 

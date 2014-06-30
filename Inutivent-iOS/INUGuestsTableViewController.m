@@ -64,10 +64,10 @@
 - (void)updateSections
 {
     _guestSections = [[NSMutableArray alloc] init];
-    [self addGuestsWithStatus:UserStatusAttending title:@"Going"];
-    [self addGuestsWithStatus:UserStatusMaybeAttending title:@"Maybe"];
-    [self addGuestsWithStatus:UserStatusNotAttending title:@"Not Going"];
-    [self addGuestsWithStatus:UserStatusUnknown title:@"Invited"];
+    [self addGuestsWithStatus:UserStatusAttending title:NSLocalizedString(@"Going", nil)];
+    [self addGuestsWithStatus:UserStatusMaybeAttending title:NSLocalizedString(@"Maybe Going", nil)];
+    [self addGuestsWithStatus:UserStatusNotAttending title:NSLocalizedString(@"Not Going", nil)];
+    [self addGuestsWithStatus:UserStatusUnknown title:NSLocalizedString(@"Invited", nil)];
 }
 
 - (void)addGuestsWithStatus:(UserStatus)status title:(NSString *)title
@@ -124,7 +124,7 @@
     NSString *label = user.name;
     if ([user.userId isEqualToString:_event.owner])
     {
-        label = [label stringByAppendingString:@" (Host)"];
+        label = [NSString stringWithFormat:@"%@ (%@)", label, NSLocalizedString(@"Host", nil)];
     }
     if (user.visited == nil)
     {

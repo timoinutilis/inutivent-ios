@@ -102,9 +102,10 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 - (void)updateSections
 {
     _sections = [[NSMutableArray alloc] init];
-    [self addEventsWithIsOwner:YES title:@"Your Events"];
-    [self addEventsWithIsOwner:NO title:@"Events"];
-    [_sections addObject:[[INUListSection alloc] initWithTitle:@"Information" array:[NSMutableArray arrayWithObjects:@"Introduction", @"About", nil]]];
+    [self addEventsWithIsOwner:YES title:NSLocalizedString(@"Your Events", nil)];
+    [self addEventsWithIsOwner:NO title:NSLocalizedString(@"Events", nil)];
+    [_sections addObject:[[INUListSection alloc] initWithTitle:NSLocalizedString(@"Information", nil)
+                                                         array:[NSMutableArray arrayWithObjects:NSLocalizedString(@"Introduction", nil), NSLocalizedString(@"About", nil), nil]]];
 }
 
 - (void)addEventsWithIsOwner:(BOOL)isOwner title:(NSString *)title
@@ -185,7 +186,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     {
         cell = [tableView dequeueReusableCellWithIdentifier:@"ListPrototypeCell" forIndexPath:indexPath];
         Bookmark *bookmark = item;
-        cell.textLabel.text = bookmark.eventName.length > 0 ? bookmark.eventName : @"Event";
+        cell.textLabel.text = bookmark.eventName.length > 0 ? bookmark.eventName : NSLocalizedString(@"Event", nil);
         cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:bookmark.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterShortStyle];
     }
     else
@@ -240,7 +241,11 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 
 - (IBAction)onTapCreate:(id)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Create New Event" message:@"You can create new events on the website only." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Go to Website", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Create New Event", nil)
+                                                    message:NSLocalizedString(@"You can create new events on the website only.", nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                          otherButtonTitles:NSLocalizedString(@"Go to Website", nil), nil];
     alert.tag = INUEventsAlertTagCreate;
     [alert show];
 }
@@ -248,7 +253,11 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _tappedIndexPath = indexPath;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Remove Event from List" message:@"The event will not be deleted from the website." delegate:self cancelButtonTitle:@"Remove" otherButtonTitles:@"Cancel", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Remove Event from List", nil)
+                                                    message:NSLocalizedString(@"The event will not be deleted from the website.", nil)
+                                                   delegate:self
+                                          cancelButtonTitle:NSLocalizedString(@"Remove", nil)
+                                          otherButtonTitles:NSLocalizedString(@"Cancel", nil), nil];
     alert.tag = INUEventsAlertTagDelete;
     [alert show];
 }
