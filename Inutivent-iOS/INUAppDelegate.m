@@ -48,7 +48,7 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    if ([[url scheme] isEqualToString:@"inutivent"])
+    if ([[url scheme] isEqualToString:@"gromf"])
     {
         NSMutableDictionary *params = [INUUtils getParamsFromURL:url];
         NSString *eventId = params[@"event"];

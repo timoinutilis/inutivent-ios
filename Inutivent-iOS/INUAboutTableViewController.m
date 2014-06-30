@@ -7,10 +7,13 @@
 //
 
 #import "INUAboutTableViewController.h"
+#import "INUConfig.h"
 
 @interface INUAboutTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *developerURLLabel;
+@property (weak, nonatomic) IBOutlet UILabel *developerMailLabel;
 
 @end
 
@@ -36,6 +39,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     self.versionLabel.text = [self appVersion];
+    self.developerURLLabel.text = INUConfigDeveloperURL;
+    self.developerMailLabel.text = INUConfigDeveloperMail;
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,12 +55,12 @@
     {
         if (indexPath.row == 0)
         {
-            NSURL *url = [NSURL URLWithString:@"itms-apps://itunes.com/apps/appname"];
+            NSURL *url = [NSURL URLWithString:INUConfigiTunesURL];
             [[UIApplication sharedApplication] openURL:url];
         }
         else if (indexPath.row == 1)
         {
-            NSURL *url = [NSURL URLWithString:@"http://www.inutilis.com"];
+            NSURL *url = [NSURL URLWithString:INUConfigDeveloperURL];
             [[UIApplication sharedApplication] openURL:url];
         }
         else if (indexPath.row == 2)
@@ -87,8 +92,8 @@
         
         UIDevice *device = [UIDevice currentDevice];
         
-        [mailViewController setToRecipients:@[@"support@inutilis.com"]];
-        [mailViewController setSubject:@"Inutivent App"];
+        [mailViewController setToRecipients:@[INUConfigDeveloperMail]];
+        [mailViewController setSubject:@"Gromf App"];
         [mailViewController setMessageBody:[NSString stringWithFormat:@"\n\n\n\n%@\n%@ %@\nApp %@", device.model, device.systemName, device.systemVersion, [self appVersion]] isHTML:NO];
         
         [self presentViewController:mailViewController animated:YES completion:nil];

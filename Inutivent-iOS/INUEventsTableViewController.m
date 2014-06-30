@@ -13,6 +13,7 @@
 #import "INUDataManager.h"
 #import "INUListSection.h"
 #import "INUWelcomeViewController.h"
+#import "INUConfig.h"
 
 typedef NS_ENUM(int, INUEventsAlertTag)
 {
@@ -268,7 +269,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     {
         if (buttonIndex == alertView.firstOtherButtonIndex)
         {
-            NSURL *url = [NSURL URLWithString:@"http://events.inutilis.com/create.php"];
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/create.php", INUConfigSiteURL]];
             [[UIApplication sharedApplication] openURL:url];
         }
     }

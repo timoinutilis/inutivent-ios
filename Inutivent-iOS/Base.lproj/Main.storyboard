@@ -198,8 +198,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="www.inutilis.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0dD-33-rO5">
-                                                    <rect key="frame" x="15" y="25" width="95" height="15"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="www.example.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0dD-33-rO5">
+                                                    <rect key="frame" x="15" y="25" width="106" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -222,8 +222,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="support@inutilis.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="32H-FS-u1e">
-                                                    <rect key="frame" x="15" y="25" width="117" height="15"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="example@example.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="32H-FS-u1e">
+                                                    <rect key="frame" x="15" y="25" width="132" height="15"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -292,6 +292,8 @@ Inutilis Software</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="About" id="Ssc-tD-F1G"/>
                     <connections>
+                        <outlet property="developerMailLabel" destination="32H-FS-u1e" id="dgb-kz-nkd"/>
+                        <outlet property="developerURLLabel" destination="0dD-33-rO5" id="qV8-ze-Dlt"/>
                         <outlet property="versionLabel" destination="3gh-Mn-JgG" id="yJ9-wM-Krg"/>
                     </connections>
                 </tableViewController>

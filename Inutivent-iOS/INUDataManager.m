@@ -11,6 +11,7 @@
 #import "User.h"
 #import "Bookmark.h"
 #import "ExampleEvent.h"
+#import "INUConfig.h"
 
 @implementation INUDataManager
 {
@@ -146,7 +147,7 @@ static INUDataManager *_sharedInstance;
     }
     NSString *bodyData = [paramsArray componentsJoinedByString:@"&"];
     
-    NSURL *url = [NSURL URLWithString:[@"http://events.inutilis.com/backend/" stringByAppendingString:service]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/backend/%@", INUConfigSiteURL, service]];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     

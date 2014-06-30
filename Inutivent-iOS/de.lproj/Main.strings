@@ -1,12 +1,12 @@
 
-/* Class = "IBUILabel"; text = "www.inutilis.com"; ObjectID = "0dD-33-rO5"; */
-"0dD-33-rO5.text" = "www.inutilis.com";
+/* Class = "IBUILabel"; text = "www.example.com"; ObjectID = "0dD-33-rO5"; */
+"0dD-33-rO5.text" = "www.example.com";
 
 /* Class = "IBUILabel"; text = "Event Title"; ObjectID = "1R9-1P-obq"; */
 "1R9-1P-obq.text" = "Veranstaltungstitel";
 
 /* Class = "IBUILabel"; text = "Developer's Website"; ObjectID = "1fU-Sh-KWZ"; */
-"1fU-Sh-KWZ.text" = "Entwicklers Webseite";
+"1fU-Sh-KWZ.text" = "Webseite des Entwicklers";
 
 /* Class = "IBUITextField"; placeholder = "Enter your name"; ObjectID = "25A-YI-gnp"; */
 "25A-YI-gnp.placeholder" = "Gib deinen Namen ein";
@@ -14,8 +14,8 @@
 /* Class = "IBUILabel"; text = "Version History"; ObjectID = "2xa-0q-507"; */
 "2xa-0q-507.text" = "Versionsgeschichte";
 
-/* Class = "IBUILabel"; text = "support@inutilis.com"; ObjectID = "32H-FS-u1e"; */
-"32H-FS-u1e.text" = "support@inutilis.com";
+/* Class = "IBUILabel"; text = "example@example.com"; ObjectID = "32H-FS-u1e"; */
+"32H-FS-u1e.text" = "example@example.com";
 
 /* Class = "IBUILabel"; text = "0.0"; ObjectID = "3gh-Mn-JgG"; */
 "3gh-Mn-JgG.text" = "0.0";

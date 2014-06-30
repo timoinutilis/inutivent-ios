@@ -15,6 +15,7 @@
 #import "User.h"
 #import "INUDataManager.h"
 #import "INUUtils.h"
+#import "INUConfig.h"
 
 @interface INUEventInfoTableViewController ()
 
@@ -112,7 +113,7 @@
 {
     if (_event.cover && ![_event.cover isEqualToString:@""])
     {
-        NSString *path = [NSString stringWithFormat:@"http://events.inutilis.com/uploads/%@/%@", _event.eventId, _event.cover];
+        NSString *path = [NSString stringWithFormat:@"%@/uploads/%@/%@", INUConfigSiteURL, _event.eventId, _event.cover];
         NSURL *url = [NSURL URLWithString:path];
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
@@ -241,7 +242,7 @@
 {
     if (buttonIndex == alertView.firstOtherButtonIndex)
     {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://events.inutilis.com/event.php?event=%@&user=%@", _bookmark.eventId, _bookmark.userId]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/event.php?event=%@&user=%@", INUConfigSiteURL, _bookmark.eventId, _bookmark.userId]];
         [[UIApplication sharedApplication] openURL:url];
     }
 }
