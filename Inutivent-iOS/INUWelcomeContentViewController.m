@@ -18,6 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *skipButtonHeightConstraint;
 
+@property CGFloat originalTopSpace;
+
 @end
 
 @implementation INUWelcomeContentViewController
@@ -36,8 +38,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _textLabel.text = _text;
+    _originalTopSpace = _topLayoutConstraint.constant;
     
+    _textLabel.text = _text;
     _imageView.image = _image;
 
     if (_buttonType == INUWelcomeButtonTypeNone)
@@ -67,7 +70,7 @@
         // topLayoutGuide isn't working correctly, hack to fix it.
         CGRect navBarFrame = self.navigationController.navigationBar.frame;
         CGFloat topUIHeight = navBarFrame.origin.y + navBarFrame.size.height - self.topLayoutGuide.length;
-        _topLayoutConstraint.constant = topUIHeight + 8;
+        _topLayoutConstraint.constant = topUIHeight + _originalTopSpace;
     }
     
     [super viewWillLayoutSubviews];

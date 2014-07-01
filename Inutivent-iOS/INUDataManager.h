@@ -36,7 +36,7 @@
 @end
 
 extern NSString *const INUBookmarksChangedNotification;
-extern NSString *const INUBookmarkAddedByURLNotification;
+extern NSString *const INUBookmarkOpenedByURLNotification;
 extern NSString *const INUEventLoadedNotification;
 extern NSString *const INUUserUpdatedNotification;
 extern NSString *const INUErrorNotification;

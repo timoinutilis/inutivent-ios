@@ -12,8 +12,6 @@
 
 @interface Bookmark : NSObject
 
-@property BOOL wasChanged;
-
 @property NSString *eventId;
 @property NSString *userId;
 @property NSString *eventName;
@@ -24,6 +22,6 @@
 - (id)initFromDictionary:(NSDictionary *)dict;
 - (NSMutableDictionary *)toDictionary;
 
-- (void)updateFromEvent:(Event *)event;
+- (BOOL)updateFromEvent:(Event *)event;
 
 @end

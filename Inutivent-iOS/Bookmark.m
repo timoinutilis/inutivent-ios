@@ -49,16 +49,16 @@
     return dict;
 }
 
-- (void)updateFromEvent:(Event *)event
+- (BOOL)updateFromEvent:(Event *)event
 {
     if (![_eventName isEqualToString:event.title] || ![_time isEqualToDate:event.time])
     {
         _eventName = event.title;
         _ownerUserId = event.owner;
         _time = event.time;
-        
-        _wasChanged = YES;
+        return YES;
     }
+    return NO;
 }
 
 @end

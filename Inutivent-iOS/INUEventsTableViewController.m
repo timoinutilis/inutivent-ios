@@ -14,6 +14,7 @@
 #import "INUListSection.h"
 #import "INUWelcomeViewController.h"
 #import "INUConfig.h"
+#import "INUSplitDetailViewController.h"
 
 typedef NS_ENUM(int, INUEventsAlertTag)
 {
@@ -28,6 +29,9 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 @property Bookmark *lastOpenedBookmark;
 @property NSIndexPath *tappedIndexPath;
 @property NSMutableArray *sections;
+
+// iPad
+@property (strong, nonatomic) INUSplitDetailViewController *detailViewController;
 
 @end
 
@@ -55,6 +59,11 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     
     [self updateSections];
     
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        self.detailViewController = (INUSplitDetailViewController *)[self.splitViewController.viewControllers lastObject];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
     
     // Show introduction on first app start
@@ -72,26 +81,20 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    if (_lastOpenedBookmark && _lastOpenedBookmark.wasChanged)
-    {
-        [self updateSections];
-        [[self tableView] reloadData];
-        _lastOpenedBookmark.wasChanged = NO;
-        
-        NSIndexPath *indexPath = [self getPathIndexOfBookmark:_lastOpenedBookmark];
-        if (indexPath)
-        {
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        }
-    }
-    _lastOpenedBookmark = nil;
-
     [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        // select and show first entry
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -102,6 +105,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 
 - (void)updateSections
 {
+    NSLog(@"updateSections");
     _sections = [[NSMutableArray alloc] init];
     [self addEventsWithIsOwner:YES title:NSLocalizedString(@"Your Events", nil)];
     [self addEventsWithIsOwner:NO title:NSLocalizedString(@"Events", nil)];
@@ -197,6 +201,13 @@ typedef NS_ENUM(int, INUEventsAlertTag)
         cell.textLabel.text = label;
     }
     
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        UIView *bgView = [[UIView alloc] init];
+        bgView.backgroundColor = self.view.tintColor;
+        cell.selectedBackgroundView = bgView;
+    }
+    
     return cell;
 }
 
@@ -209,14 +220,35 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 {
     if (indexPath.section == [_sections count] - 1)
     {
+        // Information section
+        _lastOpenedBookmark = nil;
         if (indexPath.row == 0)
         {
-            [self performSegueWithIdentifier:@"ShowWelcome" sender:self];
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+            {
+                [self.detailViewController showWelcome];
+            }
+            else
+            {
+                [self performSegueWithIdentifier:@"ShowWelcome" sender:self];
+            }
         }
         else if (indexPath.row == 1)
         {
-            [self performSegueWithIdentifier:@"ShowAbout" sender:self];
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+            {
+                [self.detailViewController showAbout];
+            }
+            else
+            {
+                [self performSegueWithIdentifier:@"ShowAbout" sender:self];
+            }
         }
+    }
+    else
+    {
+        // Events section
+        [self showEventAtIndexPath:indexPath active:NO];
     }
 }
 
@@ -235,6 +267,25 @@ typedef NS_ENUM(int, INUEventsAlertTag)
         Bookmark *selectedBookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
         tabController.bookmark = selectedBookmark;
         _lastOpenedBookmark = selectedBookmark;
+    }
+}
+
+- (void)showEventAtIndexPath:(NSIndexPath *)indexPath active:(BOOL)active
+{
+    if (active)
+    {
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        Bookmark *selectedBookmark = [(INUListSection *)_sections[indexPath.section] array][indexPath.row];
+        _lastOpenedBookmark = selectedBookmark;
+        [self.detailViewController showEvent:selectedBookmark];
+    }
+    else if (active)
+    {
+        [self performSegueWithIdentifier:@"ShowEvent" sender:self];
     }
 }
 
@@ -310,10 +361,21 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 {
     if (notification.name == INUBookmarksChangedNotification)
     {
+        Bookmark *bookmark = notification.userInfo[@"bookmark"];
+        
         [self updateSections];
         [self.tableView reloadData];
+        
+        if (bookmark == _lastOpenedBookmark)
+        {
+            NSIndexPath *indexPath = [self getPathIndexOfBookmark:_lastOpenedBookmark];
+            if (indexPath)
+            {
+                [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            }
+        }
     }
-    else if (notification.name == INUBookmarkAddedByURLNotification)
+    else if (notification.name == INUBookmarkOpenedByURLNotification)
     {
         [self.navigationController popToRootViewControllerAnimated:NO];
         
@@ -321,8 +383,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
         NSIndexPath *indexPath = [self getPathIndexOfBookmark:bookmark];
         if (indexPath)
         {
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-            [self performSegueWithIdentifier:@"ShowEvent" sender:self];
+            [self showEventAtIndexPath:indexPath active:YES];
         }
     }
 }

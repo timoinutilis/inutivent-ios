@@ -41,7 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIStoryboard *storyboard = self.storyboard;
     self.viewControllers = @[
                          [storyboard instantiateViewControllerWithIdentifier:@"EventInfo"],
                          [storyboard instantiateViewControllerWithIdentifier:@"EventGuests"],
