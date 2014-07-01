@@ -101,16 +101,16 @@
 		9283756D193A494D0000CCD6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9283756F193A494D0000CCD6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		92837571193A494D0000CCD6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		92837575193A494D0000CCD6 /* Inutivent-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Inutivent-iOS-Info.plist"; sourceTree = "<group>"; };
+		92837575193A494D0000CCD6 /* Gromf-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gromf-Info.plist"; sourceTree = "<group>"; };
 		92837577193A494D0000CCD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		92837579193A494D0000CCD6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9283757B193A494D0000CCD6 /* Inutivent-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Inutivent-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		9283757B193A494D0000CCD6 /* Gromf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gromf-Prefix.pch"; sourceTree = "<group>"; };
 		9283757C193A494D0000CCD6 /* INUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INUAppDelegate.h; sourceTree = "<group>"; };
 		9283757D193A494D0000CCD6 /* INUAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = INUAppDelegate.m; sourceTree = "<group>"; };
 		9283757F193A494D0000CCD6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		92837585193A494D0000CCD6 /* Inutivent-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Inutivent-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		92837586193A494D0000CCD6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9283758E193A494D0000CCD6 /* Inutivent-iOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Inutivent-iOSTests-Info.plist"; sourceTree = "<group>"; };
+		9283758E193A494D0000CCD6 /* GromfTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GromfTests-Info.plist"; sourceTree = "<group>"; };
 		92837590193A494D0000CCD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		92837592193A494D0000CCD6 /* Inutivent_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Inutivent_iOSTests.m; sourceTree = "<group>"; };
 		928375A3193A6C670000CCD6 /* INUEventsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUEventsTableViewController.h; sourceTree = "<group>"; };
@@ -187,17 +187,9 @@
 			name = Files;
 			sourceTree = "<group>";
 		};
-		92733BFD1961DCE50076C10B /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = iPad;
-			sourceTree = "<group>";
-		};
 		92837561193A494D0000CCD6 = {
 			isa = PBXGroup;
 			children = (
-				92733BFD1961DCE50076C10B /* iPad */,
 				92837573193A494D0000CCD6 /* Inutivent-iOS */,
 				9283758C193A494D0000CCD6 /* Inutivent-iOSTests */,
 				9283756C193A494D0000CCD6 /* Frameworks */,
@@ -251,10 +243,10 @@
 		92837574193A494D0000CCD6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				92837575193A494D0000CCD6 /* Inutivent-iOS-Info.plist */,
+				92837575193A494D0000CCD6 /* Gromf-Info.plist */,
 				92837576193A494D0000CCD6 /* InfoPlist.strings */,
 				92837579193A494D0000CCD6 /* main.m */,
-				9283757B193A494D0000CCD6 /* Inutivent-iOS-Prefix.pch */,
+				9283757B193A494D0000CCD6 /* Gromf-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -271,7 +263,7 @@
 		9283758D193A494D0000CCD6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9283758E193A494D0000CCD6 /* Inutivent-iOSTests-Info.plist */,
+				9283758E193A494D0000CCD6 /* GromfTests-Info.plist */,
 				9283758F193A494D0000CCD6 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -394,7 +386,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 92837565193A494D0000CCD6 /* Build configuration list for PBXProject "Inutivent-iOS" */;
+			buildConfigurationList = 92837565193A494D0000CCD6 /* Build configuration list for PBXProject "Gromf" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -616,8 +608,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Inutivent-iOS/Inutivent-iOS-Prefix.pch";
-				INFOPLIST_FILE = "Inutivent-iOS/Inutivent-iOS-Info.plist";
+				GCC_PREFIX_HEADER = "Inutivent-iOS/Gromf-Prefix.pch";
+				INFOPLIST_FILE = "Inutivent-iOS/Gromf-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -632,8 +624,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Inutivent-iOS/Inutivent-iOS-Prefix.pch";
-				INFOPLIST_FILE = "Inutivent-iOS/Inutivent-iOS-Info.plist";
+				GCC_PREFIX_HEADER = "Inutivent-iOS/Gromf-Prefix.pch";
+				INFOPLIST_FILE = "Inutivent-iOS/Gromf-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -656,7 +648,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Inutivent-iOSTests/Inutivent-iOSTests-Info.plist";
+				INFOPLIST_FILE = "Inutivent-iOSTests/GromfTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -674,7 +666,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Inutivent-iOS/Inutivent-iOS-Prefix.pch";
-				INFOPLIST_FILE = "Inutivent-iOSTests/Inutivent-iOSTests-Info.plist";
+				INFOPLIST_FILE = "Inutivent-iOSTests/GromfTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -684,7 +676,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		92837565193A494D0000CCD6 /* Build configuration list for PBXProject "Inutivent-iOS" */ = {
+		92837565193A494D0000CCD6 /* Build configuration list for PBXProject "Gromf" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				92837594193A494D0000CCD6 /* Debug */,
