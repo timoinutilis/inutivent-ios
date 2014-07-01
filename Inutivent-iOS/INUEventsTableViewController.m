@@ -15,6 +15,7 @@
 #import "INUWelcomeViewController.h"
 #import "INUConfig.h"
 #import "INUSplitDetailViewController.h"
+#import "INUUtils.h"
 
 typedef NS_ENUM(int, INUEventsAlertTag)
 {
@@ -201,7 +202,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
         cell.textLabel.text = label;
     }
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad && SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
     {
         UIView *bgView = [[UIView alloc] init];
         bgView.backgroundColor = self.view.tintColor;

@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property NSMutableArray *guestSections;
+@property BOOL anybodyHasntSeen;
 
 @end
 
@@ -63,6 +64,7 @@
 
 - (void)updateSections
 {
+    _anybodyHasntSeen = NO;
     _guestSections = [[NSMutableArray alloc] init];
     [self addGuestsWithStatus:UserStatusAttending title:NSLocalizedString(@"Going", nil)];
     [self addGuestsWithStatus:UserStatusMaybeAttending title:NSLocalizedString(@"Maybe Going", nil)];
@@ -80,6 +82,10 @@
         if (user.status == status)
         {
             [statusGuests addObject:user];
+            if (user.visited == nil)
+            {
+                _anybodyHasntSeen = YES;
+            }
         }
     }
     if ([statusGuests count] > 0)
@@ -114,6 +120,15 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return [(INUListSection *)_guestSections[section] title];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if (_anybodyHasntSeen && section == [_guestSections count] - 1)
+    {
+        return NSLocalizedString(@"* hasn't seen it yet", nil);
+    }
+    return nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
