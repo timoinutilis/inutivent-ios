@@ -84,14 +84,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
+    [super viewDidAppear:animated];
+    [self.tableView layoutIfNeeded];
+    [self.tableView reloadData];
 }
 
 - (void)updateView
@@ -159,12 +156,7 @@
 {
     if (indexPath.section == 0 && indexPath.row == 3)
     {
-        CGFloat width = self.view.frame.size.width - 16; // 2*8 horiz space arount text view
-        if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
-        {
-            // iOS <=6
-            width -= 20; // 2*10 text view insets
-        }
+        CGFloat width = _detailsCell.contentView.frame.size.width - 16; // 2*8 horiz space arount text view
         CGSize textViewSize = [_detailsText sizeThatFits:CGSizeMake(width, FLT_MAX)];
         _detailsHeightConstraint.constant = textViewSize.height;
         
