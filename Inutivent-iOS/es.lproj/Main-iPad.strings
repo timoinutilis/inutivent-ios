@@ -1,0 +1,96 @@
+
+/* Class = "IBUILabel"; text = "Not Going"; ObjectID = "3L1-dd-E32"; */
+"3L1-dd-E32.text" = "No asistiré";
+
+/* Class = "IBUILabel"; text = "Version History"; ObjectID = "659-L8-PcR"; */
+"659-L8-PcR.text" = "Historia de versiones";
+
+/* Class = "IBUILabel"; text = "0.0"; ObjectID = "8I7-X9-JZc"; */
+"8I7-X9-JZc.text" = "0.0";
+
+/* Class = "IBUILabel"; text = "Going"; ObjectID = "D8D-bw-QV6"; */
+"D8D-bw-QV6.text" = "Asistiré";
+
+/* Class = "IBUINavigationItem"; title = "Gromf"; ObjectID = "DqR-lg-4rt"; */
+"DqR-lg-4rt.title" = "Gromf";
+
+/* Class = "IBUITextView"; text = "Lorem ipsum"; ObjectID = "HJV-Sq-hGR"; */
+"HJV-Sq-hGR.text" = "Lorem ipsum";
+
+/* Class = "IBUILabel"; text = "Detail"; ObjectID = "I9m-pi-O4l"; */
+"I9m-pi-O4l.text" = "Detail";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "J6d-QM-sew"; */
+"J6d-QM-sew.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Host"; ObjectID = "K3g-4H-Jrs"; */
+"K3g-4H-Jrs.text" = "Host";
+
+/* Class = "IBUILabel"; text = "Developer's Website"; ObjectID = "MlX-vZ-dij"; */
+"MlX-vZ-dij.text" = "Página web del desarrollador";
+
+/* Class = "IBUINavigationItem"; title = "Introduction"; ObjectID = "N5T-3E-gCy"; */
+"N5T-3E-gCy.title" = "Introducción";
+
+/* Class = "IBUIBarButtonItem"; title = "Events"; ObjectID = "P5H-D2-Jr9"; */
+"P5H-D2-Jr9.title" = "Eventos";
+
+/* Class = "IBUITableViewSection"; footerTitle = "Copyright 2014 by Timo Kloss\nInutilis Software"; ObjectID = "P6Q-7m-x7D"; */
+"P6Q-7m-x7D.footerTitle" = "Copyright 2014 by Timo Kloss\nInutilis Software";
+
+/* Class = "IBUILabel"; text = "www.example.com"; ObjectID = "PSF-c9-rLh"; */
+"PSF-c9-rLh.text" = "www.example.com";
+
+/* Class = "IBUILabel"; text = "Event Title"; ObjectID = "QvY-dw-ZO3"; */
+"QvY-dw-ZO3.text" = "Título del evento";
+
+/* Class = "IBUILabel"; text = "Version"; ObjectID = "Tzq-zC-dzM"; */
+"Tzq-zC-dzM.text" = "Versión";
+
+/* Class = "IBUILabel"; text = "Gromf in App Store"; ObjectID = "aYo-jC-Bt6"; */
+"aYo-jC-Bt6.text" = "Gromf en App Store";
+
+/* Class = "IBUILabel"; text = "Edit or Invite"; ObjectID = "bwC-Kt-AnQ"; */
+"bwC-Kt-AnQ.text" = "Editar o invitar";
+
+/* Class = "IBUILabel"; text = "Your Name"; ObjectID = "c5M-7g-WpH"; */
+"c5M-7g-WpH.text" = "Tu nombre";
+
+/* Class = "IBUITextField"; placeholder = "Enter your name"; ObjectID = "dgD-LO-WRb"; */
+"dgD-LO-WRb.placeholder" = "Introduce tu nombre";
+
+/* Class = "IBUINavigationItem"; title = "About"; ObjectID = "f2e-HZ-7Ws"; */
+"f2e-HZ-7Ws.title" = "Acerca";
+
+/* Class = "IBUILabel"; text = "example@example.com"; ObjectID = "ha1-lJ-ZXC"; */
+"ha1-lJ-ZXC.text" = "example@example.com";
+
+/* Class = "IBUINavigationItem"; title = "Version History"; ObjectID = "hc6-mY-g9Z"; */
+"hc6-mY-g9Z.title" = "Historia de versiones";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "k9C-Vy-s4P"; */
+"k9C-Vy-s4P.normalTitle" = "Button";
+
+/* Class = "IBUIButton"; normalTitle = "Post"; ObjectID = "oMm-Mp-ZSu"; */
+"oMm-Mp-ZSu.normalTitle" = "Enviar";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "oZi-57-Fqu"; */
+"oZi-57-Fqu.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Send Mail to Developer"; ObjectID = "qZT-UK-hY2"; */
+"qZT-UK-hY2.text" = "Enviar mail al desarrollador";
+
+/* Class = "IBUILabel"; text = "Date"; ObjectID = "sLk-LJ-4CA"; */
+"sLk-LJ-4CA.text" = "Date";
+
+/* Class = "IBUILabel"; text = "Maybe Going"; ObjectID = "vCR-rf-WdP"; */
+"vCR-rf-WdP.text" = "Tal vez asista";
+
+/* Class = "IBUILabel"; text = "Time"; ObjectID = "wQB-bp-efZ"; */
+"wQB-bp-efZ.text" = "Time";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "wzP-cv-GGX"; */
+"wzP-cv-GGX.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "zvj-gz-vid"; */
+"zvj-gz-vid.text" = "Title";

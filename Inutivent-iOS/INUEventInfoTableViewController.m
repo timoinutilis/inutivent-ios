@@ -118,7 +118,8 @@
         [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
             if (connectionError)
             {
-                // ignore
+                // default image
+                _coverImage.image = [UIImage imageNamed:@"default_header.jpg"];
             }
             else
             {
@@ -129,6 +130,10 @@
                 });
             }
         }];
+    }
+    else
+    {
+        _coverImage.image = [UIImage imageNamed:@"default_header.jpg"];
     }
 }
 

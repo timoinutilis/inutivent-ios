@@ -18,7 +18,6 @@
 		9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9248830E1955BDB20034BFDD /* INUAboutTableViewController.m */; };
 		924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */; };
 		924883151955CD890034BFDD /* Version-History.txt in Resources */ = {isa = PBXBuildFile; fileRef = 924883141955CD890034BFDD /* Version-History.txt */; };
-		92733BFF1961DE6D0076C10B /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92733BFE1961DE6D0076C10B /* Main-iPad.storyboard */; };
 		92733C491961E7210076C10B /* INUSplitDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92733C481961E7210076C10B /* INUSplitDetailViewController.m */; };
 		927F59DC193E2A0100EEEC62 /* INUDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F59DB193E2A0100EEEC62 /* INUDataManager.m */; };
 		927F59DF193E2E5300EEEC62 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F59DE193E2E5300EEEC62 /* User.m */; };
@@ -51,6 +50,7 @@
 		92CB1F29194791A100309850 /* INUListSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F28194791A100309850 /* INUListSection.m */; };
 		92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E0E2BB1940D1B100D9ACDD /* INUUtils.m */; };
 		92E6D55C19641A120096D562 /* INULabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E6D55B19641A120096D562 /* INULabel.m */; };
+		92E6D55D196427CC0096D562 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E6D55F196427CC0096D562 /* Main-iPad.storyboard */; };
 		92F68FD21950D0CE00DCACB7 /* INUEventTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F68FD11950D0CE00DCACB7 /* INUEventTabBarController.m */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +89,6 @@
 		924883101955CCB80034BFDD /* INUVersionHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUVersionHistoryViewController.h; sourceTree = "<group>"; };
 		924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUVersionHistoryViewController.m; sourceTree = "<group>"; };
 		924883141955CD890034BFDD /* Version-History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Version-History.txt"; sourceTree = "<group>"; };
-		92733BFE1961DE6D0076C10B /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		92733C471961E7210076C10B /* INUSplitDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUSplitDetailViewController.h; sourceTree = "<group>"; };
 		92733C481961E7210076C10B /* INUSplitDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUSplitDetailViewController.m; sourceTree = "<group>"; };
 		927F59DA193E2A0100EEEC62 /* INUDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUDataManager.h; sourceTree = "<group>"; };
@@ -142,6 +141,9 @@
 		92E0E2BB1940D1B100D9ACDD /* INUUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUUtils.m; sourceTree = "<group>"; };
 		92E6D55A19641A120096D562 /* INULabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INULabel.h; sourceTree = "<group>"; };
 		92E6D55B19641A120096D562 /* INULabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INULabel.m; sourceTree = "<group>"; };
+		92E6D55E196427CC0096D562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-iPad.storyboard"; sourceTree = "<group>"; };
+		92E6D561196427D50096D562 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/Main-iPad.strings"; sourceTree = "<group>"; };
+		92E6D563196427DB0096D562 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/Main-iPad.strings"; sourceTree = "<group>"; };
 		92F68FD01950D0CE00DCACB7 /* INUEventTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUEventTabBarController.h; sourceTree = "<group>"; };
 		92F68FD11950D0CE00DCACB7 /* INUEventTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUEventTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,7 +177,7 @@
 			children = (
 				92114B5219618BD600039EFC /* Localizable.strings */,
 				92114B481961841E00039EFC /* Main.storyboard */,
-				92733BFE1961DE6D0076C10B /* Main-iPad.storyboard */,
+				92E6D55F196427CC0096D562 /* Main-iPad.storyboard */,
 				922454851951CB4D0058FF50 /* INUSpinnerView.h */,
 				922454861951CB4D0058FF50 /* INUSpinnerView.m */,
 				92E6D55A19641A120096D562 /* INULabel.h */,
@@ -422,7 +424,7 @@
 				92114B5419618BD600039EFC /* Localizable.strings in Resources */,
 				92A27756195C8CEE0016CCDB /* introduction_event_comments.png in Resources */,
 				92A27758195C8CEE0016CCDB /* introduction_event_info.png in Resources */,
-				92733BFF1961DE6D0076C10B /* Main-iPad.storyboard in Resources */,
+				92E6D55D196427CC0096D562 /* Main-iPad.storyboard in Resources */,
 				92837578193A494D0000CCD6 /* InfoPlist.strings in Resources */,
 				924883151955CD890034BFDD /* Version-History.txt in Resources */,
 				92BCB0331947478300A1E882 /* UI.xcassets in Resources */,
@@ -532,6 +534,16 @@
 				92114B4F196185FE00039EFC /* de */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		92E6D55F196427CC0096D562 /* Main-iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				92E6D55E196427CC0096D562 /* Base */,
+				92E6D561196427D50096D562 /* es */,
+				92E6D563196427DB0096D562 /* de */,
+			);
+			name = "Main-iPad.storyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

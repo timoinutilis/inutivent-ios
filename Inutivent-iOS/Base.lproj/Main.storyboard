@@ -391,7 +391,7 @@ Inutilis Software</string>
                             <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_header.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="B4k-Dq-yFX">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B4k-Dq-yFX">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </imageView>
@@ -834,7 +834,6 @@ Inutilis Software</string>
         <image name="assisting_yes" width="20" height="20"/>
         <image name="calendar" width="32" height="32"/>
         <image name="comments" width="23" height="22"/>
-        <image name="default_header.jpg" width="1024" height="256"/>
         <image name="guests" width="31" height="22"/>
         <image name="info" width="22" height="22"/>
         <image name="time" width="32" height="32"/>
