@@ -150,10 +150,12 @@
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     CGFloat contentHeight = self.tableView.contentSize.height;
-    CGSize keyboardSize = [notification.userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     CGFloat viewHeight = self.tableView.frame.size.height;
     
-    [self.tableView setContentOffset:CGPointMake(0.0f, contentHeight - viewHeight + keyboardSize.height) animated:YES];
+    CGRect rawKeyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect realKeyboardRect = [self.view.window convertRect:rawKeyboardRect toView:self.view.window.rootViewController.view];
+    
+    [self.tableView setContentOffset:CGPointMake(0.0f, contentHeight - viewHeight + realKeyboardRect.size.height) animated:YES];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
