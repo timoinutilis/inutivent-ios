@@ -31,6 +31,7 @@
     // Do any additional setup after loading the view.
     
     self.splitViewController.delegate = self;
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning

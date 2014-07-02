@@ -50,6 +50,7 @@
 		92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */; };
 		92CB1F29194791A100309850 /* INUListSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F28194791A100309850 /* INUListSection.m */; };
 		92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E0E2BB1940D1B100D9ACDD /* INUUtils.m */; };
+		92E6D55C19641A120096D562 /* INULabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E6D55B19641A120096D562 /* INULabel.m */; };
 		92F68FD21950D0CE00DCACB7 /* INUEventTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F68FD11950D0CE00DCACB7 /* INUEventTabBarController.m */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +140,8 @@
 		92CB1F28194791A100309850 /* INUListSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUListSection.m; sourceTree = "<group>"; };
 		92E0E2BA1940D1B100D9ACDD /* INUUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUUtils.h; sourceTree = "<group>"; };
 		92E0E2BB1940D1B100D9ACDD /* INUUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUUtils.m; sourceTree = "<group>"; };
+		92E6D55A19641A120096D562 /* INULabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INULabel.h; sourceTree = "<group>"; };
+		92E6D55B19641A120096D562 /* INULabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INULabel.m; sourceTree = "<group>"; };
 		92F68FD01950D0CE00DCACB7 /* INUEventTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUEventTabBarController.h; sourceTree = "<group>"; };
 		92F68FD11950D0CE00DCACB7 /* INUEventTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUEventTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +178,8 @@
 				92733BFE1961DE6D0076C10B /* Main-iPad.storyboard */,
 				922454851951CB4D0058FF50 /* INUSpinnerView.h */,
 				922454861951CB4D0058FF50 /* INUSpinnerView.m */,
+				92E6D55A19641A120096D562 /* INULabel.h */,
+				92E6D55B19641A120096D562 /* INULabel.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -444,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B5E236195C41AB00D46F8C /* ExampleEvent.m in Sources */,
+				92E6D55C19641A120096D562 /* INULabel.m in Sources */,
 				92733C491961E7210076C10B /* INUSplitDetailViewController.m in Sources */,
 				928375A5193A6C670000CCD6 /* INUEventsTableViewController.m in Sources */,
 				922454871951CB4D0058FF50 /* INUSpinnerView.m in Sources */,
