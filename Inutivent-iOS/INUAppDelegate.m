@@ -14,6 +14,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+    {
+        self.window.tintColor = [UIColor colorWithRed:227.0/255.0 green:70.0/255.0 blue:35.0/255.0 alpha:1.0];
+    }
+
     [[INUDataManager sharedInstance] loadBookmarks];
     return YES;
 }

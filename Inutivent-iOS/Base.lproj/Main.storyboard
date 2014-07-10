@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Events Table View Controller - Gromf-->
+        <!--Events Table View Controller-->
         <scene sceneID="eVm-Jf-k9Q">
             <objects>
                 <tableViewController id="uT4-Ub-1Uq" customClass="INUEventsTableViewController" sceneMemberID="viewController">
@@ -64,7 +64,7 @@
                             <outlet property="delegate" destination="uT4-Ub-1Uq" id="9Ml-SR-jxw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Gromf" id="ucB-Rl-WtX">
+                    <navigationItem key="navigationItem" id="ucB-Rl-WtX">
                         <barButtonItem key="backBarButtonItem" title="Events" id="D2h-91-brL"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="KaU-Uz-eaC">
                             <connections>

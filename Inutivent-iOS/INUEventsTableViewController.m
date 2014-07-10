@@ -58,6 +58,9 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    NSString *logoName = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? @"logo_red" : @"logo_white";
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:logoName]];
+    
     [self updateSections];
     
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
