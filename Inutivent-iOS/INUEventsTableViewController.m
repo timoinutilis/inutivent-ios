@@ -235,7 +235,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    return (indexPath.section < [_sections count] - 1);
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

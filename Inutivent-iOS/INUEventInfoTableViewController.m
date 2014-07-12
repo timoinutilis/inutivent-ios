@@ -279,16 +279,22 @@
 - (IBAction)onExitName:(id)sender
 {
     User *me = [self getMe];
-    if (![self.nameField.text isEqualToString:me.name])
+    NSString *newName = self.nameField.text;
+    if ([newName isEqualToString:@""])
     {
-        me.name = self.nameField.text;
+        newName = @"???";
+    }
+    
+    if (![newName isEqualToString:me.name])
+    {
+        me.name = newName;
         [self updateOwner];
         [[INUDataManager sharedInstance] notifyUserUpdate];
         
         NSDictionary *paramsDict = [NSDictionary dictionaryWithObjectsAndKeys:
                                     _bookmark.eventId, @"event_id",
                                     _bookmark.userId, @"user_id",
-                                    self.nameField.text, @"name",
+                                    newName, @"name",
                                     nil];
         [[INUDataManager sharedInstance] requestFromServer:@"updateuser.php" params:paramsDict];
     }
