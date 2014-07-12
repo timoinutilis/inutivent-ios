@@ -12,9 +12,10 @@
 
 @interface INUAboutTableViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moreInfoURLLabel;
 @property (weak, nonatomic) IBOutlet UILabel *developerURLLabel;
 @property (weak, nonatomic) IBOutlet UILabel *developerMailLabel;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
 
 @end
 
@@ -42,6 +43,8 @@
     [INUUtils initBackground:self.tableView];
     
     self.versionLabel.text = [self appVersion];
+    
+    self.moreInfoURLLabel.text = INUConfigSiteURL;
     self.developerURLLabel.text = INUConfigDeveloperURL;
     self.developerMailLabel.text = INUConfigDeveloperMail;
 }
@@ -58,15 +61,20 @@
     {
         if (indexPath.row == 0)
         {
-            NSURL *url = [NSURL URLWithString:INUConfigiTunesURL];
+            NSURL *url = [NSURL URLWithString:INUConfigSiteURL];
             [[UIApplication sharedApplication] openURL:url];
         }
         else if (indexPath.row == 1)
         {
-            NSURL *url = [NSURL URLWithString:INUConfigDeveloperURL];
+            NSURL *url = [NSURL URLWithString:INUConfigiTunesURL];
             [[UIApplication sharedApplication] openURL:url];
         }
         else if (indexPath.row == 2)
+        {
+            NSURL *url = [NSURL URLWithString:INUConfigDeveloperURL];
+            [[UIApplication sharedApplication] openURL:url];
+        }
+        else if (indexPath.row == 3)
         {
             [self sendMail];
         }

@@ -1,7 +1,4 @@
 
-/* Class = "IBUILabel"; text = "www.example.com"; ObjectID = "0dD-33-rO5"; */
-"0dD-33-rO5.text" = "www.example.com";
-
 /* Class = "IBUILabel"; text = "Event Title"; ObjectID = "1R9-1P-obq"; */
 "1R9-1P-obq.text" = "Veranstaltungstitel";
 
@@ -14,17 +11,8 @@
 /* Class = "IBUILabel"; text = "Version History"; ObjectID = "2xa-0q-507"; */
 "2xa-0q-507.text" = "Versionsgeschichte";
 
-/* Class = "IBUILabel"; text = "example@example.com"; ObjectID = "32H-FS-u1e"; */
-"32H-FS-u1e.text" = "example@example.com";
-
-/* Class = "IBUILabel"; text = "0.0"; ObjectID = "3gh-Mn-JgG"; */
-"3gh-Mn-JgG.text" = "0.0";
-
 /* Class = "IBUILabel"; text = "Going"; ObjectID = "4tV-95-pcj"; */
 "4tV-95-pcj.text" = "Zusagen";
-
-/* Class = "IBUILabel"; text = "Title"; ObjectID = "5FI-Ff-QSi"; */
-"5FI-Ff-QSi.text" = "Titel";
 
 /* Class = "IBUILabel"; text = "Time"; ObjectID = "5q2-7E-4fc"; */
 "5q2-7E-4fc.text" = "Zeit";
@@ -47,17 +35,8 @@
 /* Class = "IBUILabel"; text = "Gromf in App Store"; ObjectID = "Kss-tQ-D3d"; */
 "Kss-tQ-D3d.text" = "Gromf im App Store";
 
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "LQX-xr-pBY"; */
-"LQX-xr-pBY.text" = "Label";
-
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "NYo-mX-o2c"; */
 "NYo-mX-o2c.text" = "Datum";
-
-/* Class = "IBUILabel"; text = "Detail"; ObjectID = "OnA-jo-hLT"; */
-"OnA-jo-hLT.text" = "Detail";
-
-/* Class = "IBUITextView"; text = "Lorem ipsum"; ObjectID = "QT8-Pf-xHF"; */
-"QT8-Pf-xHF.text" = "Lorem ipsum";
 
 /* Class = "IBUILabel"; text = "Your Name"; ObjectID = "SsL-5a-ibg"; */
 "SsL-5a-ibg.text" = "Dein Name";
@@ -68,12 +47,6 @@
 /* Class = "IBUINavigationItem"; title = "Introduction"; ObjectID = "TVF-CZ-wow"; */
 "TVF-CZ-wow.title" = "Einführung";
 
-/* Class = "IBUILabel"; text = "Title"; ObjectID = "V6e-ec-fvk"; */
-"V6e-ec-fvk.text" = "Titel";
-
-/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "VFX-fJ-kpg"; */
-"VFX-fJ-kpg.normalTitle" = "Button";
-
 /* Class = "IBUINavigationItem"; title = "Version History"; ObjectID = "ZCi-cA-v5c"; */
 "ZCi-cA-v5c.title" = "Versionsgeschichte";
 
@@ -83,8 +56,8 @@
 /* Class = "IBUILabel"; text = "Maybe Going"; ObjectID = "fPo-v6-FnW"; */
 "fPo-v6-FnW.text" = "Vielleicht";
 
-/* Class = "IBUILabel"; text = "Title"; ObjectID = "pf0-u9-vTf"; */
-"pf0-u9-vTf.text" = "Titel";
+/* Class = "IBUILabel"; text = "More Information"; ObjectID = "n0q-N4-rOp"; */
+"n0q-N4-rOp.text" = "Mehr Information";
 
 /* Class = "IBUILabel"; text = "Host"; ObjectID = "u6l-PW-Udl"; */
 "u6l-PW-Udl.text" = "Gastgeber";
@@ -95,5 +68,3 @@
 /* Class = "IBUILabel"; text = "Not Going"; ObjectID = "ypw-VQ-tXq"; */
 "ypw-VQ-tXq.text" = "Absagen";
 
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "zDI-3v-LWJ"; */
-"zDI-3v-LWJ.text" = "Label";
