@@ -23,7 +23,8 @@
     if (self)
     {
         // Initialization code
-        self.backgroundColor = [UIColor whiteColor];
+        UIImage *image = [UIImage imageNamed:@"paper"];
+        self.backgroundColor = [UIColor colorWithPatternImage:image];
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
@@ -35,7 +36,7 @@
 
 + (INUSpinnerView *)addNewSpinnerToView:(UIView *)superView
 {
-    INUSpinnerView *view = [[INUSpinnerView alloc] initWithFrame:superView.frame];
+    INUSpinnerView *view = [[INUSpinnerView alloc] initWithFrame:superView.bounds];
     if (view)
     {
         [superView addSubview:view];
@@ -52,12 +53,13 @@
     {
         _messageTextView = [[UITextView alloc] init];
         _messageTextView.editable = NO;
+        _messageTextView.backgroundColor = [UIColor clearColor];
         [self addSubview:_messageTextView];
     }
     
     NSMutableParagraphStyle *paragraph = [[NSMutableParagraphStyle alloc] init];
     paragraph.alignment = NSTextAlignmentCenter;
-    UIColor *color = [UIColor lightGrayColor];
+    UIColor *color = [UIColor grayColor];
     
     
     NSMutableAttributedString *attrMessage = [[NSMutableAttributedString alloc] initWithString:title attributes:@{
@@ -79,7 +81,7 @@
 
 - (void)layoutSubviews
 {
-    _indicator.center = CGPointMake(self.center.x, self.frame.size.height * 0.4);
+    _indicator.center = CGPointMake(self.center.x, self.frame.size.height * 0.5);
     if (_messageTextView)
     {
         _messageTextView.frame = CGRectMake(10, self.frame.size.height * 0.5 - 75, self.frame.size.width - 20, 150);

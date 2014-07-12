@@ -64,14 +64,14 @@
 
 - (void)viewWillLayoutSubviews
 {
-    if (   SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")
+/*    if (   SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")
         && _buttonType == INUWelcomeButtonTypeNone ) // if skip button -> no navigation bar
     {
         // topLayoutGuide isn't working correctly, hack to fix it.
         CGRect navBarFrame = self.navigationController.navigationBar.frame;
         CGFloat topUIHeight = navBarFrame.origin.y + navBarFrame.size.height - self.topLayoutGuide.length;
         _topLayoutConstraint.constant = topUIHeight + _originalTopSpace;
-    }
+    }*/
     
     [super viewWillLayoutSubviews];
 }

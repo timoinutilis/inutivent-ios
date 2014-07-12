@@ -55,7 +55,7 @@
     
     // date
     NSString *dateString = [NSString stringWithFormat:@"\n%@", [NSDateFormatter localizedStringFromDate:post.created dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterShortStyle]];
-    [string appendAttributedString:[[NSAttributedString alloc] initWithString:dateString attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12], NSForegroundColorAttributeName: [UIColor lightGrayColor]}]];
+    [string appendAttributedString:[[NSAttributedString alloc] initWithString:dateString attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12], NSForegroundColorAttributeName: [UIColor grayColor]}]];
     
     _textView.attributedText = string;
     

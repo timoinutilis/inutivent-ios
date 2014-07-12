@@ -12,3 +12,4 @@ extern NSString *const INUConfigSiteURL;
 extern NSString *const INUConfigDeveloperURL;
 extern NSString *const INUConfigDeveloperMail;
 extern NSString *const INUConfigiTunesURL;
+extern int const INUConfigEventReloadTime;

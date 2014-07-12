@@ -12,6 +12,7 @@
 #import "Event.h"
 #import "INUSpinnerView.h"
 #import "INUUtils.h"
+#import "INUConfig.h"
 
 @interface INUEventTabBarController ()
 
@@ -41,6 +42,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+    {
+        _tabControl.tintColor = [UIColor whiteColor];
+    }
+    else
+    {
+        _tabControl.tintColor = [INUUtils mainColor];
+    }
+    
     UIStoryboard *storyboard = self.storyboard;
     self.viewControllers = @[
                          [storyboard instantiateViewControllerWithIdentifier:@"EventInfo"],
@@ -65,7 +75,7 @@
     }
     
     NSDate *now = [[NSDate alloc] init];
-    if (!event || [now timeIntervalSinceDate:event.lastUpdate] >= 60 * 60)
+    if (!event || [now timeIntervalSinceDate:event.lastUpdate] >= INUConfigEventReloadTime)
     {
         [self loadEvent];
     }
@@ -103,7 +113,7 @@
     [self addChildViewController:content];
     
     // adjust scroll insets for content view
-    if ([content respondsToSelector:@selector(tableView)])
+/*    if ([content respondsToSelector:@selector(tableView)])
     {
         UITableView *contentTableView = (UITableView *)[content performSelector:@selector(tableView)];
         
@@ -118,9 +128,9 @@
                 contentTableView.scrollIndicatorInsets = insets;
             }
         }
-    }
+    }*/
     
-    content.view.frame = self.view.frame;
+    content.view.frame = self.view.bounds;
     [self.view insertSubview:content.view atIndex:0];
     [content didMoveToParentViewController:self];
 }

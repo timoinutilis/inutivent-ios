@@ -37,4 +37,52 @@
     return params;
 }
 
++ (void)initBackground:(UITableView *)tableView
+{
+    UIImage *image = [UIImage imageNamed:@"paper"];
+    tableView.backgroundView = nil;
+    tableView.backgroundColor = [UIColor colorWithPatternImage:image];
+}
+
++ (void)initNavigationBar:(UINavigationBar *)navigationBar
+{
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+    {
+        navigationBar.tintColor = [UIColor whiteColor];
+//        navigationBar.barStyle = UIBarStyleBlack;
+        navigationBar.barTintColor = [INUUtils mainColor];
+        navigationBar.translucent = NO;
+        navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    }
+    else
+    {
+        navigationBar.tintColor = [INUUtils mainColor];
+    }
+}
+
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
++ (UIColor *)mainColor
+{
+    return [UIColor colorWithRed:227.0/255.0 green:70.0/255.0 blue:35.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)buttonHighlightColor
+{
+    return [UIColor colorWithRed:87.0/255.0 green:165.0/255.0 blue:195.0/255.0 alpha:1.0];
+}
+
 @end

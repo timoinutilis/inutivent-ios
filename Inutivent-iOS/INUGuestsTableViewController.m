@@ -13,6 +13,7 @@
 #import "User.h"
 #import "Event.h"
 #import "INUListSection.h"
+#import "INUUtils.h"
 
 @interface INUGuestsTableViewController ()
 
@@ -45,6 +46,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [INUUtils initBackground:self.tableView];
     
     INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.parentViewController;
     _bookmark = eventTabBarController.bookmark;

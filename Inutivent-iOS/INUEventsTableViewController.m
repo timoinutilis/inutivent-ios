@@ -26,6 +26,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 @interface INUEventsTableViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *todayLabel;
 
 @property Bookmark *lastOpenedBookmark;
 @property NSIndexPath *tappedIndexPath;
@@ -58,8 +59,10 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    NSString *logoName = SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0") ? @"logo_red" : @"logo_white";
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:logoName]];
+    [INUUtils initNavigationBar:self.navigationController.navigationBar];
+    [INUUtils initBackground:self.tableView];
+
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_white"]];
     
     [self updateSections];
     
@@ -86,6 +89,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self updateTodayText];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -107,9 +111,23 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     // Dispose of any resources that can be recreated.
 }
 
+- (void)updateTodayText
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSDate *now = [NSDate date];
+    
+    dateFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"EEEE" options:0 locale:[NSLocale currentLocale]];
+    NSString *weekdayText = [dateFormatter stringFromDate:now];
+    
+    dateFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"dMMMMy" options:0 locale:[NSLocale currentLocale]];
+    NSString *dayMonthYearText = [dateFormatter stringFromDate:now];
+    
+    NSString *text = [NSString stringWithFormat:NSLocalizedString(@"Today is %@\n%@", nil), weekdayText, dayMonthYearText];
+    self.todayLabel.text = text;
+}
+
 - (void)updateSections
 {
-    NSLog(@"updateSections");
     _sections = [[NSMutableArray alloc] init];
     [self addEventsWithIsOwner:YES title:NSLocalizedString(@"Your Events", nil)];
     [self addEventsWithIsOwner:NO title:NSLocalizedString(@"Events", nil)];

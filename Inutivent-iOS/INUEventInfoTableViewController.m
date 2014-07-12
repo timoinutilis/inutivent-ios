@@ -59,6 +59,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    [INUUtils initBackground:self.tableView];
+    
     _titleLabel.layer.shadowOpacity = 1;
     _titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
     _titleLabel.layer.shadowRadius = 1.5;

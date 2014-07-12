@@ -8,6 +8,7 @@
 
 #import "INUAboutTableViewController.h"
 #import "INUConfig.h"
+#import "INUUtils.h"
 
 @interface INUAboutTableViewController ()
 
@@ -37,6 +38,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    [INUUtils initBackground:self.tableView];
     
     self.versionLabel.text = [self appVersion];
     self.developerURLLabel.text = INUConfigDeveloperURL;
@@ -96,6 +99,10 @@
         [mailViewController setSubject:@"Gromf App"];
         [mailViewController setMessageBody:[NSString stringWithFormat:@"\n\n\n\n%@\n%@ %@\nApp %@", device.model, device.systemName, device.systemVersion, [self appVersion]] isHTML:NO];
         
+        if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
+        {
+            mailViewController.navigationBar.tintColor = [INUUtils mainColor];
+        }
         [self presentViewController:mailViewController animated:YES completion:nil];
     }
     else

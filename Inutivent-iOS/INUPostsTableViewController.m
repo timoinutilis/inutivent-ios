@@ -13,6 +13,7 @@
 #import "Post.h"
 #import "INUPostTableViewCell.h"
 #import "INUDataManager.h"
+#import "INUUtils.h"
 
 @interface INUPostsTableViewController ()
 
@@ -45,12 +46,16 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    [INUUtils initBackground:self.tableView];
+    
     _editorTextView.layer.borderWidth = 1.0f;
     _editorTextView.layer.cornerRadius = 4.0f;
     _editorTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     _editorTextView.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     
     _postButton.layer.cornerRadius = 4.0f;
+    UIImage *highlightImage = [INUUtils imageWithColor:[INUUtils buttonHighlightColor]];
+    [_postButton setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
     
     _layoutCell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     
