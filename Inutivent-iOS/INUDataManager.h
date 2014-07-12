@@ -32,6 +32,7 @@
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict;
 
 - (void)notifyUserUpdate;
+- (void)notifyAppToFront;
 
 @end
 
@@ -40,3 +41,4 @@ extern NSString *const INUBookmarkOpenedByURLNotification;
 extern NSString *const INUEventLoadedNotification;
 extern NSString *const INUUserUpdatedNotification;
 extern NSString *const INUErrorNotification;
+extern NSString *const INUAppToFrontNotification;

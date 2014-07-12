@@ -266,6 +266,11 @@ static INUDataManager *_sharedInstance;
     [[NSNotificationCenter defaultCenter] postNotificationName:INUUserUpdatedNotification object:self userInfo:nil];
 }
 
+- (void)notifyAppToFront
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:INUAppToFrontNotification object:self userInfo:nil];
+}
+
 - (void) beginActivity
 {
     _numNumActivities++;
@@ -291,3 +296,4 @@ NSString *const INUBookmarkOpenedByURLNotification = @"INUBookmarkOpenedByURL";
 NSString *const INUEventLoadedNotification = @"INUEventLoaded";
 NSString *const INUUserUpdatedNotification = @"INUUserUpdated";
 NSString *const INUErrorNotification = @"INUError";
+NSString *const INUAppToFrontNotification = @"INUAppToFront";

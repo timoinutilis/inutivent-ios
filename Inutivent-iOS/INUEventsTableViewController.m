@@ -122,7 +122,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     dateFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"dMMMMy" options:0 locale:[NSLocale currentLocale]];
     NSString *dayMonthYearText = [dateFormatter stringFromDate:now];
     
-    NSString *text = [NSString stringWithFormat:NSLocalizedString(@"Today is %@\n%@", nil), weekdayText, dayMonthYearText];
+    NSString *text = [NSString stringWithFormat:@"%@\n%@\n%@", NSLocalizedString(@"Hello, today is", nil), weekdayText, dayMonthYearText];
     self.todayLabel.text = text;
 }
 
@@ -407,6 +407,10 @@ typedef NS_ENUM(int, INUEventsAlertTag)
         {
             [self showEventAtIndexPath:indexPath active:YES];
         }
+    }
+    else if (notification.name == INUAppToFrontNotification)
+    {
+        [self updateTodayText];
     }
 }
 
