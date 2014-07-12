@@ -49,7 +49,7 @@
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
     {
         navigationBar.tintColor = [UIColor whiteColor];
-//        navigationBar.barStyle = UIBarStyleBlack;
+        navigationBar.barStyle = UIBarStyleBlackOpaque;
         navigationBar.barTintColor = [INUUtils mainColor];
         navigationBar.translucent = NO;
         navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
@@ -78,6 +78,11 @@
 + (UIColor *)mainColor
 {
     return [UIColor colorWithRed:227.0/255.0 green:70.0/255.0 blue:35.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)buttonColor
+{
+    return [UIColor colorWithRed:27.0/255.0 green:111.0/255.0 blue:142.0/255.0 alpha:1.0];
 }
 
 + (UIColor *)buttonHighlightColor

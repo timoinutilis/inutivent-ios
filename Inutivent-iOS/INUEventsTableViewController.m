@@ -226,7 +226,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad && SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
     {
         UIView *bgView = [[UIView alloc] init];
-        bgView.backgroundColor = self.view.tintColor;
+        bgView.backgroundColor = [INUUtils buttonColor];
         cell.selectedBackgroundView = bgView;
     }
     

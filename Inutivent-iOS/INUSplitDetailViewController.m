@@ -9,6 +9,7 @@
 #import "INUSplitDetailViewController.h"
 #import "Bookmark.h"
 #import "INUEventTabBarController.h"
+#import "INUUtils.h"
 
 @interface INUSplitDetailViewController ()
 
@@ -31,7 +32,11 @@
     // Do any additional setup after loading the view.
     
     self.splitViewController.delegate = self;
-    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [INUUtils initNavigationBar:self.navigationBar];
+    
+    UIImage *image = [UIImage imageNamed:@"paper"];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 }
 
 - (void)didReceiveMemoryWarning

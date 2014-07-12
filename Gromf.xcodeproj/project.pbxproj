@@ -19,6 +19,7 @@
 		924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */; };
 		924883151955CD890034BFDD /* Version-History.txt in Resources */ = {isa = PBXBuildFile; fileRef = 924883141955CD890034BFDD /* Version-History.txt */; };
 		9265B4A4196F2BD500FA8ED4 /* default_header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9265B4A3196F2BD500FA8ED4 /* default_header.jpg */; };
+		92676C75197179E2005ADA19 /* INUSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676C74197179E2005ADA19 /* INUSplitViewController.m */; };
 		92733C491961E7210076C10B /* INUSplitDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92733C481961E7210076C10B /* INUSplitDetailViewController.m */; };
 		927F59DC193E2A0100EEEC62 /* INUDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F59DB193E2A0100EEEC62 /* INUDataManager.m */; };
 		927F59DF193E2E5300EEEC62 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 927F59DE193E2E5300EEEC62 /* User.m */; };
@@ -91,6 +92,8 @@
 		924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUVersionHistoryViewController.m; sourceTree = "<group>"; };
 		924883141955CD890034BFDD /* Version-History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Version-History.txt"; sourceTree = "<group>"; };
 		9265B4A3196F2BD500FA8ED4 /* default_header.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_header.jpg; sourceTree = "<group>"; };
+		92676C73197179E2005ADA19 /* INUSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUSplitViewController.h; sourceTree = "<group>"; };
+		92676C74197179E2005ADA19 /* INUSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUSplitViewController.m; sourceTree = "<group>"; };
 		92733C471961E7210076C10B /* INUSplitDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUSplitDetailViewController.h; sourceTree = "<group>"; };
 		92733C481961E7210076C10B /* INUSplitDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUSplitDetailViewController.m; sourceTree = "<group>"; };
 		927F59DA193E2A0100EEEC62 /* INUDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUDataManager.h; sourceTree = "<group>"; };
@@ -320,6 +323,8 @@
 				928D1DB0195B11650087EAA5 /* INUWelcomeContentViewController.m */,
 				92733C471961E7210076C10B /* INUSplitDetailViewController.h */,
 				92733C481961E7210076C10B /* INUSplitDetailViewController.m */,
+				92676C73197179E2005ADA19 /* INUSplitViewController.h */,
+				92676C74197179E2005ADA19 /* INUSplitViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				927F59DF193E2E5300EEEC62 /* User.m in Sources */,
 				928D1DAE195B0BCA0087EAA5 /* INUWelcomeViewController.m in Sources */,
 				92CB1F29194791A100309850 /* INUListSection.m in Sources */,
+				92676C75197179E2005ADA19 /* INUSplitViewController.m in Sources */,
 				92A5C3201948AD9B00D40CAC /* INUPostsTableViewController.m in Sources */,
 				928D1DB1195B11650087EAA5 /* INUWelcomeContentViewController.m in Sources */,
 				924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */,

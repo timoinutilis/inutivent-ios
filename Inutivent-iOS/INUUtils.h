@@ -17,7 +17,9 @@
 + (void)initBackground:(UITableView *)tableView;
 + (void)initNavigationBar:(UINavigationBar *)navigationBar;
 + (UIImage *)imageWithColor:(UIColor *)color;
+
 + (UIColor *)mainColor;
++ (UIColor *)buttonColor;
 + (UIColor *)buttonHighlightColor;
 
 @end

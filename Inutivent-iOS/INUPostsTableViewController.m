@@ -123,6 +123,7 @@
     
     // Configure the cell...
     [cell setPost:_event.posts[indexPath.row] event:_event];
+    cell.backgroundColor = [UIColor clearColor];
     
     return cell;
 }
