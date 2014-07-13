@@ -22,5 +22,6 @@ typedef NS_ENUM(int, INUWelcomeButtonType)
 @property NSString *bubbleText;
 @property int pageIndex;
 @property INUWelcomeButtonType buttonType;
+@property UIImage *backgroundImage;
 
 @end

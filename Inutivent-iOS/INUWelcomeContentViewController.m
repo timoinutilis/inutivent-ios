@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *skipButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *skipButtonHeightConstraint;
 
+@property UIImageView *background;
 @property CGFloat originalTopSpace;
 
 @end
@@ -39,6 +40,15 @@
     // Do any additional setup after loading the view.
     
     _originalTopSpace = _topLayoutConstraint.constant;
+    
+    _background = [[UIImageView alloc] initWithImage:_backgroundImage];
+    _background.contentMode = UIViewContentModeScaleAspectFill;
+    _background.clipsToBounds = YES;
+    [self.view insertSubview:_background atIndex:0];
+    
+    _textLabel.layer.shadowOpacity = 1;
+    _textLabel.layer.shadowOffset = CGSizeMake(0, 1);
+    _textLabel.layer.shadowRadius = 1.5;
     
     _textLabel.text = _text;
     _imageView.image = _image;
@@ -74,6 +84,8 @@
     }*/
     
     [super viewWillLayoutSubviews];
+    
+    _background.frame = self.view.bounds;
 }
 
 /*

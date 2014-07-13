@@ -13,6 +13,7 @@
 
 @property NSArray *texts;
 @property NSMutableArray *images;
+@property UIImage *backgroundImage;
 
 @end
 
@@ -39,24 +40,28 @@
                NSLocalizedString(@"Welcome5Text", nil)];
     
     NSArray *filenames = @[@"introduction_welcome.png", @"introduction_email.png", @"introduction_event_info.png", @"introduction_event_guests.png", @"introduction_event_comments.png"];
-
+    
     _images = [NSMutableArray array];
-    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+//    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     for (int i = 0; i < [filenames count]; i++)
     {
-        NSString *filename = [NSString stringWithFormat:@"%@/%@", bundlePath, filenames[i]];
-        UIImage *image = [UIImage imageWithContentsOfFile:filename];
+//        NSString *filename = [NSString stringWithFormat:@"%@/%@", bundlePath, filenames[i]];
+//        UIImage *image = [UIImage imageWithContentsOfFile:filename];
+        UIImage *image = [UIImage imageNamed:filenames[i]];
         [_images addObject:image];
     }
+    
+    _backgroundImage = [UIImage imageNamed:@"welcome_bg.jpg"];
 
     self.dataSource = self;
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    UIImage *image = [UIImage imageNamed:@"paper"];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
 
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor darkGrayColor];
-    pageControl.backgroundColor = [UIColor whiteColor];
+    pageControl.backgroundColor = [UIColor colorWithPatternImage:image];
     
     INUWelcomeContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
@@ -109,6 +114,7 @@
     contentViewController.pageIndex = (int)index;
     contentViewController.text = _texts[index];
     contentViewController.image = _images[index];
+    contentViewController.backgroundImage = _backgroundImage;
     if (self.presentingViewController != nil)
     {
         // is modal, show skip/start button

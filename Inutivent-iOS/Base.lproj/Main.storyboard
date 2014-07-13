@@ -113,7 +113,7 @@
         <!--Welcome View Controller - Introduction-->
         <scene sceneID="jgO-Nl-2gy">
             <objects>
-                <pageViewController storyboardIdentifier="WelcomeView" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="vuM-QV-bNK" customClass="INUWelcomeViewController" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="WelcomeView" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="2" navigationOrientation="horizontal" spineLocation="none" id="vuM-QV-bNK" customClass="INUWelcomeViewController" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Introduction" id="TVF-CZ-wow"/>
                 </pageViewController>
@@ -141,6 +141,7 @@
                                 <rect key="frame" x="20" y="28" width="280" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VFX-fJ-kpg">
@@ -150,17 +151,17 @@
                                     <constraint firstAttribute="height" constant="34" id="Dmg-Q2-Nnf"/>
                                 </constraints>
                                 <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.056854531168937683" green="0.48321312665939331" blue="0.99661016464233398" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
-                                    <color key="titleColor" red="0.37723109126091003" green="0.7058984637260437" blue="0.99881285429000854" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="onTapSkip:" destination="PYF-y3-bL8" eventType="touchUpInside" id="wr6-dd-nqW"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zDI-3v-LWJ" secondAttribute="trailing" constant="20" id="3Xo-SB-6RR"/>
                             <constraint firstItem="zDI-3v-LWJ" firstAttribute="top" secondItem="DNM-l6-TVR" secondAttribute="bottom" constant="8" id="8c2-bv-muO"/>
