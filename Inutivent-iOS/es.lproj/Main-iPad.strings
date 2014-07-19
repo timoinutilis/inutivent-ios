@@ -36,7 +36,7 @@
 "Tzq-zC-dzM.text" = "Versión";
 
 /* Class = "IBUILabel"; text = "Gromf in App Store"; ObjectID = "aYo-jC-Bt6"; */
-"aYo-jC-Bt6.text" = "Gromf en App Store";
+"aYo-jC-Bt6.text" = "Gromf en la App Store";
 
 /* Class = "IBUILabel"; text = "Edit or Invite"; ObjectID = "bwC-Kt-AnQ"; */
 "bwC-Kt-AnQ.text" = "Editar o invitar";
@@ -57,7 +57,7 @@
 "oMm-Mp-ZSu.normalTitle" = "Enviar";
 
 /* Class = "IBUILabel"; text = "Send Mail to Developer"; ObjectID = "qZT-UK-hY2"; */
-"qZT-UK-hY2.text" = "Enviar mail al desarrollador";
+"qZT-UK-hY2.text" = "Enviar un e-mail al desarrollador";
 
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "sLk-LJ-4CA"; */
 "sLk-LJ-4CA.text" = "Fecha";

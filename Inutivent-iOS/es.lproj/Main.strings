@@ -33,7 +33,7 @@
 "IM6-VW-4nr.normalTitle" = "Enviar";
 
 /* Class = "IBUILabel"; text = "Gromf in App Store"; ObjectID = "Kss-tQ-D3d"; */
-"Kss-tQ-D3d.text" = "Gromf en App Store";
+"Kss-tQ-D3d.text" = "Gromf en la App Store";
 
 /* Class = "IBUILabel"; text = "Date"; ObjectID = "NYo-mX-o2c"; */
 "NYo-mX-o2c.text" = "Fecha";
@@ -51,7 +51,7 @@
 "ZCi-cA-v5c.title" = "Historia de versiones";
 
 /* Class = "IBUILabel"; text = "Send Mail to Developer"; ObjectID = "dfb-Gs-UZR"; */
-"dfb-Gs-UZR.text" = "Enviar mail al desarrollador";
+"dfb-Gs-UZR.text" = "Enviar un e-mail al desarrollador";
 
 /* Class = "IBUILabel"; text = "Maybe Going"; ObjectID = "fPo-v6-FnW"; */
 "fPo-v6-FnW.text" = "Tal vez asista";
