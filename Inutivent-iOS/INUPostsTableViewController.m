@@ -185,7 +185,6 @@
 
 - (IBAction)onTapPost:(id)sender
 {
-    NSLog(@"post");
     NSString *text = [_editorTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if (text.length > 0)
