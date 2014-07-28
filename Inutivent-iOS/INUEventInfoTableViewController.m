@@ -16,6 +16,7 @@
 #import "INUDataManager.h"
 #import "INUUtils.h"
 #import "INUConfig.h"
+#import "INUTextTableViewCell.h"
 
 @interface INUEventInfoTableViewController ()
 
@@ -25,8 +26,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *ownerCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *dateCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *hourCell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *detailsCell;
-@property (weak, nonatomic) IBOutlet UITextView *detailsText;
+@property (weak, nonatomic) IBOutlet INUTextTableViewCell *detailsCell;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailsHeightConstraint;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITableViewCell *status1Cell;
@@ -65,6 +65,9 @@
     _titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
     _titleLabel.layer.shadowRadius = 1.5;
     
+    _detailsCell.parentTableView = self.tableView;
+    _detailsCell.textView.editable = NO;
+    
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
     {
         self.editCell.textLabel.textColor = self.view.tintColor;
@@ -85,14 +88,14 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
+/*
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     [self.tableView layoutIfNeeded];
     [self.tableView reloadData];
 }
-
+*/
 - (void)updateView
 {
     [self updateCoverImage];
@@ -103,7 +106,7 @@
     _dateCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle];
     _hourCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     
-    _detailsText.attributedText = [[NSAttributedString alloc] initWithString:_event.details attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18]}];
+    _detailsCell.textView.attributedText = [[NSAttributedString alloc] initWithString:_event.details attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18]}];
     
     [self updateUserView];
 }
@@ -163,11 +166,7 @@
 {
     if (indexPath.section == 0 && indexPath.row == 3)
     {
-        CGFloat width = _detailsCell.contentView.frame.size.width - 16; // 2*8 horiz space arount text view
-        CGSize textViewSize = [_detailsText sizeThatFits:CGSizeMake(width, FLT_MAX)];
-        _detailsHeightConstraint.constant = textViewSize.height;
-        
-        return textViewSize.height + 8 + 1; // 2*4 vert space around text view, 1 for separator line
+        return [_detailsCell requiredCellHeight];
     }
     return UITableViewAutomaticDimension;
 }

@@ -19,6 +19,8 @@
 		9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9248830E1955BDB20034BFDD /* INUAboutTableViewController.m */; };
 		924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */; };
 		924883151955CD890034BFDD /* Version-History.txt in Resources */ = {isa = PBXBuildFile; fileRef = 924883141955CD890034BFDD /* Version-History.txt */; };
+		924F0FDA1981523A0076FDDF /* INUInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 924F0FD91981523A0076FDDF /* INUInputTableViewCell.m */; };
+		924F0FDD19815B010076FDDF /* INUTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 924F0FDC19815B010076FDDF /* INUTextTableViewCell.m */; };
 		9265B4A4196F2BD500FA8ED4 /* default_header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9265B4A3196F2BD500FA8ED4 /* default_header.jpg */; };
 		92676C75197179E2005ADA19 /* INUSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92676C74197179E2005ADA19 /* INUSplitViewController.m */; };
 		92733C491961E7210076C10B /* INUSplitDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92733C481961E7210076C10B /* INUSplitDetailViewController.m */; };
@@ -39,6 +41,8 @@
 		92837593193A494D0000CCD6 /* Inutivent_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 92837592193A494D0000CCD6 /* Inutivent_iOSTests.m */; };
 		928375A5193A6C670000CCD6 /* INUEventsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */; };
 		928375A8193A6F030000CCD6 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 928375A7193A6F030000CCD6 /* Event.m */; };
+		9285E374197EA36900F3919B /* INUEditTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9285E373197EA36900F3919B /* INUEditTableViewController.m */; };
+		9285E377197EA7AF00F3919B /* INUDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9285E376197EA7AF00F3919B /* INUDateTableViewCell.m */; };
 		928D1DAE195B0BCA0087EAA5 /* INUWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D1DAD195B0BCA0087EAA5 /* INUWelcomeViewController.m */; };
 		928D1DB1195B11650087EAA5 /* INUWelcomeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D1DB0195B11650087EAA5 /* INUWelcomeContentViewController.m */; };
 		92A27756195C8CEE0016CCDB /* introduction_event_comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A27752195C8CEE0016CCDB /* introduction_event_comments.png */; };
@@ -93,6 +97,10 @@
 		924883101955CCB80034BFDD /* INUVersionHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUVersionHistoryViewController.h; sourceTree = "<group>"; };
 		924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUVersionHistoryViewController.m; sourceTree = "<group>"; };
 		924883141955CD890034BFDD /* Version-History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Version-History.txt"; sourceTree = "<group>"; };
+		924F0FD81981523A0076FDDF /* INUInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUInputTableViewCell.h; sourceTree = "<group>"; };
+		924F0FD91981523A0076FDDF /* INUInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUInputTableViewCell.m; sourceTree = "<group>"; };
+		924F0FDB19815B010076FDDF /* INUTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUTextTableViewCell.h; sourceTree = "<group>"; };
+		924F0FDC19815B010076FDDF /* INUTextTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUTextTableViewCell.m; sourceTree = "<group>"; };
 		9265B4A3196F2BD500FA8ED4 /* default_header.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_header.jpg; sourceTree = "<group>"; };
 		92676C73197179E2005ADA19 /* INUSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUSplitViewController.h; sourceTree = "<group>"; };
 		92676C74197179E2005ADA19 /* INUSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUSplitViewController.m; sourceTree = "<group>"; };
@@ -124,6 +132,10 @@
 		928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUEventsTableViewController.m; sourceTree = "<group>"; };
 		928375A6193A6F030000CCD6 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		928375A7193A6F030000CCD6 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		9285E372197EA36900F3919B /* INUEditTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUEditTableViewController.h; sourceTree = "<group>"; };
+		9285E373197EA36900F3919B /* INUEditTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUEditTableViewController.m; sourceTree = "<group>"; };
+		9285E375197EA7AF00F3919B /* INUDateTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUDateTableViewCell.h; sourceTree = "<group>"; };
+		9285E376197EA7AF00F3919B /* INUDateTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUDateTableViewCell.m; sourceTree = "<group>"; };
 		928D1DAC195B0BCA0087EAA5 /* INUWelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUWelcomeViewController.h; sourceTree = "<group>"; };
 		928D1DAD195B0BCA0087EAA5 /* INUWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUWelcomeViewController.m; sourceTree = "<group>"; };
 		928D1DAF195B11650087EAA5 /* INUWelcomeContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUWelcomeContentViewController.h; sourceTree = "<group>"; };
@@ -189,6 +201,14 @@
 				922454861951CB4D0058FF50 /* INUSpinnerView.m */,
 				92E6D55A19641A120096D562 /* INULabel.h */,
 				92E6D55B19641A120096D562 /* INULabel.m */,
+				92A5C3211948B2EB00D40CAC /* INUPostTableViewCell.h */,
+				92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */,
+				9285E375197EA7AF00F3919B /* INUDateTableViewCell.h */,
+				9285E376197EA7AF00F3919B /* INUDateTableViewCell.m */,
+				924F0FD81981523A0076FDDF /* INUInputTableViewCell.h */,
+				924F0FD91981523A0076FDDF /* INUInputTableViewCell.m */,
+				924F0FDB19815B010076FDDF /* INUTextTableViewCell.h */,
+				924F0FDC19815B010076FDDF /* INUTextTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -313,8 +333,6 @@
 				92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */,
 				92A5C31E1948AD9B00D40CAC /* INUPostsTableViewController.h */,
 				92A5C31F1948AD9B00D40CAC /* INUPostsTableViewController.m */,
-				92A5C3211948B2EB00D40CAC /* INUPostTableViewCell.h */,
-				92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */,
 				9248830D1955BDB20034BFDD /* INUAboutTableViewController.h */,
 				9248830E1955BDB20034BFDD /* INUAboutTableViewController.m */,
 				924883101955CCB80034BFDD /* INUVersionHistoryViewController.h */,
@@ -327,6 +345,8 @@
 				92733C481961E7210076C10B /* INUSplitDetailViewController.m */,
 				92676C73197179E2005ADA19 /* INUSplitViewController.h */,
 				92676C74197179E2005ADA19 /* INUSplitViewController.m */,
+				9285E372197EA36900F3919B /* INUEditTableViewController.h */,
+				9285E373197EA36900F3919B /* INUEditTableViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -469,6 +489,7 @@
 				928375A5193A6C670000CCD6 /* INUEventsTableViewController.m in Sources */,
 				922454871951CB4D0058FF50 /* INUSpinnerView.m in Sources */,
 				927F59DF193E2E5300EEEC62 /* User.m in Sources */,
+				924F0FDA1981523A0076FDDF /* INUInputTableViewCell.m in Sources */,
 				928D1DAE195B0BCA0087EAA5 /* INUWelcomeViewController.m in Sources */,
 				92CB1F29194791A100309850 /* INUListSection.m in Sources */,
 				92676C75197179E2005ADA19 /* INUSplitViewController.m in Sources */,
@@ -477,14 +498,17 @@
 				924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */,
 				9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */,
 				9283757A193A494D0000CCD6 /* main.m in Sources */,
+				9285E374197EA36900F3919B /* INUEditTableViewController.m in Sources */,
 				927F59E4193E56B600EEEC62 /* Bookmark.m in Sources */,
 				92114B5D1961AF6D00039EFC /* INUConfig.m in Sources */,
 				92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */,
 				927F59DC193E2A0100EEEC62 /* INUDataManager.m in Sources */,
 				92A5C3231948B2EB00D40CAC /* INUPostTableViewCell.m in Sources */,
+				9285E377197EA7AF00F3919B /* INUDateTableViewCell.m in Sources */,
 				92A5C31C19489FFB00D40CAC /* Post.m in Sources */,
 				92F68FD21950D0CE00DCACB7 /* INUEventTabBarController.m in Sources */,
 				928375A8193A6F030000CCD6 /* Event.m in Sources */,
+				924F0FDD19815B010076FDDF /* INUTextTableViewCell.m in Sources */,
 				9283757E193A494D0000CCD6 /* INUAppDelegate.m in Sources */,
 				9206DA45193F2A7900DA0F24 /* INUEventInfoTableViewController.m in Sources */,
 				92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */,
