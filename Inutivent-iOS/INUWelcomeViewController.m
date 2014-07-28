@@ -61,7 +61,6 @@
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
     pageControl.currentPageIndicatorTintColor = [UIColor darkGrayColor];
-    pageControl.backgroundColor = [UIColor colorWithPatternImage:image];
     
     INUWelcomeContentViewController *startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
