@@ -53,11 +53,22 @@
     [INUUtils initBackground:self.tableView];
     
     _titleCell.textField.placeholder = @"Example: Birthday Party";
+    
+    _whenCell.datePicker.minimumDate = [[NSDate alloc] initWithTimeIntervalSinceNow:(60 * 60)];
+    _whenCell.datePicker.maximumDate = [[NSDate alloc] initWithTimeIntervalSinceNow:(365 * 24 * 60 * 60)];
+    NSDate *defaultDate = [INUUtils dateAfter:_whenCell.datePicker.minimumDate atHour:20 minute:0];
+    _whenCell.currentDate = defaultDate;
+    
     _detailsCell.parentTableView = self.tableView;
     _detailsCell.textView.font = [UIFont systemFontOfSize:18];
+    
     _nameCell.textField.placeholder = @"Enter your name";
+    _nameCell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    
     _mailCell.textField.placeholder = @"Enter your e-mail address";
     _mailCell.textField.keyboardType = UIKeyboardTypeEmailAddress;
+    _mailCell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    _mailCell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -116,7 +127,7 @@
     // Return the number of rows in the section.
     return 0;
 }
- */
+*/
 
 #pragma mark - Actions
 
@@ -127,28 +138,46 @@
 
 - (IBAction)onDone:(id)sender
 {
-    _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
-    formatter.dateFormat = @"dd/MM/yyyy";
-    NSString *date = [formatter stringFromDate:_whenCell.currentDate];
+    if ([self validateUserInput])
+    {
+        _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        
+        formatter.dateFormat = @"dd/MM/yyyy";
+        NSString *date = [formatter stringFromDate:_whenCell.currentDate];
 
-    formatter.dateFormat = @"HH:mm";
-    NSString *hour = [formatter stringFromDate:_whenCell.currentDate];
-    
-    // Create new event
-    NSDictionary *params = @{@"name": _nameCell.textField.text,
-                             @"mail": _mailCell.textField.text,
-                             @"title": _titleCell.textField.text,
-                             @"date": date,
-                             @"hour": hour,
-                             @"details": _detailsCell.textView.text};
-    
-    NSDictionary *info = @{@"title": _titleCell.textField.text,
-                           @"time": _whenCell.currentDate};
-    
-    [[INUDataManager sharedInstance] requestFromServer:@"createevent.php" params:params info:info];
+        formatter.dateFormat = @"HH:mm";
+        NSString *hour = [formatter stringFromDate:_whenCell.currentDate];
+        
+        // Create new event
+        NSDictionary *params = @{@"name": _nameCell.textField.text,
+                                 @"mail": _mailCell.textField.text,
+                                 @"title": _titleCell.textField.text,
+                                 @"date": date,
+                                 @"hour": hour,
+                                 @"details": _detailsCell.textView.text};
+        
+        NSDictionary *info = @{@"title": _titleCell.textField.text,
+                               @"time": _whenCell.currentDate};
+        
+        [[INUDataManager sharedInstance] requestFromServer:@"createevent.php" params:params info:info];
+    }
+}
+
+- (BOOL)validateUserInput
+{
+    if (   [_titleCell.textField.text length] == 0
+        || [_detailsCell.textView.text length] == 0
+        || [_nameCell.textField.text length] == 0
+        || [_mailCell.textField.text length] == 0 )
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Please fill out all fields.", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alert show];
+        
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Navigation

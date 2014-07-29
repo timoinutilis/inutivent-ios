@@ -13,6 +13,7 @@
 @interface INUUtils : NSObject
 
 + (NSDate *)dateFromDatetime:(NSString *)datetime;
++ (NSDate *)dateAfter:(NSDate *)date atHour:(int)hour minute:(int)minute;
 + (NSMutableDictionary *)getParamsFromURL:(NSURL *)url;
 + (void)initBackground:(UITableView *)tableView;
 + (void)initNavigationBar:(UINavigationBar *)navigationBar;

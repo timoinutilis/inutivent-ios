@@ -10,6 +10,8 @@
 
 @interface INUDateTableViewCell : UITableViewCell
 
+@property (readonly) UIDatePicker *datePicker;
+
 - (NSDate *)currentDate;
 - (void)setCurrentDate:(NSDate *)date;
 

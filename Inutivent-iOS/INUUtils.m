@@ -18,6 +18,21 @@
     return [fmt dateFromString:datetime];
 }
 
++ (NSDate *)dateAfter:(NSDate *)date atHour:(int)hour minute:(int)minute
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    unsigned int unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+    NSDateComponents *components = [calendar components:unitFlags fromDate:date];
+    components.hour = hour;
+    components.minute = minute;
+    NSDate *changedDate = [calendar dateFromComponents:components];
+    if ([changedDate compare:date] == NSOrderedAscending)
+    {
+        return [[NSDate alloc] initWithTimeInterval:24 * 60 * 60 sinceDate:changedDate];
+    }
+    return changedDate;
+}
+
 + (NSMutableDictionary *)getParamsFromURL:(NSURL *)url
 {
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
