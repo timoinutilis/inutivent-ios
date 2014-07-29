@@ -12,6 +12,7 @@
 #import "Bookmark.h"
 #import "ExampleEvent.h"
 #import "INUConfig.h"
+#import "INUUtils.h"
 
 @implementation INUDataManager
 {
@@ -71,7 +72,7 @@ static INUDataManager *_sharedInstance;
     [[NSUserDefaults standardUserDefaults] setObject:bookmarksArray forKey:@"bookmarks"];
 }
 
-- (Bookmark *)addBookmarkWithEventId:(NSString *)eventId userId:(NSString *)userId
+- (Bookmark *)addBookmarkFromURLWithEventId:(NSString *)eventId userId:(NSString *)userId
 {
     Bookmark *bookmark = [self getBookmarkByEventId:eventId userId:userId];
     if (!bookmark)
@@ -82,6 +83,12 @@ static INUDataManager *_sharedInstance;
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkOpenedByURLNotification object:self userInfo:@{@"bookmark":bookmark}];
     return bookmark;
+}
+
+- (void)addBookmarkForNewEvent:(Bookmark *)bookmark
+{
+    [_bookmarks addObject:bookmark];
+    [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarksChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
 }
 
 - (Bookmark *)getBookmarkByEventId:(NSString *)eventId userId:(NSString *)userId
@@ -129,7 +136,7 @@ static INUDataManager *_sharedInstance;
     return _events[eventId];
 }
 
-- (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict
+- (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict
 {
     if ([paramsDict[@"event_id"] isEqualToString:ExampleEventId])
     {
@@ -190,7 +197,7 @@ static INUDataManager *_sharedInstance;
                 else
                 {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self requestCompleteService:service data:dataDict];
+                        [self requestCompleteService:service data:dataDict info:infoDict];
                     });
                 }
             }
@@ -198,7 +205,7 @@ static INUDataManager *_sharedInstance;
     }];
 }
 
-- (void)requestCompleteService:(NSString *)service data:(NSDictionary *)data
+- (void)requestCompleteService:(NSString *)service data:(NSDictionary *)data info:(NSDictionary *)infoDict
 {
     if ([service isEqualToString:@"getevent.php"])
     {
@@ -235,12 +242,29 @@ static INUDataManager *_sharedInstance;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:INUEventLoadedNotification object:self userInfo:@{@"eventId": eventId}];
     }
+    else if ([service isEqualToString:@"createevent.php"])
+    {
+        NSString *eventId = data[@"event_id"];
+        NSString *userId = data[@"user_id"];
+        
+        Bookmark *bookmark = [[Bookmark alloc] initWithEventId:eventId userId:userId];
+        bookmark.ownerUserId = userId;
+        bookmark.eventName = infoDict[@"title"];
+        bookmark.time = infoDict[@"time"];
+        
+        [self addBookmarkForNewEvent:bookmark];
+        [self saveBookmarks];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:INUEventCreatedNotification object:self userInfo:@{@"bookmark": bookmark}];
+    }
 }
 
 - (void)requestErrorService:(NSString *)service errorId:(NSString *)errorId error:(NSString *)error
 {
     NSString *title = nil;
     NSString *message = nil;
+    
+    NSLog(@"Service Error: %@, %@", errorId, error);
     
     if ([errorId isEqualToString:@"not_found"])
     {
@@ -259,6 +283,11 @@ static INUDataManager *_sharedInstance;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:INUErrorNotification object:self userInfo:@{@"title":title, @"message":message, @"errorId":errorId}];
+}
+
+- (void)notifyNewEventViewClosed:(Bookmark *)bookmark
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:INUNewEventViewClosedNotification object:self userInfo:@{@"bookmark": bookmark}];
 }
 
 - (void)notifyUserUpdate
@@ -293,7 +322,9 @@ static INUDataManager *_sharedInstance;
 
 NSString *const INUBookmarksChangedNotification = @"INUBookmarksChanged";
 NSString *const INUBookmarkOpenedByURLNotification = @"INUBookmarkOpenedByURL";
+NSString *const INUEventCreatedNotification = @"INUEventCreated";
 NSString *const INUEventLoadedNotification = @"INUEventLoaded";
+NSString *const INUNewEventViewClosedNotification = @"INUNewEventViewClosed";
 NSString *const INUUserUpdatedNotification = @"INUUserUpdated";
 NSString *const INUErrorNotification = @"INUError";
 NSString *const INUAppToFrontNotification = @"INUAppToFront";

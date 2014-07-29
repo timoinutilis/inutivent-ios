@@ -19,8 +19,7 @@
 
 typedef NS_ENUM(int, INUEventsAlertTag)
 {
-    INUEventsAlertTagCreate = 1,
-    INUEventsAlertTagDelete
+    INUEventsAlertTagDelete = 1
 };
 
 @interface INUEventsTableViewController ()
@@ -313,17 +312,6 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 
 #pragma mark - Actions
 
-- (IBAction)onTapCreate:(id)sender
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Create New Event", nil)
-                                                    message:NSLocalizedString(@"You can create new events on the website only.", nil)
-                                                   delegate:self
-                                          cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                          otherButtonTitles:NSLocalizedString(@"Go to Website", nil), nil];
-    alert.tag = INUEventsAlertTagCreate;
-    [alert show];
-}
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _tappedIndexPath = indexPath;
@@ -338,15 +326,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == INUEventsAlertTagCreate)
-    {
-        if (buttonIndex == alertView.firstOtherButtonIndex)
-        {
-            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/create.php", INUConfigSiteURL]];
-            [[UIApplication sharedApplication] openURL:url];
-        }
-    }
-    else if (alertView.tag == INUEventsAlertTagDelete)
+    if (alertView.tag == INUEventsAlertTagDelete)
     {
         if (buttonIndex == alertView.cancelButtonIndex)
         {
@@ -397,7 +377,8 @@ typedef NS_ENUM(int, INUEventsAlertTag)
             }
         }
     }
-    else if (notification.name == INUBookmarkOpenedByURLNotification)
+    else if (   notification.name == INUBookmarkOpenedByURLNotification
+             || notification.name == INUNewEventViewClosedNotification)
     {
         [self.navigationController popToRootViewControllerAnimated:NO];
         

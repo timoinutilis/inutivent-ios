@@ -267,8 +267,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Event" id="lss-Kg-hut">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="F8z-7p-XDy"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="b3M-8h-uhW"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="F8z-7p-XDy">
+                            <connections>
+                                <action selector="onCancel:" destination="uxj-Ne-B5v" id="o4n-Nk-D6m"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="b3M-8h-uhW">
+                            <connections>
+                                <action selector="onDone:" destination="uxj-Ne-B5v" id="GXo-uw-VAN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="detailsCell" destination="zMw-7J-MLG" id="aAk-Vg-fHJ"/>
@@ -276,9 +284,11 @@
                         <outlet property="nameCell" destination="qa1-2w-Sqd" id="uen-yz-7c9"/>
                         <outlet property="titleCell" destination="pCQ-v0-R92" id="M1S-fi-1h5"/>
                         <outlet property="whenCell" destination="u98-h4-Bul" id="LgB-pG-2g8"/>
+                        <segue destination="JpP-N0-7Ei" kind="unwind" identifier="NewEventDone" unwindAction="unwindToList:" id="3kA-wy-daO"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHR-EH-PXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="JpP-N0-7Ei" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="556" y="855"/>
         </scene>

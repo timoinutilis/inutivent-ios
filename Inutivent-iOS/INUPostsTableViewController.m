@@ -195,7 +195,7 @@
                                     @"T", @"type",
                                     text, @"data",
                                     nil];
-        [[INUDataManager sharedInstance] requestFromServer:@"post.php" params:paramsDict];
+        [[INUDataManager sharedInstance] requestFromServer:@"post.php" params:paramsDict info:nil];
         
         _editorTextView.text = @"";
         

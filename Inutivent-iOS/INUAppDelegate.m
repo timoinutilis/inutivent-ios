@@ -56,7 +56,7 @@
         NSString *userId = params[@"user"];
         if (eventId && userId)
         {
-            [[INUDataManager sharedInstance] addBookmarkWithEventId:eventId userId:userId];
+            [[INUDataManager sharedInstance] addBookmarkFromURLWithEventId:eventId userId:userId];
             [[INUDataManager sharedInstance] saveBookmarks];
         }
         return YES;

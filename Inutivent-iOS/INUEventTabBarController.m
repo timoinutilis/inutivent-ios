@@ -144,7 +144,7 @@
 
 - (void)loadEvent
 {
-    [[INUDataManager sharedInstance] requestFromServer:@"getevent.php" params:[NSDictionary dictionaryWithObjectsAndKeys:_bookmark.eventId, @"event_id", _bookmark.userId, @"user_id", nil]];
+    [[INUDataManager sharedInstance] requestFromServer:@"getevent.php" params:@{@"event_id": _bookmark.eventId, @"user_id": _bookmark.userId} info:nil];
 }
 
 - (void)updateView

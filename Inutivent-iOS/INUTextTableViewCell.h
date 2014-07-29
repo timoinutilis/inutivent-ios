@@ -11,7 +11,7 @@
 @interface INUTextTableViewCell : UITableViewCell <UITextViewDelegate>
 
 @property (readonly) UITextView *textView;
-@property UITableView *parentTableView;
+@property (weak) UITableView *parentTableView;
 
 - (CGFloat)requiredCellHeight;
 

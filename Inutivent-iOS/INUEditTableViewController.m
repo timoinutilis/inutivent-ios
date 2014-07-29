@@ -11,6 +11,10 @@
 #import "INUInputTableViewCell.h"
 #import "INUDateTableViewCell.h"
 #import "INUTextTableViewCell.h"
+#import "Event.h"
+#import "INUDataManager.h"
+#import "INUSpinnerView.h"
+#import "Bookmark.h"
 
 @interface INUEditTableViewController ()
 
@@ -19,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet INUTextTableViewCell *detailsCell;
 @property (weak, nonatomic) IBOutlet INUInputTableViewCell *nameCell;
 @property (weak, nonatomic) IBOutlet INUInputTableViewCell *mailCell;
+
+@property INUSpinnerView *spinnerView;
 
 @end
 
@@ -54,10 +60,30 @@
     _mailCell.textField.keyboardType = UIKeyboardTypeEmailAddress;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)removeSpinner
+{
+    if (_spinnerView)
+    {
+        [_spinnerView removeFromSuperview];
+        _spinnerView = nil;
+    }
 }
 
 #pragma mark - Table view data source
@@ -92,9 +118,41 @@
 }
  */
 
-/*
-#pragma mark - Navigation
+#pragma mark - Actions
 
+- (IBAction)onCancel:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)onDone:(id)sender
+{
+    _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    formatter.dateFormat = @"dd/MM/yyyy";
+    NSString *date = [formatter stringFromDate:_whenCell.currentDate];
+
+    formatter.dateFormat = @"HH:mm";
+    NSString *hour = [formatter stringFromDate:_whenCell.currentDate];
+    
+    // Create new event
+    NSDictionary *params = @{@"name": _nameCell.textField.text,
+                             @"mail": _mailCell.textField.text,
+                             @"title": _titleCell.textField.text,
+                             @"date": date,
+                             @"hour": hour,
+                             @"details": _detailsCell.textView.text};
+    
+    NSDictionary *info = @{@"title": _titleCell.textField.text,
+                           @"time": _whenCell.currentDate};
+    
+    [[INUDataManager sharedInstance] requestFromServer:@"createevent.php" params:params info:info];
+}
+
+#pragma mark - Navigation
+/*
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -102,5 +160,29 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - INUDataManager
+
+- (void)receivedNotification:(NSNotification *)notification
+{
+    if (notification.name == INUEventCreatedNotification)
+    {
+        Bookmark *bookmark = notification.userInfo[@"bookmark"];
+
+        [self dismissViewControllerAnimated:YES completion:^(void) {
+            [[INUDataManager sharedInstance] notifyNewEventViewClosed:bookmark];
+        }];
+    }
+    else if (notification.name == INUErrorNotification)
+    {
+        [self removeSpinner];
+
+        NSString *title = notification.userInfo[@"title"];
+        NSString *message = notification.userInfo[@"message"];
+
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+}
 
 @end

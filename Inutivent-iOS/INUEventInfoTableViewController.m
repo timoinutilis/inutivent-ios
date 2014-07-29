@@ -212,12 +212,10 @@
         [self updateUserView];
         [[INUDataManager sharedInstance] notifyUserUpdate];
         
-        NSDictionary *paramsDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    _bookmark.eventId, @"event_id",
-                                    _bookmark.userId, @"user_id",
-                                    newStatus, @"status",
-                                    nil];
-        [[INUDataManager sharedInstance] requestFromServer:@"updateuser.php" params:paramsDict];
+        NSDictionary *paramsDict = @{@"event_id": _bookmark.eventId,
+                                     @"user_id": _bookmark.userId,
+                                     @"status": newStatus};
+        [[INUDataManager sharedInstance] requestFromServer:@"updateuser.php" params:paramsDict info:nil];
 
     }
     else if (indexPath.section == 3)
@@ -290,12 +288,10 @@
         [self updateOwner];
         [[INUDataManager sharedInstance] notifyUserUpdate];
         
-        NSDictionary *paramsDict = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    _bookmark.eventId, @"event_id",
-                                    _bookmark.userId, @"user_id",
-                                    newName, @"name",
-                                    nil];
-        [[INUDataManager sharedInstance] requestFromServer:@"updateuser.php" params:paramsDict];
+        NSDictionary *paramsDict = @{@"event_id": _bookmark.eventId,
+                                     @"user_id": _bookmark.userId,
+                                     @"name": newName};
+        [[INUDataManager sharedInstance] requestFromServer:@"updateuser.php" params:paramsDict info:nil];
     }
 }
 
