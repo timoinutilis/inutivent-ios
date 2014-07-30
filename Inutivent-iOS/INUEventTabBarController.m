@@ -14,6 +14,7 @@
 #import "INUUtils.h"
 #import "INUConfig.h"
 #import "INUConstants.h"
+#import "ServiceError.h"
 
 @interface INUEventTabBarController ()
 
@@ -145,7 +146,14 @@
 
 - (void)loadEvent
 {
-    [[INUDataManager sharedInstance] requestFromServer:INUServiceGetEvent params:@{@"event_id": _bookmark.eventId, @"user_id": _bookmark.userId} info:nil];
+    [[INUDataManager sharedInstance] requestFromServer:INUServiceGetEvent params:@{@"event_id": _bookmark.eventId, @"user_id": _bookmark.userId} info:nil onError:^BOOL(ServiceError *error) {
+        if (_spinnerView)
+        {
+            [_spinnerView showErrorWithTitle:error.title message:error.message];
+            return YES;
+        }
+        return NO;
+    }];
 }
 
 - (void)updateView
@@ -177,20 +185,6 @@
         {
             _selectedViewController = _viewControllers[_tabControl.selectedSegmentIndex];
             [self displayContentController:_selectedViewController];
-        }
-    }
-    else if (notification.name == INUErrorNotification)
-    {
-        NSString *title = notification.userInfo[@"title"];
-        NSString *message = notification.userInfo[@"message"];
-        if (_spinnerView)
-        {
-            [_spinnerView showErrorWithTitle:title message:message];
-        }
-        else
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-            [alert show];
         }
     }
 }

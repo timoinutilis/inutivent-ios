@@ -179,7 +179,7 @@
                                      @"hour": hour,
                                      @"details": event.details};
 
-            [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateEvent params:params info:nil];
+            [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateEvent params:params info:nil onError:nil];
             
             [self dismissViewControllerAnimated:YES completion:nil];
         }
@@ -199,13 +199,26 @@
             NSDictionary *info = @{@"title": _titleCell.textField.text,
                                    @"time": _whenCell.currentDate};
             
-            [[INUDataManager sharedInstance] requestFromServer:INUServiceCreateEvent params:params info:info];
+            [[INUDataManager sharedInstance] requestFromServer:INUServiceCreateEvent params:params info:info onError:^BOOL(ServiceError *error) {
+                [self removeSpinner];
+                return NO;
+            }];
         }
     }
 }
 
 - (BOOL)validateUserInput
 {
+    // trim inputs
+    _titleCell.textField.text = [_titleCell.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    _detailsCell.textView.text = [_detailsCell.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (!_bookmarkToEdit)
+    {
+        _nameCell.textField.text = [_nameCell.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        _mailCell.textField.text = [_mailCell.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    }
+
+    // check
     if (   [_titleCell.textField.text length] == 0
         || [_detailsCell.textView.text length] == 0
         || (!_bookmarkToEdit && [_nameCell.textField.text length] == 0)
@@ -240,16 +253,6 @@
         [self dismissViewControllerAnimated:YES completion:^(void) {
             [[INUDataManager sharedInstance] notifyNewEventViewClosed:bookmark];
         }];
-    }
-    else if (notification.name == INUErrorNotification)
-    {
-        [self removeSpinner];
-
-/*        NSString *title = notification.userInfo[@"title"];
-        NSString *message = notification.userInfo[@"message"];
-
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];*/
     }
 }
 

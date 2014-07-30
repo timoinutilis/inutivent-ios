@@ -196,7 +196,7 @@
                                     @"T", @"type",
                                     text, @"data",
                                     nil];
-        [[INUDataManager sharedInstance] requestFromServer:INUServicePost params:paramsDict info:nil];
+        [[INUDataManager sharedInstance] requestFromServer:INUServicePost params:paramsDict info:nil onError:nil];
         
         _editorTextView.text = @"";
         

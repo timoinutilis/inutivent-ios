@@ -14,6 +14,7 @@
 #import "INUConfig.h"
 #import "INUConstants.h"
 #import "INUUtils.h"
+#import "ServiceError.h"
 
 @implementation INUDataManager
 {
@@ -161,7 +162,7 @@ static INUDataManager *_sharedInstance;
     return _events[eventId];
 }
 
-- (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict
+- (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict onError:(BOOL (^)(ServiceError *))errorBlock
 {
     if ([paramsDict[@"event_id"] isEqualToString:ExampleEventId])
     {
@@ -195,7 +196,8 @@ static INUDataManager *_sharedInstance;
         if (connectionError)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self requestErrorService:service errorId:@"failed_connection" error:@"Connection error"];
+                ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:@"failed_connection" error:@"Connection error"];
+                [self requestError:serviceError block:errorBlock];
             });
         }
         else
@@ -205,7 +207,8 @@ static INUDataManager *_sharedInstance;
             if (nsError)
             {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self requestErrorService:service errorId:@"invalid_response" error:@"Format error"];
+                    ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:@"invalid_response" error:@"Format error"];
+                    [self requestError:serviceError block:errorBlock];
                 });
             }
             else
@@ -216,7 +219,8 @@ static INUDataManager *_sharedInstance;
                 if (dataErrorId)
                 {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self requestErrorService:service errorId:dataErrorId error:dataError];
+                        ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:dataErrorId error:dataError];
+                        [self requestError:serviceError block:errorBlock];
                     });
                 }
                 else
@@ -228,6 +232,21 @@ static INUDataManager *_sharedInstance;
             }
         }
     }];
+}
+
+- (void)requestError:(ServiceError *)error block:(BOOL (^)(ServiceError *))errorBlock
+{
+    BOOL showed = NO;
+    if (errorBlock)
+    {
+        showed = errorBlock(error);
+    }
+    
+    if (!showed)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:error.title message:error.message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)requestCompleteService:(NSString *)service data:(NSDictionary *)data info:(NSDictionary *)infoDict
@@ -262,32 +281,6 @@ static INUDataManager *_sharedInstance;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:INUEventCreatedNotification object:self userInfo:@{@"bookmark": bookmark}];
     }
-}
-
-- (void)requestErrorService:(NSString *)service errorId:(NSString *)errorId error:(NSString *)error
-{
-    NSString *title = nil;
-    NSString *message = nil;
-    
-    NSLog(@"Service %@ Error: %@, %@", service, errorId, error);
-    
-    if ([errorId isEqualToString:@"not_found"])
-    {
-        title = NSLocalizedString(@"Event Doesn't Exist Anymore", nil);
-        message = NSLocalizedString(@"Maybe the host deleted it or it was too old already.", nil);
-    }
-    else if ([errorId isEqualToString:@"failed_connection"])
-    {
-        title = NSLocalizedString(@"Couldn't Connect to Internet", nil);
-        message = NSLocalizedString(@"Please check if your device is connected to any network.", nil);
-    }
-    else
-    {
-        title = NSLocalizedString(@"Something Went Wrong", nil);
-        message = error;
-    }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:INUErrorNotification object:self userInfo:@{@"title":title, @"message":message, @"errorId":errorId}];
 }
 
 - (void)notifyNewEventViewClosed:(Bookmark *)bookmark
@@ -337,5 +330,4 @@ NSString *const INUEventLoadedNotification = @"INUEventLoaded";
 NSString *const INUEventUpdatedNotification = @"INUEventUpdated";
 NSString *const INUNewEventViewClosedNotification = @"INUNewEventViewClosed";
 NSString *const INUUserUpdatedNotification = @"INUUserUpdated";
-NSString *const INUErrorNotification = @"INUError";
 NSString *const INUAppToFrontNotification = @"INUAppToFront";

@@ -10,6 +10,7 @@
 
 @class Bookmark;
 @class Event;
+@class ServiceError;
 
 @interface INUDataManager : NSObject
 
@@ -30,7 +31,7 @@
 
 - (Event *)getEventById:(NSString *)eventId;
 
-- (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict;
+- (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict onError:(BOOL (^)(ServiceError *))errorBlock;
 
 - (void)notifyNewEventViewClosed:(Bookmark *)bookmark;
 - (void)notifyUserUpdate;
@@ -46,5 +47,4 @@ extern NSString *const INUEventLoadedNotification;
 extern NSString *const INUEventUpdatedNotification;
 extern NSString *const INUNewEventViewClosedNotification;
 extern NSString *const INUUserUpdatedNotification;
-extern NSString *const INUErrorNotification;
 extern NSString *const INUAppToFrontNotification;

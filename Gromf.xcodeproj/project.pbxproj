@@ -52,6 +52,7 @@
 		92A5C3201948AD9B00D40CAC /* INUPostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C31F1948AD9B00D40CAC /* INUPostsTableViewController.m */; };
 		92A5C3231948B2EB00D40CAC /* INUPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */; };
 		92A98E191988EBDB00BFA6FC /* INUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A98E181988EBDB00BFA6FC /* INUConstants.m */; };
+		92A98E1C198902F200BFA6FC /* ServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A98E1B198902F200BFA6FC /* ServiceError.m */; };
 		92B5E236195C41AB00D46F8C /* ExampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B5E235195C41AB00D46F8C /* ExampleEvent.m */; };
 		92BCB0331947478300A1E882 /* UI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BCB0321947478300A1E882 /* UI.xcassets */; };
 		92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */; };
@@ -152,6 +153,8 @@
 		92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUPostTableViewCell.m; sourceTree = "<group>"; };
 		92A98E171988EBDB00BFA6FC /* INUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUConstants.h; sourceTree = "<group>"; };
 		92A98E181988EBDB00BFA6FC /* INUConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUConstants.m; sourceTree = "<group>"; };
+		92A98E1A198902F200BFA6FC /* ServiceError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceError.h; sourceTree = "<group>"; };
+		92A98E1B198902F200BFA6FC /* ServiceError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceError.m; sourceTree = "<group>"; };
 		92B5E234195C41AB00D46F8C /* ExampleEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleEvent.h; sourceTree = "<group>"; };
 		92B5E235195C41AB00D46F8C /* ExampleEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleEvent.m; sourceTree = "<group>"; };
 		92BCB0321947478300A1E882 /* UI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UI.xcassets; sourceTree = "<group>"; };
@@ -321,6 +324,8 @@
 				92A5C31B19489FFB00D40CAC /* Post.m */,
 				92B5E234195C41AB00D46F8C /* ExampleEvent.h */,
 				92B5E235195C41AB00D46F8C /* ExampleEvent.m */,
+				92A98E1A198902F200BFA6FC /* ServiceError.h */,
+				92A98E1B198902F200BFA6FC /* ServiceError.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -503,6 +508,7 @@
 				924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */,
 				9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */,
 				9283757A193A494D0000CCD6 /* main.m in Sources */,
+				92A98E1C198902F200BFA6FC /* ServiceError.m in Sources */,
 				9285E374197EA36900F3919B /* INUEditTableViewController.m in Sources */,
 				927F59E4193E56B600EEEC62 /* Bookmark.m in Sources */,
 				92114B5D1961AF6D00039EFC /* INUConfig.m in Sources */,

@@ -211,7 +211,7 @@
         NSDictionary *paramsDict = @{@"event_id": _bookmark.eventId,
                                      @"user_id": _bookmark.userId,
                                      @"status": newStatus};
-        [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateUser params:paramsDict info:nil];
+        [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateUser params:paramsDict info:nil onError:nil];
 
     }
     
@@ -261,7 +261,7 @@
         NSDictionary *paramsDict = @{@"event_id": _bookmark.eventId,
                                      @"user_id": _bookmark.userId,
                                      @"name": newName};
-        [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateUser params:paramsDict info:nil];
+        [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateUser params:paramsDict info:nil onError:nil];
     }
 }
 
