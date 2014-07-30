@@ -16,6 +16,7 @@
 #import "INUDataManager.h"
 #import "INUUtils.h"
 #import "INUConfig.h"
+#import "INUConstants.h"
 #import "INUTextTableViewCell.h"
 #import "INUEditTableViewController.h"
 
@@ -210,7 +211,7 @@
         NSDictionary *paramsDict = @{@"event_id": _bookmark.eventId,
                                      @"user_id": _bookmark.userId,
                                      @"status": newStatus};
-        [[INUDataManager sharedInstance] requestFromServer:@"updateuser.php" params:paramsDict info:nil];
+        [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateUser params:paramsDict info:nil];
 
     }
     
@@ -260,7 +261,7 @@
         NSDictionary *paramsDict = @{@"event_id": _bookmark.eventId,
                                      @"user_id": _bookmark.userId,
                                      @"name": newName};
-        [[INUDataManager sharedInstance] requestFromServer:@"updateuser.php" params:paramsDict info:nil];
+        [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateUser params:paramsDict info:nil];
     }
 }
 

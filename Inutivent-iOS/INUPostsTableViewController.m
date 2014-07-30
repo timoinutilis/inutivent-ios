@@ -14,6 +14,7 @@
 #import "INUPostTableViewCell.h"
 #import "INUDataManager.h"
 #import "INUUtils.h"
+#import "INUConstants.h"
 
 @interface INUPostsTableViewController ()
 
@@ -195,7 +196,7 @@
                                     @"T", @"type",
                                     text, @"data",
                                     nil];
-        [[INUDataManager sharedInstance] requestFromServer:@"post.php" params:paramsDict info:nil];
+        [[INUDataManager sharedInstance] requestFromServer:INUServicePost params:paramsDict info:nil];
         
         _editorTextView.text = @"";
         

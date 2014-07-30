@@ -13,6 +13,7 @@
 #import "INUSpinnerView.h"
 #import "INUUtils.h"
 #import "INUConfig.h"
+#import "INUConstants.h"
 
 @interface INUEventTabBarController ()
 
@@ -144,7 +145,7 @@
 
 - (void)loadEvent
 {
-    [[INUDataManager sharedInstance] requestFromServer:@"getevent.php" params:@{@"event_id": _bookmark.eventId, @"user_id": _bookmark.userId} info:nil];
+    [[INUDataManager sharedInstance] requestFromServer:INUServiceGetEvent params:@{@"event_id": _bookmark.eventId, @"user_id": _bookmark.userId} info:nil];
 }
 
 - (void)updateView

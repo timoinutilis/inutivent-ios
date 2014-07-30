@@ -15,6 +15,7 @@
 #import "INUDataManager.h"
 #import "INUSpinnerView.h"
 #import "Bookmark.h"
+#import "INUConstants.h"
 
 @interface INUEditTableViewController ()
 
@@ -178,7 +179,7 @@
                                      @"hour": hour,
                                      @"details": event.details};
 
-            [[INUDataManager sharedInstance] requestFromServer:@"updateevent.php" params:params info:nil];
+            [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateEvent params:params info:nil];
             
             [self dismissViewControllerAnimated:YES completion:nil];
         }
@@ -198,7 +199,7 @@
             NSDictionary *info = @{@"title": _titleCell.textField.text,
                                    @"time": _whenCell.currentDate};
             
-            [[INUDataManager sharedInstance] requestFromServer:@"createevent.php" params:params info:info];
+            [[INUDataManager sharedInstance] requestFromServer:INUServiceCreateEvent params:params info:info];
         }
     }
 }

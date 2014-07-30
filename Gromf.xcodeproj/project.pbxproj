@@ -51,6 +51,7 @@
 		92A5C31C19489FFB00D40CAC /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C31B19489FFB00D40CAC /* Post.m */; };
 		92A5C3201948AD9B00D40CAC /* INUPostsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C31F1948AD9B00D40CAC /* INUPostsTableViewController.m */; };
 		92A5C3231948B2EB00D40CAC /* INUPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */; };
+		92A98E191988EBDB00BFA6FC /* INUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A98E181988EBDB00BFA6FC /* INUConstants.m */; };
 		92B5E236195C41AB00D46F8C /* ExampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B5E235195C41AB00D46F8C /* ExampleEvent.m */; };
 		92BCB0331947478300A1E882 /* UI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BCB0321947478300A1E882 /* UI.xcassets */; };
 		92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */; };
@@ -149,6 +150,8 @@
 		92A5C31F1948AD9B00D40CAC /* INUPostsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUPostsTableViewController.m; sourceTree = "<group>"; };
 		92A5C3211948B2EB00D40CAC /* INUPostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUPostTableViewCell.h; sourceTree = "<group>"; };
 		92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUPostTableViewCell.m; sourceTree = "<group>"; };
+		92A98E171988EBDB00BFA6FC /* INUConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUConstants.h; sourceTree = "<group>"; };
+		92A98E181988EBDB00BFA6FC /* INUConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUConstants.m; sourceTree = "<group>"; };
 		92B5E234195C41AB00D46F8C /* ExampleEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleEvent.h; sourceTree = "<group>"; };
 		92B5E235195C41AB00D46F8C /* ExampleEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleEvent.m; sourceTree = "<group>"; };
 		92BCB0321947478300A1E882 /* UI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UI.xcassets; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 				92E0E2BB1940D1B100D9ACDD /* INUUtils.m */,
 				92CB1F27194791A100309850 /* INUListSection.h */,
 				92CB1F28194791A100309850 /* INUListSection.m */,
+				92A98E171988EBDB00BFA6FC /* INUConstants.h */,
+				92A98E181988EBDB00BFA6FC /* INUConstants.m */,
 				92114B5B1961AF6D00039EFC /* INUConfig.h */,
 				92114B5C1961AF6D00039EFC /* INUConfig.m */,
 				92837574193A494D0000CCD6 /* Supporting Files */,
@@ -503,6 +508,7 @@
 				92114B5D1961AF6D00039EFC /* INUConfig.m in Sources */,
 				92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */,
 				927F59DC193E2A0100EEEC62 /* INUDataManager.m in Sources */,
+				92A98E191988EBDB00BFA6FC /* INUConstants.m in Sources */,
 				92A5C3231948B2EB00D40CAC /* INUPostTableViewCell.m in Sources */,
 				9285E377197EA7AF00F3919B /* INUDateTableViewCell.m in Sources */,
 				92A5C31C19489FFB00D40CAC /* Post.m in Sources */,

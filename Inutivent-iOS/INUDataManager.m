@@ -12,6 +12,7 @@
 #import "Bookmark.h"
 #import "ExampleEvent.h"
 #import "INUConfig.h"
+#import "INUConstants.h"
 #import "INUUtils.h"
 
 @implementation INUDataManager
@@ -85,7 +86,7 @@ static INUDataManager *_sharedInstance;
     return bookmark;
 }
 
-- (void)addBookmarkForNewEvent:(Bookmark *)bookmark
+- (void)addBookmark:(Bookmark *)bookmark
 {
     [_bookmarks addObject:bookmark];
     [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
@@ -231,7 +232,7 @@ static INUDataManager *_sharedInstance;
 
 - (void)requestCompleteService:(NSString *)service data:(NSDictionary *)data info:(NSDictionary *)infoDict
 {
-    if ([service isEqualToString:@"getevent.php"])
+    if ([service isEqualToString:INUServiceGetEvent])
     {
         NSString *eventId = data[@"event"][@"id"];
         Event *event = [self getEventById:eventId];
@@ -246,7 +247,7 @@ static INUDataManager *_sharedInstance;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:INUEventLoadedNotification object:self userInfo:@{@"eventId": eventId}];
     }
-    else if ([service isEqualToString:@"createevent.php"])
+    else if ([service isEqualToString:INUServiceCreateEvent])
     {
         NSString *eventId = data[@"event_id"];
         NSString *userId = data[@"user_id"];
@@ -256,7 +257,7 @@ static INUDataManager *_sharedInstance;
         bookmark.eventName = infoDict[@"title"];
         bookmark.time = infoDict[@"time"];
         
-        [self addBookmarkForNewEvent:bookmark];
+        [self addBookmark:bookmark];
         [self saveBookmarks];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:INUEventCreatedNotification object:self userInfo:@{@"bookmark": bookmark}];
@@ -268,7 +269,7 @@ static INUDataManager *_sharedInstance;
     NSString *title = nil;
     NSString *message = nil;
     
-    NSLog(@"Service Error: %@, %@", errorId, error);
+    NSLog(@"Service %@ Error: %@, %@", service, errorId, error);
     
     if ([errorId isEqualToString:@"not_found"])
     {
