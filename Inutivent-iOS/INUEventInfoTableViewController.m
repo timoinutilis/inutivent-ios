@@ -17,6 +17,7 @@
 #import "INUUtils.h"
 #import "INUConfig.h"
 #import "INUTextTableViewCell.h"
+#import "INUEditTableViewController.h"
 
 @interface INUEventInfoTableViewController ()
 
@@ -32,7 +33,6 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *status1Cell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *status2Cell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *status3Cell;
-@property (weak, nonatomic) IBOutlet UITableViewCell *editCell;
 
 @property Event *event;
 
@@ -67,11 +67,6 @@
     
     _detailsCell.parentTableView = self.tableView;
     _detailsCell.textView.editable = NO;
-    
-    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
-    {
-        self.editCell.textLabel.textColor = self.view.tintColor;
-    }
     
     INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.parentViewController;
     _bookmark = eventTabBarController.bookmark;
@@ -218,29 +213,8 @@
         [[INUDataManager sharedInstance] requestFromServer:@"updateuser.php" params:paramsDict info:nil];
 
     }
-    else if (indexPath.section == 3)
-    {
-        if (indexPath.row == 0)
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Edit or Invite", nil)
-                                                            message:NSLocalizedString(@"You can edit your event or invite people on the website only.", nil)
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                                  otherButtonTitles:NSLocalizedString(@"Go to Website", nil), nil];
-            [alert show];
-        }
-    }
-
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == alertView.firstOtherButtonIndex)
-    {
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/event.php?event=%@&user=%@", INUConfigSiteURL, _bookmark.eventId, _bookmark.userId]];
-        [[UIApplication sharedApplication] openURL:url];
-    }
 }
 
 - (User *)getMe
@@ -257,16 +231,11 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     
-    if ([segue.identifier isEqualToString:@"ShowGuests"])
+    if ([segue.identifier isEqualToString:@"EditEvent"])
     {
-        INUGuestsTableViewController *viewController = segue.destinationViewController;
-        viewController.event = _event;
-    }
-    else if ([segue.identifier isEqualToString:@"ShowPosts"])
-    {
-        INUPostsTableViewController *viewController = segue.destinationViewController;
-        viewController.event = _event;
-        viewController.bookmark = _bookmark;
+        UINavigationController *destViewController = segue.destinationViewController;
+        INUEditTableViewController *editController = (INUEditTableViewController *)destViewController.topViewController;
+        editController.bookmarkToEdit = _bookmark;
     }
 }
 
@@ -299,7 +268,8 @@
 
 - (void)receivedNotification:(NSNotification *)notification
 {
-    if (notification.name == INUEventLoadedNotification)
+    if (   notification.name == INUEventLoadedNotification
+        || notification.name == INUEventUpdatedNotification )
     {
         _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
         [self updateView];

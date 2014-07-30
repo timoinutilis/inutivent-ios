@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Bookmark;
+
 @interface INUEditTableViewController : UITableViewController
+
+@property Bookmark *bookmarkToEdit;
 
 @end

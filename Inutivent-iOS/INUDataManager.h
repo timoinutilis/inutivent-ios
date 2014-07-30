@@ -23,6 +23,7 @@
 - (Bookmark *)addBookmarkFromURLWithEventId:(NSString *)eventId userId:(NSString *)userId;
 - (Bookmark *)getBookmarkByEventId:(NSString *)eventId userId:(NSString *)userId;
 - (void)deleteBookmark:(Bookmark *)bookmark;
+- (void)updateBookmarksForEvent:(Event *)event;
 
 - (BOOL)needsIntroduction;
 - (void)setIntroductionDone;
@@ -33,14 +34,16 @@
 
 - (void)notifyNewEventViewClosed:(Bookmark *)bookmark;
 - (void)notifyUserUpdate;
+- (void)notifyEventUpdate;
 - (void)notifyAppToFront;
 
 @end
 
-extern NSString *const INUBookmarksChangedNotification;
+extern NSString *const INUBookmarkChangedNotification;
 extern NSString *const INUBookmarkOpenedByURLNotification;
 extern NSString *const INUEventCreatedNotification;
 extern NSString *const INUEventLoadedNotification;
+extern NSString *const INUEventUpdatedNotification;
 extern NSString *const INUNewEventViewClosedNotification;
 extern NSString *const INUUserUpdatedNotification;
 extern NSString *const INUErrorNotification;

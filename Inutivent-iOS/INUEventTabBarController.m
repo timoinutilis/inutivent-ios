@@ -57,6 +57,13 @@
                          [storyboard instantiateViewControllerWithIdentifier:@"EventGuests"],
                          [storyboard instantiateViewControllerWithIdentifier:@"EventPosts"]
                          ];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -79,13 +86,6 @@
     {
         [self loadEvent];
     }
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning

@@ -193,9 +193,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaO-6P-Bhx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="123" y="855"/>
+            <point key="canvasLocation" x="2115" y="121"/>
         </scene>
-        <!--Edit Table View Controller - New Event-->
+        <!--Edit Table View Controller-->
         <scene sceneID="6g5-cS-jfN">
             <objects>
                 <tableViewController id="uxj-Ne-B5v" customClass="INUEditTableViewController" sceneMemberID="viewController">
@@ -266,7 +266,7 @@
                             <outlet property="delegate" destination="uxj-Ne-B5v" id="7RE-4U-JFg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Event" id="lss-Kg-hut">
+                    <navigationItem key="navigationItem" id="lss-Kg-hut">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="F8z-7p-XDy">
                             <connections>
                                 <action selector="onCancel:" destination="uxj-Ne-B5v" id="o4n-Nk-D6m"/>
@@ -290,7 +290,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHR-EH-PXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="JpP-N0-7Ei" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="556" y="855"/>
+            <point key="canvasLocation" x="2548" y="121"/>
         </scene>
         <!--About Table View Controller - About-->
         <scene sceneID="772-rD-Pnr">
@@ -767,15 +767,35 @@ Inutilis Software</string>
                             </tableViewSection>
                             <tableViewSection id="zFU-QI-vge">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="EAL-0m-MQU" style="IBUITableViewCellStyleDefault" id="jAI-3z-vpc">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="EAL-0m-MQU" style="IBUITableViewCellStyleDefault" id="jAI-3z-vpc">
                                         <rect key="frame" x="0.0" y="532" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jAI-3z-vpc" id="FsV-rK-6cD">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Edit or Invite" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EAL-0m-MQU">
-                                                    <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Edit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EAL-0m-MQU">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="1y2-4Q-9qn" kind="modal" identifier="EditEvent" id="cD6-PU-1ka"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="OSf-5u-EL6" style="IBUITableViewCellStyleDefault" id="djW-y7-XqB">
+                                        <rect key="frame" x="0.0" y="576" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="djW-y7-XqB" id="Nly-tR-b8q">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Invite" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OSf-5u-EL6">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -796,7 +816,6 @@ Inutilis Software</string>
                         <outlet property="coverImage" destination="B4k-Dq-yFX" id="yoz-M3-8ur"/>
                         <outlet property="dateCell" destination="sNW-nL-fqv" id="91d-ct-AMh"/>
                         <outlet property="detailsCell" destination="SdF-qf-66Z" id="q4g-1x-Wus"/>
-                        <outlet property="editCell" destination="jAI-3z-vpc" id="2jf-Kl-jNV"/>
                         <outlet property="hourCell" destination="4u8-j6-LQc" id="5lx-RX-kDY"/>
                         <outlet property="nameField" destination="25A-YI-gnp" id="91C-m9-GAU"/>
                         <outlet property="ownerCell" destination="Egq-ZB-ALz" id="Ll3-nX-cav"/>
@@ -912,7 +931,7 @@ Inutilis Software</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mMj-Ln-oK7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2494" y="-748"/>
+            <point key="canvasLocation" x="2593" y="-748"/>
         </scene>
         <!--Guests Table View Controller-->
         <scene sceneID="ZvV-tp-6kw">
@@ -952,7 +971,7 @@ Inutilis Software</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nwJ-Je-xv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2115" y="-748"/>
+            <point key="canvasLocation" x="2214" y="-748"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="m0g-hL-TuQ">
@@ -993,4 +1012,7 @@ Inutilis Software</string>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="cD6-PU-1ka"/>
+    </inferredMetricsTieBreakers>
 </document>

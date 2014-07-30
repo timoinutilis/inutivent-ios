@@ -79,7 +79,7 @@ static INUDataManager *_sharedInstance;
     {
         bookmark = [[Bookmark alloc] initWithEventId:eventId userId:userId];
         [_bookmarks addObject:bookmark];
-        [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarksChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkOpenedByURLNotification object:self userInfo:@{@"bookmark":bookmark}];
     return bookmark;
@@ -88,7 +88,7 @@ static INUDataManager *_sharedInstance;
 - (void)addBookmarkForNewEvent:(Bookmark *)bookmark
 {
     [_bookmarks addObject:bookmark];
-    [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarksChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
 }
 
 - (Bookmark *)getBookmarkByEventId:(NSString *)eventId userId:(NSString *)userId
@@ -109,6 +109,30 @@ static INUDataManager *_sharedInstance;
     [_events removeObjectForKey:bookmark.eventId];
     [_bookmarks removeObject:bookmark];
     [self saveBookmarks];
+}
+
+- (void)updateBookmarksForEvent:(Event *)event
+{
+    int count = (int)[_bookmarks count];
+    BOOL anyChanged = NO;
+    for (int i = 0; i < count; i++)
+    {
+        Bookmark *bookmark = _bookmarks[i];
+        if ([bookmark.eventId isEqualToString:event.eventId])
+        {
+            BOOL changed = [bookmark updateFromEvent:event];
+            if (changed)
+            {
+                anyChanged = YES;
+                [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
+            }
+            
+        }
+    }
+    if (anyChanged)
+    {
+        [self saveBookmarks];
+    }
 }
 
 - (BOOL)needsIntroduction
@@ -218,27 +242,7 @@ static INUDataManager *_sharedInstance;
         }
         [event parseFromDictionary:data];
         
-        // update bookmarks
-        int count = (int)[_bookmarks count];
-        BOOL anyChanged = NO;
-        for (int i = 0; i < count; i++)
-        {
-            Bookmark *bookmark = _bookmarks[i];
-            if ([bookmark.eventId isEqualToString:eventId])
-            {
-                BOOL changed = [bookmark updateFromEvent:event];
-                if (changed)
-                {
-                    anyChanged = YES;
-                    [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarksChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
-                }
-
-            }
-        }
-        if (anyChanged)
-        {
-            [self saveBookmarks];
-        }
+        [self updateBookmarksForEvent:event];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:INUEventLoadedNotification object:self userInfo:@{@"eventId": eventId}];
     }
@@ -279,7 +283,7 @@ static INUDataManager *_sharedInstance;
     else
     {
         title = NSLocalizedString(@"Something Went Wrong", nil);
-        message = NSLocalizedString(@"Please try again later.", nil);
+        message = error;
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:INUErrorNotification object:self userInfo:@{@"title":title, @"message":message, @"errorId":errorId}];
@@ -293,6 +297,11 @@ static INUDataManager *_sharedInstance;
 - (void)notifyUserUpdate
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:INUUserUpdatedNotification object:self userInfo:nil];
+}
+
+- (void)notifyEventUpdate
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:INUEventUpdatedNotification object:self userInfo:nil];
 }
 
 - (void)notifyAppToFront
@@ -320,10 +329,11 @@ static INUDataManager *_sharedInstance;
 
 @end
 
-NSString *const INUBookmarksChangedNotification = @"INUBookmarksChanged";
+NSString *const INUBookmarkChangedNotification = @"INUBookmarksChanged";
 NSString *const INUBookmarkOpenedByURLNotification = @"INUBookmarkOpenedByURL";
 NSString *const INUEventCreatedNotification = @"INUEventCreated";
 NSString *const INUEventLoadedNotification = @"INUEventLoaded";
+NSString *const INUEventUpdatedNotification = @"INUEventUpdated";
 NSString *const INUNewEventViewClosedNotification = @"INUNewEventViewClosed";
 NSString *const INUUserUpdatedNotification = @"INUUserUpdated";
 NSString *const INUErrorNotification = @"INUError";

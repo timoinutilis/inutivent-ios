@@ -52,7 +52,7 @@
     [INUUtils initNavigationBar:self.navigationController.navigationBar];
     [INUUtils initBackground:self.tableView];
     
-    _titleCell.textField.placeholder = @"Example: Birthday Party";
+    _titleCell.textField.placeholder = NSLocalizedString(@"Example: Birthday Party", nil);
     
     _whenCell.datePicker.minimumDate = [[NSDate alloc] initWithTimeIntervalSinceNow:(60 * 60)];
     _whenCell.datePicker.maximumDate = [[NSDate alloc] initWithTimeIntervalSinceNow:(365 * 24 * 60 * 60)];
@@ -62,18 +62,29 @@
     _detailsCell.parentTableView = self.tableView;
     _detailsCell.textView.font = [UIFont systemFontOfSize:18];
     
-    _nameCell.textField.placeholder = @"Enter your name";
+    _nameCell.textField.placeholder = NSLocalizedString(@"Enter your name", nil);
     _nameCell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
     
-    _mailCell.textField.placeholder = @"Enter your e-mail address";
+    _mailCell.textField.placeholder = NSLocalizedString(@"Enter your e-mail address", nil);
     _mailCell.textField.keyboardType = UIKeyboardTypeEmailAddress;
     _mailCell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
     _mailCell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+    
+    if (_bookmarkToEdit)
+    {
+        self.navigationItem.title = NSLocalizedString(@"Edit Event", nil);
+        
+        Event *event = [[INUDataManager sharedInstance] getEventById:_bookmarkToEdit.eventId];
+        
+        _titleCell.textField.text = event.title;
+        _whenCell.currentDate = event.time;
+        _detailsCell.textView.text = event.details;
+    }
+    else
+    {
+        self.navigationItem.title = NSLocalizedString(@"New Event", nil);
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
 }
 
@@ -113,14 +124,14 @@
 {
 }
 */
-/*
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return (_bookmarkToEdit) ? 3 : 4;
 }
 
+/*
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 #warning Incomplete method implementation.
@@ -140,8 +151,6 @@
 {
     if ([self validateUserInput])
     {
-        _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
-        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         
         formatter.dateFormat = @"dd/MM/yyyy";
@@ -149,19 +158,48 @@
 
         formatter.dateFormat = @"HH:mm";
         NSString *hour = [formatter stringFromDate:_whenCell.currentDate];
-        
-        // Create new event
-        NSDictionary *params = @{@"name": _nameCell.textField.text,
-                                 @"mail": _mailCell.textField.text,
-                                 @"title": _titleCell.textField.text,
-                                 @"date": date,
-                                 @"hour": hour,
-                                 @"details": _detailsCell.textView.text};
-        
-        NSDictionary *info = @{@"title": _titleCell.textField.text,
-                               @"time": _whenCell.currentDate};
-        
-        [[INUDataManager sharedInstance] requestFromServer:@"createevent.php" params:params info:info];
+            
+        if (_bookmarkToEdit)
+        {
+            // Save changes to event
+            
+            Event *event = [[INUDataManager sharedInstance] getEventById:_bookmarkToEdit.eventId];
+            event.title = _titleCell.textField.text;
+            event.time = _whenCell.currentDate;
+            event.details = _detailsCell.textView.text;
+            
+            [[INUDataManager sharedInstance] updateBookmarksForEvent:event];
+            [[INUDataManager sharedInstance] notifyEventUpdate];
+            
+            NSDictionary *params = @{@"event_id": _bookmarkToEdit.eventId,
+                                     @"user_id": _bookmarkToEdit.userId,
+                                     @"title": event.title,
+                                     @"date": date,
+                                     @"hour": hour,
+                                     @"details": event.details};
+
+            [[INUDataManager sharedInstance] requestFromServer:@"updateevent.php" params:params info:nil];
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else
+        {
+            // Create new event
+
+            _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
+            
+            NSDictionary *params = @{@"name": _nameCell.textField.text,
+                                     @"mail": _mailCell.textField.text,
+                                     @"title": _titleCell.textField.text,
+                                     @"date": date,
+                                     @"hour": hour,
+                                     @"details": _detailsCell.textView.text};
+            
+            NSDictionary *info = @{@"title": _titleCell.textField.text,
+                                   @"time": _whenCell.currentDate};
+            
+            [[INUDataManager sharedInstance] requestFromServer:@"createevent.php" params:params info:info];
+        }
     }
 }
 
@@ -169,8 +207,8 @@
 {
     if (   [_titleCell.textField.text length] == 0
         || [_detailsCell.textView.text length] == 0
-        || [_nameCell.textField.text length] == 0
-        || [_mailCell.textField.text length] == 0 )
+        || (!_bookmarkToEdit && [_nameCell.textField.text length] == 0)
+        || (!_bookmarkToEdit && [_mailCell.textField.text length] == 0) )
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Please fill out all fields.", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alert show];
@@ -206,11 +244,11 @@
     {
         [self removeSpinner];
 
-        NSString *title = notification.userInfo[@"title"];
+/*        NSString *title = notification.userInfo[@"title"];
         NSString *message = notification.userInfo[@"message"];
 
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-        [alert show];
+        [alert show];*/
     }
 }
 

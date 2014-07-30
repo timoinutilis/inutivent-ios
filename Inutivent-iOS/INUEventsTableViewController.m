@@ -361,7 +361,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 
 - (void)receivedNotification:(NSNotification *)notification
 {
-    if (notification.name == INUBookmarksChangedNotification)
+    if (notification.name == INUBookmarkChangedNotification)
     {
         Bookmark *bookmark = notification.userInfo[@"bookmark"];
         
