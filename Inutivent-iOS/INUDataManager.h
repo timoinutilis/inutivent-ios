@@ -43,6 +43,7 @@
 extern NSString *const INUBookmarkChangedNotification;
 extern NSString *const INUBookmarkOpenedByURLNotification;
 extern NSString *const INUEventCreatedNotification;
+extern NSString *const INUEventSavedNotification;
 extern NSString *const INUEventLoadedNotification;
 extern NSString *const INUEventUpdatedNotification;
 extern NSString *const INUNewEventViewClosedNotification;

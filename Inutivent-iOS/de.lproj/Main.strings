@@ -24,7 +24,7 @@
 "D2h-91-brL.title" = "Veranstaltungen";
 
 /* Class = "IBUILabel"; text = "Edit or Invite"; ObjectID = "EAL-0m-MQU"; */
-"EAL-0m-MQU.text" = "Bearbeiten oder einladen";
+"EAL-0m-MQU.text" = "Bearbeiten";
 
 /* Class = "IBUILabel"; text = "Version"; ObjectID = "G3n-up-Tt8"; */
 "G3n-up-Tt8.text" = "Version";

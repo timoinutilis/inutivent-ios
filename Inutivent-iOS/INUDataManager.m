@@ -281,6 +281,13 @@ static INUDataManager *_sharedInstance;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:INUEventCreatedNotification object:self userInfo:@{@"bookmark": bookmark}];
     }
+    else if (   [service isEqualToString:INUServiceUpdateEvent]
+             || [service isEqualToString:INUServiceUploadCover] )
+    {
+        NSString *filename = data[@"filename"];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:INUEventSavedNotification object:self userInfo:@{@"filename":filename ? filename : @""}];
+    }
 }
 
 - (void)notifyNewEventViewClosed:(Bookmark *)bookmark
@@ -326,6 +333,7 @@ static INUDataManager *_sharedInstance;
 NSString *const INUBookmarkChangedNotification = @"INUBookmarksChanged";
 NSString *const INUBookmarkOpenedByURLNotification = @"INUBookmarkOpenedByURL";
 NSString *const INUEventCreatedNotification = @"INUEventCreated";
+NSString *const INUEventSavedNotification = @"INUEventSaved";
 NSString *const INUEventLoadedNotification = @"INUEventLoaded";
 NSString *const INUEventUpdatedNotification = @"INUEventUpdated";
 NSString *const INUNewEventViewClosedNotification = @"INUNewEventViewClosed";

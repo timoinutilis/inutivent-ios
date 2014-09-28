@@ -53,8 +53,13 @@
 		92A5C3231948B2EB00D40CAC /* INUPostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A5C3221948B2EB00D40CAC /* INUPostTableViewCell.m */; };
 		92A98E191988EBDB00BFA6FC /* INUConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A98E181988EBDB00BFA6FC /* INUConstants.m */; };
 		92A98E1C198902F200BFA6FC /* ServiceError.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A98E1B198902F200BFA6FC /* ServiceError.m */; };
+		92A98E221989495900BFA6FC /* INUInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A98E211989495900BFA6FC /* INUInviteViewController.m */; };
 		92B5E236195C41AB00D46F8C /* ExampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B5E235195C41AB00D46F8C /* ExampleEvent.m */; };
 		92BCB0331947478300A1E882 /* UI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BCB0321947478300A1E882 /* UI.xcassets */; };
+		92C00D74198A3B3400EAB7A3 /* TITokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D73198A3B3400EAB7A3 /* TITokenField.m */; };
+		92C00D77198A431700EAB7A3 /* INUContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D76198A431700EAB7A3 /* INUContactManager.m */; };
+		92C00D79198A57BD00EAB7A3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C00D78198A57BD00EAB7A3 /* AddressBook.framework */; };
+		92C00D7D198A8A6400EAB7A3 /* INUContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D7C198A8A6400EAB7A3 /* INUContact.m */; };
 		92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */; };
 		92CB1F29194791A100309850 /* INUListSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F28194791A100309850 /* INUListSection.m */; };
 		92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E0E2BB1940D1B100D9ACDD /* INUUtils.m */; };
@@ -155,9 +160,18 @@
 		92A98E181988EBDB00BFA6FC /* INUConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUConstants.m; sourceTree = "<group>"; };
 		92A98E1A198902F200BFA6FC /* ServiceError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceError.h; sourceTree = "<group>"; };
 		92A98E1B198902F200BFA6FC /* ServiceError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceError.m; sourceTree = "<group>"; };
+		92A98E201989495900BFA6FC /* INUInviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUInviteViewController.h; sourceTree = "<group>"; };
+		92A98E211989495900BFA6FC /* INUInviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUInviteViewController.m; sourceTree = "<group>"; };
 		92B5E234195C41AB00D46F8C /* ExampleEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleEvent.h; sourceTree = "<group>"; };
 		92B5E235195C41AB00D46F8C /* ExampleEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleEvent.m; sourceTree = "<group>"; };
 		92BCB0321947478300A1E882 /* UI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UI.xcassets; sourceTree = "<group>"; };
+		92C00D72198A3B3400EAB7A3 /* TITokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TITokenField.h; sourceTree = "<group>"; };
+		92C00D73198A3B3400EAB7A3 /* TITokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TITokenField.m; sourceTree = "<group>"; };
+		92C00D75198A431700EAB7A3 /* INUContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUContactManager.h; sourceTree = "<group>"; };
+		92C00D76198A431700EAB7A3 /* INUContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUContactManager.m; sourceTree = "<group>"; };
+		92C00D78198A57BD00EAB7A3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		92C00D7B198A8A6400EAB7A3 /* INUContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUContact.h; sourceTree = "<group>"; };
+		92C00D7C198A8A6400EAB7A3 /* INUContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUContact.m; sourceTree = "<group>"; };
 		92CB1F2419478A5800309850 /* INUGuestsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUGuestsTableViewController.h; sourceTree = "<group>"; };
 		92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUGuestsTableViewController.m; sourceTree = "<group>"; };
 		92CB1F27194791A100309850 /* INUListSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUListSection.h; sourceTree = "<group>"; };
@@ -178,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92C00D79198A57BD00EAB7A3 /* AddressBook.framework in Frameworks */,
 				92837570193A494D0000CCD6 /* CoreGraphics.framework in Frameworks */,
 				92837572193A494D0000CCD6 /* UIKit.framework in Frameworks */,
 				9283756E193A494D0000CCD6 /* Foundation.framework in Frameworks */,
@@ -215,6 +230,8 @@
 				924F0FD91981523A0076FDDF /* INUInputTableViewCell.m */,
 				924F0FDB19815B010076FDDF /* INUTextTableViewCell.h */,
 				924F0FDC19815B010076FDDF /* INUTextTableViewCell.m */,
+				92C00D72198A3B3400EAB7A3 /* TITokenField.h */,
+				92C00D73198A3B3400EAB7A3 /* TITokenField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -249,6 +266,7 @@
 		9283756C193A494D0000CCD6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92C00D78198A57BD00EAB7A3 /* AddressBook.framework */,
 				9283756D193A494D0000CCD6 /* Foundation.framework */,
 				9283756F193A494D0000CCD6 /* CoreGraphics.framework */,
 				92837571193A494D0000CCD6 /* UIKit.framework */,
@@ -262,6 +280,7 @@
 			children = (
 				924883131955CD610034BFDD /* Files */,
 				92BCB02B1947205F00A1E882 /* Images */,
+				92C00D7A198A89DA00EAB7A3 /* Contacts */,
 				928375A9193A6F090000CCD6 /* Models */,
 				922454841951CB2A0058FF50 /* Views */,
 				92A5C31D1948AD5100D40CAC /* Controllers */,
@@ -357,6 +376,8 @@
 				92676C74197179E2005ADA19 /* INUSplitViewController.m */,
 				9285E372197EA36900F3919B /* INUEditTableViewController.h */,
 				9285E373197EA36900F3919B /* INUEditTableViewController.m */,
+				92A98E201989495900BFA6FC /* INUInviteViewController.h */,
+				92A98E211989495900BFA6FC /* INUInviteViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -376,6 +397,17 @@
 				921976C319729CFC0043A2CD /* welcome_bg.jpg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		92C00D7A198A89DA00EAB7A3 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				92C00D75198A431700EAB7A3 /* INUContactManager.h */,
+				92C00D76198A431700EAB7A3 /* INUContactManager.m */,
+				92C00D7B198A8A6400EAB7A3 /* INUContact.h */,
+				92C00D7C198A8A6400EAB7A3 /* INUContact.m */,
+			);
+			name = Contacts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -428,6 +460,11 @@
 				TargetAttributes = {
 					92837569193A494D0000CCD6 = {
 						DevelopmentTeam = BZ4VC623NH;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					92837584193A494D0000CCD6 = {
 						TestTargetID = 92837569193A494D0000CCD6;
@@ -504,13 +541,16 @@
 				92CB1F29194791A100309850 /* INUListSection.m in Sources */,
 				92676C75197179E2005ADA19 /* INUSplitViewController.m in Sources */,
 				92A5C3201948AD9B00D40CAC /* INUPostsTableViewController.m in Sources */,
+				92C00D74198A3B3400EAB7A3 /* TITokenField.m in Sources */,
 				928D1DB1195B11650087EAA5 /* INUWelcomeContentViewController.m in Sources */,
 				924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */,
 				9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */,
 				9283757A193A494D0000CCD6 /* main.m in Sources */,
 				92A98E1C198902F200BFA6FC /* ServiceError.m in Sources */,
+				92C00D77198A431700EAB7A3 /* INUContactManager.m in Sources */,
 				9285E374197EA36900F3919B /* INUEditTableViewController.m in Sources */,
 				927F59E4193E56B600EEEC62 /* Bookmark.m in Sources */,
+				92A98E221989495900BFA6FC /* INUInviteViewController.m in Sources */,
 				92114B5D1961AF6D00039EFC /* INUConfig.m in Sources */,
 				92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */,
 				927F59DC193E2A0100EEEC62 /* INUDataManager.m in Sources */,
@@ -519,6 +559,7 @@
 				9285E377197EA7AF00F3919B /* INUDateTableViewCell.m in Sources */,
 				92A5C31C19489FFB00D40CAC /* Post.m in Sources */,
 				92F68FD21950D0CE00DCACB7 /* INUEventTabBarController.m in Sources */,
+				92C00D7D198A8A6400EAB7A3 /* INUContact.m in Sources */,
 				928375A8193A6F030000CCD6 /* Event.m in Sources */,
 				924F0FDD19815B010076FDDF /* INUTextTableViewCell.m in Sources */,
 				9283757E193A494D0000CCD6 /* INUAppDelegate.m in Sources */,
@@ -674,13 +715,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Timo Kloss (2Q6EMPS7Y2)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Inutivent-iOS/Gromf-Prefix.pch";
 				INFOPLIST_FILE = "Inutivent-iOS/Gromf-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "34683D1E-02D3-4369-AA50-326B4CBBED15";
+				PROVISIONING_PROFILE = "7605e2ca-4a94-4790-b95f-70c935769e2f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -691,13 +732,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Timo Kloss (2Q6EMPS7Y2)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Inutivent-iOS/Gromf-Prefix.pch";
 				INFOPLIST_FILE = "Inutivent-iOS/Gromf-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "34683D1E-02D3-4369-AA50-326B4CBBED15";
+				PROVISIONING_PROFILE = "7605e2ca-4a94-4790-b95f-70c935769e2f";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

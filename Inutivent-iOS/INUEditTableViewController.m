@@ -16,9 +16,12 @@
 #import "INUSpinnerView.h"
 #import "Bookmark.h"
 #import "INUConstants.h"
+#import "INUConfig.h"
 
 @interface INUEditTableViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet INUInputTableViewCell *titleCell;
 @property (weak, nonatomic) IBOutlet INUDateTableViewCell *whenCell;
 @property (weak, nonatomic) IBOutlet INUTextTableViewCell *detailsCell;
@@ -26,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet INUInputTableViewCell *mailCell;
 
 @property INUSpinnerView *spinnerView;
+@property UIImage *selectedCoverImage;
 
 @end
 
@@ -52,6 +56,10 @@
     
     [INUUtils initNavigationBar:self.navigationController.navigationBar];
     [INUUtils initBackground:self.tableView];
+    
+    _titleLabel.layer.shadowOpacity = 1;
+    _titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
+    _titleLabel.layer.shadowRadius = 1.5;
     
     _titleCell.textField.placeholder = NSLocalizedString(@"Example: Birthday Party", nil);
     
@@ -80,10 +88,13 @@
         _titleCell.textField.text = event.title;
         _whenCell.currentDate = event.time;
         _detailsCell.textView.text = event.details;
+        
+        [self updateCoverImageWithEvent:event];
     }
     else
     {
         self.navigationItem.title = NSLocalizedString(@"New Event", nil);
+        [self updateCoverImageWithEvent:nil];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
@@ -106,6 +117,37 @@
     {
         [_spinnerView removeFromSuperview];
         _spinnerView = nil;
+    }
+}
+
+- (void)updateCoverImageWithEvent:(Event *)event
+{
+    if (event && event.cover && ![event.cover isEqualToString:@""])
+    {
+        NSString *path = [NSString stringWithFormat:@"%@/uploads/%@/%@", INUConfigSiteURL, event.eventId, event.cover];
+        NSURL *url = [NSURL URLWithString:path];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        
+        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if (connectionError)
+            {
+                // default image
+                self.imageView.image = [UIImage imageNamed:@"default_header.jpg"];
+            }
+            else
+            {
+                UIImage *image = [UIImage imageWithData:data];
+                
+                dispatch_async( dispatch_get_main_queue(), ^(void) {
+                    self.imageView.image = image;
+                });
+            }
+        }];
+    }
+    else
+    {
+        self.imageView.image = [UIImage imageNamed:@"default_header.jpg"];
     }
 }
 
@@ -148,8 +190,59 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)onChangePhoto:(id)sender
+{
+    [self.view endEditing:YES];
+    
+    UIActionSheet *actionSheet;
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Select Photo", @"Use Camera", nil];
+    }
+    else
+    {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Select Photo", nil];
+    }
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0)
+    {
+        // Gallery
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.delegate = self;
+        [INUUtils initNavigationBar:imagePicker.navigationBar];
+        
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+    else if (buttonIndex == 1 && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        // Camera
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.delegate = self;
+        [INUUtils initNavigationBar:imagePicker.navigationBar];
+        
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    self.imageView.image = image;
+    self.selectedCoverImage = image;
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)onDone:(id)sender
 {
+    [self.view endEditing:YES];
+    
     if ([self validateUserInput])
     {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -163,7 +256,9 @@
         if (_bookmarkToEdit)
         {
             // Save changes to event
-            
+
+            _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
+
             Event *event = [[INUDataManager sharedInstance] getEventById:_bookmarkToEdit.eventId];
             event.title = _titleCell.textField.text;
             event.time = _whenCell.currentDate;
@@ -178,10 +273,17 @@
                                      @"date": date,
                                      @"hour": hour,
                                      @"details": event.details};
+            //TODO photo upload
+            if (self.selectedCoverImage)
+            {
+            }
 
-            [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateEvent params:params info:nil onError:nil];
+            [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateEvent params:params info:nil onError:^BOOL(ServiceError *error) {
+                [self removeSpinner];
+                return NO;
+            }];
             
-            [self dismissViewControllerAnimated:YES completion:nil];
+//            [self dismissViewControllerAnimated:YES completion:nil];
         }
         else
         {
@@ -196,6 +298,11 @@
                                      @"hour": hour,
                                      @"details": _detailsCell.textView.text};
             
+            //TODO photo upload
+            if (self.selectedCoverImage)
+            {
+            }
+
             NSDictionary *info = @{@"title": _titleCell.textField.text,
                                    @"time": _whenCell.currentDate};
             
@@ -253,6 +360,18 @@
         [self dismissViewControllerAnimated:YES completion:^(void) {
             [[INUDataManager sharedInstance] notifyNewEventViewClosed:bookmark];
         }];
+    }
+    else if (notification.name == INUEventSavedNotification)
+    {
+        NSString *filename = notification.userInfo[@"filename"];
+        if (![filename isEqualToString:@""])
+        {
+            Event *event = [[INUDataManager sharedInstance] getEventById:_bookmarkToEdit.eventId];
+            event.cover = filename;
+            [[INUDataManager sharedInstance] notifyEventUpdate];
+        }
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 

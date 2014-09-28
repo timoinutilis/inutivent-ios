@@ -10,7 +10,7 @@
 
 @class Bookmark;
 
-@interface INUEditTableViewController : UITableViewController
+@interface INUEditTableViewController : UITableViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property Bookmark *bookmarkToEdit;
 
