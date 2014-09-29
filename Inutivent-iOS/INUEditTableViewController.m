@@ -197,11 +197,11 @@
     UIActionSheet *actionSheet;
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Select Photo", @"Use Camera", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", @"Take Photo", nil];
     }
     else
     {
-        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Select Photo", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", nil];
     }
     [actionSheet showInView:self.view];
 }
@@ -214,7 +214,7 @@
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         imagePicker.delegate = self;
-        [INUUtils initNavigationBar:imagePicker.navigationBar];
+//        [INUUtils initNavigationBar:imagePicker.navigationBar];
         
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
@@ -224,7 +224,7 @@
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePicker.delegate = self;
-        [INUUtils initNavigationBar:imagePicker.navigationBar];
+//        [INUUtils initNavigationBar:imagePicker.navigationBar];
         
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
@@ -273,17 +273,18 @@
                                      @"date": date,
                                      @"hour": hour,
                                      @"details": event.details};
-            //TODO photo upload
+            // Photo upload
+            NSDictionary *uploadDataDict = nil;
             if (self.selectedCoverImage)
             {
+                NSData *imageData = UIImageJPEGRepresentation(self.selectedCoverImage, 0.8);
+                uploadDataDict = @{@"cover":imageData};
             }
 
-            [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateEvent params:params info:nil onError:^BOOL(ServiceError *error) {
+            [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateEvent params:params info:nil uploadData:uploadDataDict onError:^BOOL(ServiceError *error) {
                 [self removeSpinner];
                 return NO;
             }];
-            
-//            [self dismissViewControllerAnimated:YES completion:nil];
         }
         else
         {
@@ -298,15 +299,18 @@
                                      @"hour": hour,
                                      @"details": _detailsCell.textView.text};
             
-            //TODO photo upload
+            // Photo upload
+            NSDictionary *uploadDataDict = nil;
             if (self.selectedCoverImage)
             {
+                NSData *imageData = UIImageJPEGRepresentation(self.selectedCoverImage, 0.8);
+                uploadDataDict = @{@"cover":imageData};
             }
 
             NSDictionary *info = @{@"title": _titleCell.textField.text,
                                    @"time": _whenCell.currentDate};
             
-            [[INUDataManager sharedInstance] requestFromServer:INUServiceCreateEvent params:params info:info onError:^BOOL(ServiceError *error) {
+            [[INUDataManager sharedInstance] requestFromServer:INUServiceCreateEvent params:params info:info uploadData:uploadDataDict onError:^BOOL(ServiceError *error) {
                 [self removeSpinner];
                 return NO;
             }];

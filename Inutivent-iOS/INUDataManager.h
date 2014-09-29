@@ -32,6 +32,7 @@
 - (Event *)getEventById:(NSString *)eventId;
 
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict onError:(BOOL (^)(ServiceError *))errorBlock;
+- (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict uploadData:(NSDictionary *)uploadDataDict onError:(BOOL (^)(ServiceError *))errorBlock;
 
 - (void)notifyNewEventViewClosed:(Bookmark *)bookmark;
 - (void)notifyUserUpdate;

@@ -220,7 +220,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Change Photo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6W-wR-LMi" customClass="INULabel">
-                                    <rect key="frame" x="8" y="96" width="308" height="24"/>
+                                    <rect key="frame" x="8" y="92" width="302" height="24"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="AXd-vg-TdS"/>
@@ -230,7 +230,7 @@
                                     <nil key="highlightedColor"/>
                                     <size key="shadowOffset" width="0.0" height="0.0"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1u-JE-KvS">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1u-JE-KvS">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal">
@@ -252,11 +252,11 @@
                                 <constraint firstAttribute="trailing" secondItem="QS5-9h-Cxb" secondAttribute="trailing" id="dVL-PN-6ox"/>
                                 <constraint firstAttribute="trailing" secondItem="WNA-KK-EVK" secondAttribute="trailing" id="e5T-wk-afC"/>
                                 <constraint firstAttribute="bottom" secondItem="e1u-JE-KvS" secondAttribute="bottom" id="hnS-Gi-jQs"/>
-                                <constraint firstAttribute="trailing" secondItem="R6W-wR-LMi" secondAttribute="trailing" constant="4" id="kYD-hb-8bV"/>
+                                <constraint firstAttribute="trailing" secondItem="R6W-wR-LMi" secondAttribute="trailing" constant="10" id="kYD-hb-8bV"/>
                                 <constraint firstAttribute="trailing" secondItem="e1u-JE-KvS" secondAttribute="trailing" id="px1-W4-ugX"/>
                                 <constraint firstAttribute="bottom" secondItem="QS5-9h-Cxb" secondAttribute="bottom" id="qhV-Za-5gu"/>
                                 <constraint firstItem="WNA-KK-EVK" firstAttribute="leading" secondItem="O2N-MS-ntm" secondAttribute="leading" id="slS-g0-Izr"/>
-                                <constraint firstAttribute="bottom" secondItem="R6W-wR-LMi" secondAttribute="bottom" id="uXE-Eb-BdZ"/>
+                                <constraint firstAttribute="bottom" secondItem="R6W-wR-LMi" secondAttribute="bottom" constant="4" id="uXE-Eb-BdZ"/>
                             </constraints>
                         </view>
                         <sections>

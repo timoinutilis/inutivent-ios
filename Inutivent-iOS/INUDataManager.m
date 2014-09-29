@@ -15,6 +15,7 @@
 #import "INUConstants.h"
 #import "INUUtils.h"
 #import "ServiceError.h"
+#import "AFNetworking.h"
 
 @implementation INUDataManager
 {
@@ -164,6 +165,11 @@ static INUDataManager *_sharedInstance;
 
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict onError:(BOOL (^)(ServiceError *))errorBlock
 {
+    [self requestFromServer:service params:paramsDict info:infoDict uploadData:nil onError:errorBlock];
+}
+
+- (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict uploadData:(NSDictionary *)uploadDataDict onError:(BOOL (^)(ServiceError *))errorBlock
+{
     if ([paramsDict[@"event_id"] isEqualToString:ExampleEventId])
     {
         // cancel server requests for example event
@@ -172,66 +178,56 @@ static INUDataManager *_sharedInstance;
     
     [self beginActivity];
     
-    NSMutableArray *paramsArray = [[NSMutableArray alloc] init];
-    for (id key in paramsDict)
+    NSString *url = [NSString stringWithFormat:@"%@/backend/%@", INUConfigSiteURL, service];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    if (uploadDataDict)
     {
-        NSString *paramValue = [paramsDict[key] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [paramsArray addObject:[NSString stringWithFormat:@"%@=%@", key, paramValue]];
+        [manager POST:url parameters:paramsDict constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+
+            for (NSString *key in uploadDataDict.allKeys)
+            {
+                [formData appendPartWithFileData:(NSData *)uploadDataDict[key] name:key fileName:@"photo.jpg" mimeType:@"image/jpeg"];
+            }
+            
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self handleResponse:(NSDictionary *)responseObject service:service info:infoDict errorBlock:errorBlock];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self handleErrorWithBlock:errorBlock];
+        }];
     }
-    NSString *bodyData = [paramsArray componentsJoinedByString:@"&"];
+    else
+    {
+        [manager POST:url parameters:paramsDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self handleResponse:(NSDictionary *)responseObject service:service info:infoDict errorBlock:errorBlock];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self handleErrorWithBlock:errorBlock];
+        }];
+    }
+}
+
+- (void)handleResponse:(NSDictionary *)dataDict service:(NSString *)service info:(NSDictionary *)infoDict errorBlock:(BOOL (^)(ServiceError *))errorBlock {
+    [self endActivity];
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/backend/%@", INUConfigSiteURL, service]];
+    NSString *dataErrorId = dataDict[@"error_id"];
+    NSString *dataError = dataDict[@"error"];
+    if (dataErrorId)
+    {
+        ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:dataErrorId error:dataError];
+        [self requestError:serviceError block:errorBlock];
+    }
+    else
+    {
+        [self requestCompleteService:service data:dataDict info:infoDict];
+    }
+}
+
+- (void)handleErrorWithBlock:(BOOL (^)(ServiceError *))errorBlock {
+    [self endActivity];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        [self endActivity];
-        
-        if (connectionError)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:@"failed_connection" error:@"Connection error"];
-                [self requestError:serviceError block:errorBlock];
-            });
-        }
-        else
-        {
-            NSError *nsError = nil;
-            id dataObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&nsError];
-            if (nsError)
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:@"invalid_response" error:@"Format error"];
-                    [self requestError:serviceError block:errorBlock];
-                });
-            }
-            else
-            {
-                NSDictionary *dataDict = dataObject;
-                NSString *dataErrorId = dataObject[@"error_id"];
-                NSString *dataError = dataObject[@"error"];
-                if (dataErrorId)
-                {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:dataErrorId error:dataError];
-                        [self requestError:serviceError block:errorBlock];
-                    });
-                }
-                else
-                {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [self requestCompleteService:service data:dataDict info:infoDict];
-                    });
-                }
-            }
-        }
-    }];
+    ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:@"failed_connection" error:@"Connection error"];
+    [self requestError:serviceError block:errorBlock];
 }
 
 - (void)requestError:(ServiceError *)error block:(BOOL (^)(ServiceError *))errorBlock
