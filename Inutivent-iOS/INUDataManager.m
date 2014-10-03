@@ -192,7 +192,7 @@ static INUDataManager *_sharedInstance;
             }
             
         } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [self handleResponse:(NSDictionary *)responseObject service:service info:infoDict errorBlock:errorBlock];
+            [self handleResponse:(NSDictionary *)responseObject service:service params:paramsDict info:infoDict errorBlock:errorBlock];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self handleErrorWithBlock:errorBlock];
         }];
@@ -200,14 +200,14 @@ static INUDataManager *_sharedInstance;
     else
     {
         [manager POST:url parameters:paramsDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            [self handleResponse:(NSDictionary *)responseObject service:service info:infoDict errorBlock:errorBlock];
+            [self handleResponse:(NSDictionary *)responseObject service:service params:paramsDict info:infoDict errorBlock:errorBlock];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             [self handleErrorWithBlock:errorBlock];
         }];
     }
 }
 
-- (void)handleResponse:(NSDictionary *)dataDict service:(NSString *)service info:(NSDictionary *)infoDict errorBlock:(BOOL (^)(ServiceError *))errorBlock {
+- (void)handleResponse:(NSDictionary *)dataDict service:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict errorBlock:(BOOL (^)(ServiceError *))errorBlock {
     [self endActivity];
     
     NSString *dataErrorId = dataDict[@"error_id"];
@@ -215,11 +215,55 @@ static INUDataManager *_sharedInstance;
     if (dataErrorId)
     {
         ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:dataErrorId error:dataError];
-        [self requestError:serviceError block:errorBlock];
+        [self showError:serviceError block:errorBlock];
     }
     else
     {
-        [self requestCompleteService:service data:dataDict info:infoDict];
+        if ([service isEqualToString:INUServiceGetEvent])
+        {
+            NSString *eventId = dataDict[@"event"][@"id"];
+            Event *event = [self getEventById:eventId];
+            if (!event)
+            {
+                event = [[Event alloc] init];
+                _events[eventId] = event;
+            }
+            [event parseFromDictionary:dataDict];
+            
+            [self updateBookmarksForEvent:event];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:INUEventLoadedNotification object:self userInfo:@{@"eventId": eventId}];
+        }
+        else if ([service isEqualToString:INUServiceCreateEvent])
+        {
+            NSString *eventId = dataDict[@"event_id"];
+            NSString *userId = dataDict[@"user_id"];
+            
+            Bookmark *bookmark = [[Bookmark alloc] initWithEventId:eventId userId:userId];
+            bookmark.ownerUserId = userId;
+            bookmark.eventName = infoDict[@"title"];
+            bookmark.time = infoDict[@"time"];
+            
+            [self addBookmark:bookmark];
+            [self saveBookmarks];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:INUEventCreatedNotification object:self userInfo:@{@"bookmark": bookmark}];
+        }
+        else if (   [service isEqualToString:INUServiceUpdateEvent]
+                 || [service isEqualToString:INUServiceUploadCover] )
+        {
+            NSString *filename = dataDict[@"filename"];
+            
+            if (filename && ![filename isEqualToString:@""])
+            {
+                NSString *eventId = paramsDict[@"event_id"];
+                Event *event = [[INUDataManager sharedInstance] getEventById:eventId];
+                event.cover = filename;
+                [[INUDataManager sharedInstance] notifyEventUpdate];
+            }
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:INUEventSavedNotification object:self userInfo:nil];
+        }
     }
 }
 
@@ -227,10 +271,10 @@ static INUDataManager *_sharedInstance;
     [self endActivity];
     
     ServiceError *serviceError = [[ServiceError alloc] initWithErrorId:@"failed_connection" error:@"Connection error"];
-    [self requestError:serviceError block:errorBlock];
+    [self showError:serviceError block:errorBlock];
 }
 
-- (void)requestError:(ServiceError *)error block:(BOOL (^)(ServiceError *))errorBlock
+- (void)showError:(ServiceError *)error block:(BOOL (^)(ServiceError *))errorBlock
 {
     BOOL showed = NO;
     if (errorBlock)
@@ -242,47 +286,6 @@ static INUDataManager *_sharedInstance;
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:error.title message:error.message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alert show];
-    }
-}
-
-- (void)requestCompleteService:(NSString *)service data:(NSDictionary *)data info:(NSDictionary *)infoDict
-{
-    if ([service isEqualToString:INUServiceGetEvent])
-    {
-        NSString *eventId = data[@"event"][@"id"];
-        Event *event = [self getEventById:eventId];
-        if (!event)
-        {
-            event = [[Event alloc] init];
-            _events[eventId] = event;
-        }
-        [event parseFromDictionary:data];
-        
-        [self updateBookmarksForEvent:event];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:INUEventLoadedNotification object:self userInfo:@{@"eventId": eventId}];
-    }
-    else if ([service isEqualToString:INUServiceCreateEvent])
-    {
-        NSString *eventId = data[@"event_id"];
-        NSString *userId = data[@"user_id"];
-        
-        Bookmark *bookmark = [[Bookmark alloc] initWithEventId:eventId userId:userId];
-        bookmark.ownerUserId = userId;
-        bookmark.eventName = infoDict[@"title"];
-        bookmark.time = infoDict[@"time"];
-        
-        [self addBookmark:bookmark];
-        [self saveBookmarks];
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:INUEventCreatedNotification object:self userInfo:@{@"bookmark": bookmark}];
-    }
-    else if (   [service isEqualToString:INUServiceUpdateEvent]
-             || [service isEqualToString:INUServiceUploadCover] )
-    {
-        NSString *filename = data[@"filename"];
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:INUEventSavedNotification object:self userInfo:@{@"filename":filename ? filename : @""}];
     }
 }
 

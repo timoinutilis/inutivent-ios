@@ -368,7 +368,7 @@
     else if (notification.name == INUEventSavedNotification)
     {
         NSString *filename = notification.userInfo[@"filename"];
-        if (![filename isEqualToString:@""])
+        if (filename && ![filename isEqualToString:@""])
         {
             Event *event = [[INUDataManager sharedInstance] getEventById:_bookmarkToEdit.eventId];
             event.cover = filename;

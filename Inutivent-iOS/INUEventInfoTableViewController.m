@@ -160,7 +160,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row == 3)
+    if (indexPath.section == 1 && indexPath.row == 3)
     {
         return [_detailsCell requiredCellHeight];
     }
@@ -170,23 +170,25 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    if (_event && [_bookmark.userId isEqualToString:_event.owner])
+    return 4;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0 && !(_event && [_bookmark.userId isEqualToString:_event.owner]))
     {
-        return 4;
+        return 0;
     }
-    else
-    {
-        return 3;
-    }
+    return [super tableView:tableView numberOfRowsInSection:section];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1)
+    if (indexPath.section == 2)
     {
         [_nameField becomeFirstResponder];
     }
-    else if (indexPath.section == 2)
+    else if (indexPath.section == 3)
     {
         NSString *newStatus = @"U";
         if (indexPath.row == 0)
