@@ -1,2 +1,8 @@
+Version 2.0
+- Create and edit events
+- Upload cover photos
+- Invite people
+- Supports higher resolutions of iPhone 6
+
 Version 1.0
 - Initial release

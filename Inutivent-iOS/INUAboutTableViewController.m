@@ -42,6 +42,10 @@
     
     [INUUtils initBackground:self.tableView];
     
+    // correct table header size
+    CGRect newFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * 3 / 8);
+    self.tableView.tableHeaderView.frame = newFrame;
+    
     self.versionLabel.text = [self appVersion];
     
     self.moreInfoURLLabel.text = INUConfigSiteURL;

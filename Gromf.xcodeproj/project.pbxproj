@@ -54,6 +54,7 @@
 		9285E377197EA7AF00F3919B /* INUDateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9285E376197EA7AF00F3919B /* INUDateTableViewCell.m */; };
 		928D1DAE195B0BCA0087EAA5 /* INUWelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D1DAD195B0BCA0087EAA5 /* INUWelcomeViewController.m */; };
 		928D1DB1195B11650087EAA5 /* INUWelcomeContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928D1DB0195B11650087EAA5 /* INUWelcomeContentViewController.m */; };
+		92A07D0D19E0860D00099719 /* Launch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92A07D0C19E0860D00099719 /* Launch.storyboard */; };
 		92A27756195C8CEE0016CCDB /* introduction_event_comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A27752195C8CEE0016CCDB /* introduction_event_comments.png */; };
 		92A27758195C8CEE0016CCDB /* introduction_event_info.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A27754195C8CEE0016CCDB /* introduction_event_info.png */; };
 		92A2775C195C9AAF0016CCDB /* introduction_event_guests.png in Resources */ = {isa = PBXBuildFile; fileRef = 92A2775A195C9AAF0016CCDB /* introduction_event_guests.png */; };
@@ -175,6 +176,7 @@
 		928D1DAD195B0BCA0087EAA5 /* INUWelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUWelcomeViewController.m; sourceTree = "<group>"; };
 		928D1DAF195B11650087EAA5 /* INUWelcomeContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUWelcomeContentViewController.h; sourceTree = "<group>"; };
 		928D1DB0195B11650087EAA5 /* INUWelcomeContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUWelcomeContentViewController.m; sourceTree = "<group>"; };
+		92A07D0C19E0860D00099719 /* Launch.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Launch.storyboard; sourceTree = "<group>"; };
 		92A27752195C8CEE0016CCDB /* introduction_event_comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_event_comments.png; sourceTree = "<group>"; };
 		92A27754195C8CEE0016CCDB /* introduction_event_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_event_info.png; sourceTree = "<group>"; };
 		92A2775A195C9AAF0016CCDB /* introduction_event_guests.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_event_guests.png; sourceTree = "<group>"; };
@@ -450,6 +452,7 @@
 				92114B551961949A00039EFC /* introduction_welcome.png */,
 				92114B5919619FFB00039EFC /* introduction_email.png */,
 				921976C319729CFC0043A2CD /* welcome_bg.jpg */,
+				92A07D0C19E0860D00099719 /* Launch.storyboard */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -565,6 +568,7 @@
 				924883151955CD890034BFDD /* Version-History.txt in Resources */,
 				92BCB0331947478300A1E882 /* UI.xcassets in Resources */,
 				92A2775C195C9AAF0016CCDB /* introduction_event_guests.png in Resources */,
+				92A07D0D19E0860D00099719 /* Launch.storyboard in Resources */,
 				92114B5A19619FFB00039EFC /* introduction_email.png in Resources */,
 				92837580193A494D0000CCD6 /* Images.xcassets in Resources */,
 			);
@@ -779,7 +783,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Timo Kloss (2Q6EMPS7Y2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Inutivent-iOS/Gromf-Prefix.pch";
 				INFOPLIST_FILE = "Inutivent-iOS/Gromf-Info.plist";
@@ -796,7 +800,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Timo Kloss (2Q6EMPS7Y2)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Inutivent-iOS/Gromf-Prefix.pch";
 				INFOPLIST_FILE = "Inutivent-iOS/Gromf-Info.plist";

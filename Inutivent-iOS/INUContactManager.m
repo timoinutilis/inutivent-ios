@@ -139,7 +139,7 @@
     count = ABMultiValueGetCount(mailAddresses);
     CFRelease(mailAddresses);
     
-    return count;
+    return (int)count;
 }
 
 @end
