@@ -884,7 +884,7 @@ Inutilis Software</string>
             </objects>
             <point key="canvasLocation" x="1749" y="-748"/>
         </scene>
-        <!--Invite to Event-->
+        <!--Send Invitations-->
         <scene sceneID="JcA-4Q-P1O">
             <objects>
                 <viewController id="qB2-IX-wmP" customClass="INUInviteViewController" sceneMemberID="viewController">
@@ -897,7 +897,7 @@ Inutilis Software</string>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Invite to Event" id="bsB-v2-b2W">
+                    <navigationItem key="navigationItem" title="Send Invitations" id="bsB-v2-b2W">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="nWC-on-Cnv">
                             <connections>
                                 <action selector="onCancel:" destination="qB2-IX-wmP" id="BzM-lq-Oqt"/>

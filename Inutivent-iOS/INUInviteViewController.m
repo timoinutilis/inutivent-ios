@@ -16,22 +16,13 @@
 
 @property TITokenFieldView *tokenFieldView;
 @property UITextView *messageView;
+@property UITextView *messagePlaceholderView;
 @property CGFloat keyboardHeight;
 @property INUContactManager *contactManager;
 
 @end
 
 @implementation INUInviteViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -63,8 +54,17 @@
 	[_messageView setAutoresizingMask:UIViewAutoresizingNone];
 	[_messageView setDelegate:self];
 	[_messageView setFont:[UIFont systemFontOfSize:15]];
-	[_messageView setText:@"Some message. The whole view resizes as you type, not just the text view."];
 	[_tokenFieldView.contentView addSubview:_messageView];
+    
+    CGRect placeholderRect = _tokenFieldView.contentView.bounds;
+    placeholderRect.size.height = 60;
+    _messagePlaceholderView = [[UITextView alloc] initWithFrame:placeholderRect];
+    _messagePlaceholderView.userInteractionEnabled = NO;
+    _messagePlaceholderView.backgroundColor = [UIColor clearColor];
+    _messagePlaceholderView.textColor = [UIColor lightGrayColor];
+    _messagePlaceholderView.text = @"Optional message. Will only be sent by e-mail and not saved.";
+    _messagePlaceholderView.font = [UIFont systemFontOfSize:15];
+    [_tokenFieldView.contentView addSubview:_messagePlaceholderView];
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -86,17 +86,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - TITokenFieldDelegate
 
@@ -184,8 +173,10 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    CGSize textSize = [textView sizeThatFits:CGSizeMake([textView frame].size.width, FLT_MAX)];
+
 	CGFloat oldHeight = _tokenFieldView.frame.size.height - _tokenFieldView.tokenField.frame.size.height;
-	CGFloat newHeight = textView.contentSize.height + textView.font.lineHeight;
+	CGFloat newHeight = textSize.height + textView.font.lineHeight;
 	
 	CGRect newTextFrame = textView.frame;
 	newTextFrame.size = textView.contentSize;
@@ -203,6 +194,8 @@
 	[_tokenFieldView.contentView setFrame:newFrame];
 	[textView setFrame:newTextFrame];
 	[_tokenFieldView updateContentSize];
+    
+    _messagePlaceholderView.hidden = (textView.text.length > 0);
 }
 
 

@@ -271,9 +271,6 @@
 		922454841951CB2A0058FF50 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				92114B5219618BD600039EFC /* Localizable.strings */,
-				92114B481961841E00039EFC /* Main.storyboard */,
-				92E6D55F196427CC0096D562 /* Main-iPad.storyboard */,
 				922454851951CB4D0058FF50 /* INUSpinnerView.h */,
 				922454861951CB4D0058FF50 /* INUSpinnerView.m */,
 				92E6D55A19641A120096D562 /* INULabel.h */,
@@ -340,7 +337,7 @@
 				92C00D7A198A89DA00EAB7A3 /* Contacts */,
 				928375A9193A6F090000CCD6 /* Models */,
 				922454841951CB2A0058FF50 /* Views */,
-				92A5C31D1948AD5100D40CAC /* Controllers */,
+				92A5C31D1948AD5100D40CAC /* View Controllers */,
 				927F59DA193E2A0100EEEC62 /* INUDataManager.h */,
 				927F59DB193E2A0100EEEC62 /* INUDataManager.m */,
 				9283757C193A494D0000CCD6 /* INUAppDelegate.h */,
@@ -406,9 +403,12 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		92A5C31D1948AD5100D40CAC /* Controllers */ = {
+		92A5C31D1948AD5100D40CAC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				92114B481961841E00039EFC /* Main.storyboard */,
+				92E6D55F196427CC0096D562 /* Main-iPad.storyboard */,
+				92114B5219618BD600039EFC /* Localizable.strings */,
 				928375A3193A6C670000CCD6 /* INUEventsTableViewController.h */,
 				928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */,
 				92F68FD01950D0CE00DCACB7 /* INUEventTabBarController.h */,
@@ -436,7 +436,7 @@
 				92A98E201989495900BFA6FC /* INUInviteViewController.h */,
 				92A98E211989495900BFA6FC /* INUInviteViewController.m */,
 			);
-			name = Controllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		92BCB02B1947205F00A1E882 /* Images */ = {
