@@ -109,17 +109,37 @@
 
 - (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
+// iOS 8 callback
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person
+{
+    NSString *name = [INUContactManager nameOfPerson:person];
+    NSString *mail = [INUContactManager valueOfPerson:person property:kABPersonEmailProperty];
+    
+    [self addTokenForName:name mail:mail];
+}
+
+// iOS 8 callback
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    NSString *name = [INUContactManager nameOfPerson:person];
+    NSString *mail = [INUContactManager valueOfPerson:person property:property identifier:identifier];
+    
+    [self addTokenForName:name mail:mail];
+}
+
+
+// iOS 6/7 callback
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
     if ([INUContactManager countMailAddressesOfPerson:person] == 1)
     {
-        NSString *name = [INUContactManager nameOfPerson:person];
-        NSString *mail = [INUContactManager valueOfPerson:person property:kABPersonEmailProperty];
-        
-        [self addTokenForName:name mail:mail];
+        [self peoplePickerNavigationController:peoplePicker didSelectPerson:person];
 
         [self dismissViewControllerAnimated:YES completion:nil];
         return NO;
@@ -127,13 +147,11 @@
     return YES;
 }
 
+// iOS 6/7 callback
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
-    NSString *name = [INUContactManager nameOfPerson:person];
-    NSString *mail = [INUContactManager valueOfPerson:person property:property identifier:identifier];
-
-    [self addTokenForName:name mail:mail];
+    [self peoplePickerNavigationController:peoplePicker didSelectPerson:person property:property identifier:identifier];
 
     [self dismissViewControllerAnimated:YES completion:nil];
     return NO;
@@ -230,6 +248,12 @@
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.displayedProperties = @[[NSNumber numberWithInt:kABPersonEmailProperty]];
     picker.peoplePickerDelegate = self;
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+    {
+        picker.predicateForSelectionOfPerson = [NSPredicate predicateWithFormat:@"%K.@count == 1", ABPersonEmailAddressesProperty];
+        picker.predicateForSelectionOfProperty = [NSPredicate predicateWithValue:YES];
+    }
     
     [INUUtils initNavigationBar:picker.navigationBar];
     
