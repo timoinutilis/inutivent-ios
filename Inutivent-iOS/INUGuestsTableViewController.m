@@ -8,12 +8,15 @@
 
 #import "INUGuestsTableViewController.h"
 #import "INUEventTabBarController.h"
+#import "INUInviteViewController.h"
 #import "INUDataManager.h"
 #import "Bookmark.h"
 #import "User.h"
 #import "Event.h"
 #import "INUListSection.h"
 #import "INUUtils.h"
+
+static NSString *const INUGuestsInvite = @"INUGuestsInvite";
 
 @interface INUGuestsTableViewController ()
 
@@ -69,6 +72,12 @@
 {
     _anybodyHasntSeen = NO;
     _guestSections = [[NSMutableArray alloc] init];
+    
+    if ([_bookmark.ownerUserId isEqualToString:_bookmark.userId])
+    {
+        [_guestSections addObject:[[INUListSection alloc] initWithTitle:nil array:@[INUGuestsInvite]]];
+    }
+    
     [self addGuestsWithStatus:UserStatusAttending title:NSLocalizedString(@"Going", nil)];
     [self addGuestsWithStatus:UserStatusMaybeAttending title:NSLocalizedString(@"Maybe Going", nil)];
     [self addGuestsWithStatus:UserStatusNotAttending title:NSLocalizedString(@"Not Going", nil)];
@@ -136,25 +145,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
-    
-    User *user = [(INUListSection *)_guestSections[indexPath.section] array][indexPath.row];
-    NSString *label = user.name;
-    if ([user.userId isEqualToString:_event.owner])
+    id rowObject = [(INUListSection *)_guestSections[indexPath.section] array][indexPath.row];
+    UITableViewCell *cell = nil;
+    if (rowObject == INUGuestsInvite)
     {
-        label = [NSString stringWithFormat:@"%@ (%@)", label, NSLocalizedString(@"Host", nil)];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"InviteCell" forIndexPath:indexPath];
     }
-    if (user.visited == nil)
+    else
     {
-        label = [label stringByAppendingString:@" *"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"UserCell" forIndexPath:indexPath];
+        
+        User *user = rowObject;
+        NSString *label = user.name;
+        if ([user.userId isEqualToString:_event.owner])
+        {
+            label = [NSString stringWithFormat:@"%@ (%@)", label, NSLocalizedString(@"Host", nil)];
+        }
+        if (user.visited == nil)
+        {
+            label = [label stringByAppendingString:@" *"];
+        }
+        cell.textLabel.text = label;
     }
-    cell.textLabel.text = label;
     
     return cell;
 }
 
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -162,8 +178,15 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqualToString:@"GuestsInvite"])
+    {
+        UINavigationController *destViewController = segue.destinationViewController;
+        INUInviteViewController *inviteController = (INUInviteViewController *)destViewController.topViewController;
+        inviteController.bookmark = _bookmark;
+    }
+
 }
-*/
 
 #pragma mark - INUDataManager
 

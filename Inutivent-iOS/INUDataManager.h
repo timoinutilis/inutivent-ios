@@ -49,4 +49,5 @@ extern NSString *const INUEventLoadedNotification;
 extern NSString *const INUEventUpdatedNotification;
 extern NSString *const INUNewEventViewClosedNotification;
 extern NSString *const INUUserUpdatedNotification;
+extern NSString *const INUInvitedNotification;
 extern NSString *const INUAppToFrontNotification;

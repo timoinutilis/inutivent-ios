@@ -257,7 +257,7 @@
         {
             // Save changes to event
 
-            _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
+            _spinnerView = [INUSpinnerView addNewSpinnerToView:self.navigationController.view transparent:YES];
 
             Event *event = [[INUDataManager sharedInstance] getEventById:_bookmarkToEdit.eventId];
             event.title = _titleCell.textField.text;
@@ -290,7 +290,7 @@
         {
             // Create new event
 
-            _spinnerView = [INUSpinnerView addNewSpinnerToView:self.view];
+            _spinnerView = [INUSpinnerView addNewSpinnerToView:self.navigationController.view transparent:YES];
             
             NSDictionary *params = @{@"name": _nameCell.textField.text,
                                      @"mail": _mailCell.textField.text,

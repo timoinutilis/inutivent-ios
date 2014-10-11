@@ -677,7 +677,7 @@ Inutilis Software</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="O7P-yd-LCa" kind="modal" id="naq-pD-bQp"/>
+                                            <segue destination="O7P-yd-LCa" kind="modal" identifier="Invite" id="naq-pD-bQp"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1018,12 +1018,12 @@ Inutilis Software</string>
         <scene sceneID="ZvV-tp-6kw">
             <objects>
                 <tableViewController storyboardIdentifier="EventGuests" automaticallyAdjustsScrollViewInsets="NO" id="nbx-xv-1TR" customClass="INUGuestsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="3BH-Cd-8vv">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="3BH-Cd-8vv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" textLabel="5FI-Ff-QSi" style="IBUITableViewCellStyleDefault" id="yWo-4l-wYs">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" textLabel="5FI-Ff-QSi" style="IBUITableViewCellStyleDefault" id="yWo-4l-wYs">
                                 <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yWo-4l-wYs" id="5Cy-Ns-HOV">
@@ -1039,6 +1039,26 @@ Inutilis Software</string>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InviteCell" textLabel="rqK-fa-7L9" style="IBUITableViewCellStyleDefault" id="XzL-o9-btq">
+                                <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XzL-o9-btq" id="WzH-nv-BQR">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Invite" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rqK-fa-7L9">
+                                            <rect key="frame" x="15" y="0.0" width="290" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="O7P-yd-LCa" kind="modal" identifier="GuestsInvite" id="LJU-Np-Gj4"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1112,7 +1132,8 @@ Inutilis Software</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="DBS-2j-a2K"/>
+        <segue reference="LJU-Np-Gj4"/>
+        <segue reference="cD6-PU-1ka"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.10588235294117647" green="0.43529411764705883" blue="0.55686274509803924" alpha="1" colorSpace="deviceRGB"/>
 </document>

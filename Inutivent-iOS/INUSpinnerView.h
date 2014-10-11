@@ -11,6 +11,7 @@
 @interface INUSpinnerView : UIView
 
 + (INUSpinnerView *)addNewSpinnerToView:(UIView *)superView;
++ (INUSpinnerView *)addNewSpinnerToView:(UIView *)superView transparent:(BOOL)transparent;
 
 - (void)showErrorWithTitle:(NSString *)title message:(NSString *)message;
 

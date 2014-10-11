@@ -264,6 +264,19 @@ static INUDataManager *_sharedInstance;
             
             [[NSNotificationCenter defaultCenter] postNotificationName:INUEventSavedNotification object:self userInfo:nil];
         }
+        else if ([service isEqualToString:INUServiceInvite])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:INUInvitedNotification object:self userInfo:dataDict];
+            NSArray *users = dataDict[@"users"];
+            if (users)
+            {
+                NSString *eventId = paramsDict[@"event_id"];
+                Event *event = [self getEventById:eventId];
+                [event parseFromDictionary:@{@"users":users}];
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:INUEventLoadedNotification object:self userInfo:@{@"eventId": eventId}];
+            }
+        }
     }
 }
 
@@ -337,4 +350,5 @@ NSString *const INUEventLoadedNotification = @"INUEventLoaded";
 NSString *const INUEventUpdatedNotification = @"INUEventUpdated";
 NSString *const INUNewEventViewClosedNotification = @"INUNewEventViewClosed";
 NSString *const INUUserUpdatedNotification = @"INUUserUpdated";
+NSString *const INUInvitedNotification = @"INUInvited";
 NSString *const INUAppToFrontNotification = @"INUAppToFront";

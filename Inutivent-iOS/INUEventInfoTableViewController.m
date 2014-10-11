@@ -19,6 +19,7 @@
 #import "INUConstants.h"
 #import "INUTextTableViewCell.h"
 #import "INUEditTableViewController.h"
+#import "INUInviteViewController.h"
 
 @interface INUEventInfoTableViewController ()
 
@@ -243,6 +244,12 @@
         UINavigationController *destViewController = segue.destinationViewController;
         INUEditTableViewController *editController = (INUEditTableViewController *)destViewController.topViewController;
         editController.bookmarkToEdit = _bookmark;
+    }
+    else if ([segue.identifier isEqualToString:@"Invite"])
+    {
+        UINavigationController *destViewController = segue.destinationViewController;
+        INUInviteViewController *inviteController = (INUInviteViewController *)destViewController.topViewController;
+        inviteController.bookmark = _bookmark;
     }
 }
 

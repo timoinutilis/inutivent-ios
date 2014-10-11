@@ -10,6 +10,10 @@
 #import "INUUtils.h"
 #import "INUContactManager.h"
 #import "INUContact.h"
+#import "INUDataManager.h"
+#import "INUSpinnerView.h"
+#import "INUConstants.h"
+#import "Bookmark.h"
 #import <AddressBook/AddressBook.h>
 
 @interface INUInviteViewController ()
@@ -19,6 +23,7 @@
 @property UITextView *messagePlaceholderView;
 @property CGFloat keyboardHeight;
 @property INUContactManager *contactManager;
+@property INUSpinnerView *spinnerView;
 
 @end
 
@@ -41,8 +46,8 @@
 	[_tokenFieldView setShouldSortResults:NO];
 	[_tokenFieldView.tokenField addTarget:self action:@selector(tokenFieldFrameDidChange:) forControlEvents:(UIControlEvents)TITokenFieldControlEventFrameDidChange];
 	[_tokenFieldView.tokenField setTokenizingCharacters:[NSCharacterSet characterSetWithCharactersInString:@",;"]]; // Default is a comma
-    [_tokenFieldView.tokenField setPromptText:@"To:"];
-	[_tokenFieldView.tokenField setPlaceholder:@"Type a name"];
+    [_tokenFieldView.tokenField setPromptText:NSLocalizedString(@"To:", nil)];
+	[_tokenFieldView.tokenField setPlaceholder:NSLocalizedString(@"Type a name", nil)];
 	
 	UIButton * addButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
 	[addButton addTarget:self action:@selector(showContactsPicker:) forControlEvents:UIControlEventTouchUpInside];
@@ -62,7 +67,7 @@
     _messagePlaceholderView.userInteractionEnabled = NO;
     _messagePlaceholderView.backgroundColor = [UIColor clearColor];
     _messagePlaceholderView.textColor = [UIColor lightGrayColor];
-    _messagePlaceholderView.text = @"Optional message. Will only be sent by e-mail and not saved.";
+    _messagePlaceholderView.text = NSLocalizedString(@"Optional message. Will only be sent by e-mail and not saved.", nil);
     _messagePlaceholderView.font = [UIFont systemFontOfSize:15];
     [_tokenFieldView.contentView addSubview:_messagePlaceholderView];
 	
@@ -72,6 +77,13 @@
     [_contactManager updateContacts:^{
         [_tokenFieldView setSourceArray:_contactManager.contacts];
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -85,6 +97,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)removeSpinner
+{
+    if (_spinnerView)
+    {
+        [_spinnerView removeFromSuperview];
+        _spinnerView = nil;
+    }
 }
 
 #pragma mark - TITokenFieldDelegate
@@ -221,21 +242,48 @@
 
 - (IBAction)onDone:(id)sender
 {
-    NSArray *tokens = _tokenFieldView.tokenField.tokenObjects;
-    for (int i = 0; i < [tokens count]; i++)
-    {
-        id token = tokens[i];
-        if ([token isKindOfClass:[INUContact class]])
-        {
-            NSLog(@"contact: %@", ((INUContact *)token).mail);
-        }
-        else
-        {
-            NSLog(@"text: %@", token);
-        }
-    }
+    [self.view endEditing:YES];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSArray *tokens = _tokenFieldView.tokenField.tokenObjects;
+    
+    if (tokens.count == 0)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Please add at least one recipient.", nil) message:nil delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+        [alert show];
+    }
+    else
+    {
+        _spinnerView = [INUSpinnerView addNewSpinnerToView:self.navigationController.view transparent:YES];
+        
+        NSMutableArray *mails = [NSMutableArray array];
+        for (int i = 0; i < [tokens count]; i++)
+        {
+            id token = tokens[i];
+            if ([token isKindOfClass:[INUContact class]])
+            {
+                INUContact *contact = token;
+                [mails addObject:[NSString stringWithFormat:@"%@ <%@>", contact.name, contact.mail]];
+            }
+            else
+            {
+                [mails addObject:(NSString*)token];
+            }
+        }
+        
+        NSString *appLocale = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+        
+        NSDictionary *params = @{@"event_id": _bookmark.eventId,
+                                 @"user_id": _bookmark.userId,
+                                 @"mails": [mails componentsJoinedByString:@","],
+                                 @"information": _messageView.text,
+                                 @"reply_to": @"",
+                                 @"locale": appLocale};
+
+        [[INUDataManager sharedInstance] requestFromServer:INUServiceInvite params:params info:nil onError:^BOOL(ServiceError *error) {
+            [self removeSpinner];
+            return NO;
+        }];
+    }
 }
 
 - (IBAction)onCancel:(id)sender
@@ -258,6 +306,33 @@
     [INUUtils initNavigationBar:picker.navigationBar];
     
     [self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)receivedNotification:(NSNotification *)notification
+{
+    if (notification.name == INUInvitedNotification)
+    {
+        NSDictionary *data = notification.userInfo;
+        NSArray *failedMails = data[@"failed"];
+        if (failedMails.count > 0)
+        {
+            [self removeSpinner];
+            
+            [_tokenFieldView.tokenField removeAllTokens];
+            _tokenFieldView.tokenField.text = [failedMails componentsJoinedByString:@","];
+            [_tokenFieldView.tokenField tokenizeText];
+            
+            int numSent = [data[@"num_sent"] intValue];
+            NSString *message = [NSString stringWithFormat:NSLocalizedString(@"%d invitation(s) sent successfully. You can correct now the other addresses and try again.", nil), numSent];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Some Invitations Failed", nil) message:message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+            [alert show];
+        }
+        else
+        {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
 }
 
 @end

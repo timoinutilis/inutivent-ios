@@ -12,6 +12,7 @@
 
 @property UIActivityIndicatorView *indicator;
 @property UITextView *messageTextView;
+@property UIView *backgroundView;
 
 @end
 
@@ -23,9 +24,14 @@
     if (self)
     {
         // Initialization code
-        UIImage *image = [UIImage imageNamed:@"paper"];
-        self.backgroundColor = [UIColor colorWithPatternImage:image];
+        
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        
+        UIImage *image = [UIImage imageNamed:@"paper"];
+        _backgroundView = [[UIView alloc] initWithFrame:frame];
+        _backgroundView.backgroundColor = [UIColor colorWithPatternImage:image];
+        _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [self addSubview:_backgroundView];
         
         _indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
         [self addSubview:_indicator];
@@ -36,9 +42,18 @@
 
 + (INUSpinnerView *)addNewSpinnerToView:(UIView *)superView
 {
+    return [INUSpinnerView addNewSpinnerToView:superView transparent:NO];
+}
+
++ (INUSpinnerView *)addNewSpinnerToView:(UIView *)superView transparent:(BOOL)transparent
+{
     INUSpinnerView *view = [[INUSpinnerView alloc] initWithFrame:superView.bounds];
     if (view)
     {
+        if (transparent)
+        {
+            view.backgroundView.alpha = 0.75;
+        }
         [superView addSubview:view];
     }
     return view;

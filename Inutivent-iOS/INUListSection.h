@@ -11,8 +11,8 @@
 @interface INUListSection : NSObject
 
 @property NSString *title;
-@property NSMutableArray *array;
+@property NSArray *array;
 
-- (id)initWithTitle:(NSString *)title array:(NSMutableArray *)array;
+- (id)initWithTitle:(NSString *)title array:(NSArray *)array;
 
 @end
