@@ -61,17 +61,11 @@
                          ];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
+    
+    
+    // load or show current event
     Event *event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
-
+    
     if (event)
     {
         _selectedViewController = _viewControllers[0];
@@ -88,6 +82,11 @@
     {
         [self loadEvent];
     }
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning
