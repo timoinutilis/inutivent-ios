@@ -13,7 +13,9 @@
 
 @property NSString *name;
 @property NSString *mail;
+@property (nonatomic, readonly) NSString *fullMailAddress;
 
-- (id)initWithName:(NSString *)name mail:(NSString *)mail;
+- (instancetype)initWithName:(NSString *)name mail:(NSString *)mail;
+- (instancetype)initWithFullMailAddress:(NSString *)mailAddress;
 
 @end

@@ -66,7 +66,6 @@
 		92A98E221989495900BFA6FC /* INUInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A98E211989495900BFA6FC /* INUInviteViewController.m */; };
 		92B5E236195C41AB00D46F8C /* ExampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B5E235195C41AB00D46F8C /* ExampleEvent.m */; };
 		92BCB0331947478300A1E882 /* UI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BCB0321947478300A1E882 /* UI.xcassets */; };
-		92C00D74198A3B3400EAB7A3 /* TITokenField.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D73198A3B3400EAB7A3 /* TITokenField.m */; };
 		92C00D77198A431700EAB7A3 /* INUContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D76198A431700EAB7A3 /* INUContactManager.m */; };
 		92C00D79198A57BD00EAB7A3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C00D78198A57BD00EAB7A3 /* AddressBook.framework */; };
 		92C00D7D198A8A6400EAB7A3 /* INUContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D7C198A8A6400EAB7A3 /* INUContact.m */; };
@@ -195,8 +194,6 @@
 		92B5E234195C41AB00D46F8C /* ExampleEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleEvent.h; sourceTree = "<group>"; };
 		92B5E235195C41AB00D46F8C /* ExampleEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleEvent.m; sourceTree = "<group>"; };
 		92BCB0321947478300A1E882 /* UI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UI.xcassets; sourceTree = "<group>"; };
-		92C00D72198A3B3400EAB7A3 /* TITokenField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TITokenField.h; sourceTree = "<group>"; };
-		92C00D73198A3B3400EAB7A3 /* TITokenField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TITokenField.m; sourceTree = "<group>"; };
 		92C00D75198A431700EAB7A3 /* INUContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUContactManager.h; sourceTree = "<group>"; };
 		92C00D76198A431700EAB7A3 /* INUContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUContactManager.m; sourceTree = "<group>"; };
 		92C00D78198A57BD00EAB7A3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -283,8 +280,6 @@
 				924F0FD91981523A0076FDDF /* INUInputTableViewCell.m */,
 				924F0FDB19815B010076FDDF /* INUTextTableViewCell.h */,
 				924F0FDC19815B010076FDDF /* INUTextTableViewCell.m */,
-				92C00D72198A3B3400EAB7A3 /* TITokenField.h */,
-				92C00D73198A3B3400EAB7A3 /* TITokenField.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -604,7 +599,6 @@
 				92CB1F29194791A100309850 /* INUListSection.m in Sources */,
 				92676C75197179E2005ADA19 /* INUSplitViewController.m in Sources */,
 				92A5C3201948AD9B00D40CAC /* INUPostsTableViewController.m in Sources */,
-				92C00D74198A3B3400EAB7A3 /* TITokenField.m in Sources */,
 				928D1DB1195B11650087EAA5 /* INUWelcomeContentViewController.m in Sources */,
 				924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */,
 				9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */,

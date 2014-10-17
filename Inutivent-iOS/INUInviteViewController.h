@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/ABPeoplePickerNavigationController.h>
-#import "TITokenField.h"
 
 @class Bookmark;
 
-@interface INUInviteViewController : UIViewController <TITokenFieldDelegate, UITextViewDelegate, ABPeoplePickerNavigationControllerDelegate>
+@interface INUInviteViewController : UITableViewController <UITextViewDelegate, ABPeoplePickerNavigationControllerDelegate>
 
 @property Bookmark *bookmark;
 
