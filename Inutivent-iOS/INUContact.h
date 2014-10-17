@@ -18,4 +18,9 @@
 - (instancetype)initWithName:(NSString *)name mail:(NSString *)mail;
 - (instancetype)initWithFullMailAddress:(NSString *)mailAddress;
 
++ (NSString *)nameOfPerson:(ABRecordRef)person;
++ (NSString *)valueOfPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier;
++ (NSString *)valueOfPerson:(ABRecordRef)person property:(ABPropertyID)property;
++ (int)countMailAddressesOfPerson:(ABRecordRef)person;
+
 @end

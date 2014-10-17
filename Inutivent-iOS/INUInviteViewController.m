@@ -8,7 +8,6 @@
 
 #import "INUInviteViewController.h"
 #import "INUUtils.h"
-#import "INUContactManager.h"
 #import "INUContact.h"
 #import "INUDataManager.h"
 #import "INUSpinnerView.h"
@@ -131,8 +130,8 @@
 // iOS 8 callback
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person
 {
-    NSString *name = [INUContactManager nameOfPerson:person];
-    NSString *mail = [INUContactManager valueOfPerson:person property:kABPersonEmailProperty];
+    NSString *name = [INUContact nameOfPerson:person];
+    NSString *mail = [INUContact valueOfPerson:person property:kABPersonEmailProperty];
     
     [self addRecipientWithName:name mail:mail];
 }
@@ -140,8 +139,8 @@
 // iOS 8 callback
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
-    NSString *name = [INUContactManager nameOfPerson:person];
-    NSString *mail = [INUContactManager valueOfPerson:person property:property identifier:identifier];
+    NSString *name = [INUContact nameOfPerson:person];
+    NSString *mail = [INUContact valueOfPerson:person property:property identifier:identifier];
     
     [self addRecipientWithName:name mail:mail];
 }
@@ -150,7 +149,7 @@
 // iOS 6/7 callback
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
-    if ([INUContactManager countMailAddressesOfPerson:person] == 1)
+    if ([INUContact countMailAddressesOfPerson:person] == 1)
     {
         [self peoplePickerNavigationController:peoplePicker didSelectPerson:person];
 

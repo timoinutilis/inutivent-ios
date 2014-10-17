@@ -66,7 +66,6 @@
 		92A98E221989495900BFA6FC /* INUInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A98E211989495900BFA6FC /* INUInviteViewController.m */; };
 		92B5E236195C41AB00D46F8C /* ExampleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B5E235195C41AB00D46F8C /* ExampleEvent.m */; };
 		92BCB0331947478300A1E882 /* UI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BCB0321947478300A1E882 /* UI.xcassets */; };
-		92C00D77198A431700EAB7A3 /* INUContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D76198A431700EAB7A3 /* INUContactManager.m */; };
 		92C00D79198A57BD00EAB7A3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C00D78198A57BD00EAB7A3 /* AddressBook.framework */; };
 		92C00D7D198A8A6400EAB7A3 /* INUContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D7C198A8A6400EAB7A3 /* INUContact.m */; };
 		92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */; };
@@ -194,8 +193,6 @@
 		92B5E234195C41AB00D46F8C /* ExampleEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleEvent.h; sourceTree = "<group>"; };
 		92B5E235195C41AB00D46F8C /* ExampleEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleEvent.m; sourceTree = "<group>"; };
 		92BCB0321947478300A1E882 /* UI.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = UI.xcassets; sourceTree = "<group>"; };
-		92C00D75198A431700EAB7A3 /* INUContactManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUContactManager.h; sourceTree = "<group>"; };
-		92C00D76198A431700EAB7A3 /* INUContactManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUContactManager.m; sourceTree = "<group>"; };
 		92C00D78198A57BD00EAB7A3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		92C00D7B198A8A6400EAB7A3 /* INUContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUContact.h; sourceTree = "<group>"; };
 		92C00D7C198A8A6400EAB7A3 /* INUContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUContact.m; sourceTree = "<group>"; };
@@ -455,8 +452,6 @@
 		92C00D7A198A89DA00EAB7A3 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				92C00D75198A431700EAB7A3 /* INUContactManager.h */,
-				92C00D76198A431700EAB7A3 /* INUContactManager.m */,
 				92C00D7B198A8A6400EAB7A3 /* INUContact.h */,
 				92C00D7C198A8A6400EAB7A3 /* INUContact.m */,
 			);
@@ -605,7 +600,6 @@
 				9283757A193A494D0000CCD6 /* main.m in Sources */,
 				9222DF6719D9B5A3009C5A11 /* AFURLConnectionOperation.m in Sources */,
 				92A98E1C198902F200BFA6FC /* ServiceError.m in Sources */,
-				92C00D77198A431700EAB7A3 /* INUContactManager.m in Sources */,
 				9285E374197EA36900F3919B /* INUEditTableViewController.m in Sources */,
 				927F59E4193E56B600EEEC62 /* Bookmark.m in Sources */,
 				92A98E221989495900BFA6FC /* INUInviteViewController.m in Sources */,

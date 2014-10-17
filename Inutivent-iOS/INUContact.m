@@ -50,4 +50,66 @@
     return _mail;
 }
 
+#pragma mark - Person Utils
+
++ (NSString *)nameOfPerson:(ABRecordRef)person
+{
+    NSString *firstName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonFirstNameProperty));
+    NSString *lastName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonLastNameProperty));
+    
+    NSString *name = @"";
+    if (firstName && lastName)
+    {
+        name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    }
+    else if (firstName)
+    {
+        name = firstName;
+    }
+    else if (lastName)
+    {
+        name = lastName;
+    }
+    return name;
+}
+
++ (NSString *)valueOfPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
+{
+    NSString *value = nil;
+    ABMultiValueRef multiValue = ABRecordCopyValue(person, property);
+    if (multiValue)
+    {
+        CFIndex index = ABMultiValueGetIndexForIdentifier(multiValue, identifier);
+        value = (__bridge_transfer NSString *) ABMultiValueCopyValueAtIndex(multiValue, index);
+        CFRelease(multiValue);
+    }
+    return value;
+}
+
++ (NSString *)valueOfPerson:(ABRecordRef)person property:(ABPropertyID)property
+{
+    NSString *value = nil;
+    ABMultiValueRef multiValue = ABRecordCopyValue(person, property);
+    if (multiValue)
+    {
+        if (ABMultiValueGetCount(multiValue) > 0)
+        {
+            value = (__bridge_transfer NSString *) ABMultiValueCopyValueAtIndex(multiValue, 0);
+        }
+        CFRelease(multiValue);
+    }
+    return value;
+}
+
++ (int)countMailAddressesOfPerson:(ABRecordRef)person
+{
+    CFIndex count;
+    
+    ABMultiValueRef mailAddresses = ABRecordCopyValue(person, kABPersonEmailProperty);
+    count = ABMultiValueGetCount(mailAddresses);
+    CFRelease(mailAddresses);
+    
+    return (int)count;
+}
+
 @end
