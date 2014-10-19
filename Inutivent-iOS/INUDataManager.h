@@ -8,14 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class Bookmark;
-@class Event;
-@class ServiceError;
+@class Bookmark, Event, ServiceError, Contact;
 
 @interface INUDataManager : NSObject
 
 @property (readonly) NSMutableArray *bookmarks;
 @property (readonly) NSMutableDictionary *events;
+@property (readonly) Contact *userContact;
 
 + (INUDataManager *)sharedInstance;
 

@@ -16,6 +16,8 @@ typedef NS_ENUM(int, UserStatus)
     UserStatusMaybeAttending
 };
 
+extern NSString *const USER_NO_NAME;
+
 @interface User : NSObject
 
 @property NSString *userId;
@@ -26,5 +28,6 @@ typedef NS_ENUM(int, UserStatus)
 
 - (void)parseFromDictionary:(NSDictionary *)dict;
 - (UserStatus)parseStatus:(NSString *)status;
+- (BOOL)isNameUndefined;
 
 @end

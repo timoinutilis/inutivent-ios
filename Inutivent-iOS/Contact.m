@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Inutilis Software. All rights reserved.
 //
 
-#import "INUContact.h"
+#import "Contact.h"
 
-@implementation INUContact
+@implementation Contact
 
 - (instancetype)initWithName:(NSString *)name mail:(NSString *)mail
 {
@@ -39,6 +39,30 @@
         }
     }
     return self;
+}
+
+- (instancetype)initWithUserDefaults
+{
+    if (self = [super init])
+    {
+        _name = [[NSUserDefaults standardUserDefaults] stringForKey:@"userContactName"];
+        _mail = [[NSUserDefaults standardUserDefaults] stringForKey:@"userContactMail"];
+        if (!_name)
+        {
+            _name = @"";
+        }
+        if (!_mail)
+        {
+            _mail = @"";
+        }
+    }
+    return self;
+}
+
+- (void)saveUserDefaults
+{
+    [[NSUserDefaults standardUserDefaults] setObject:_name forKey:@"userContactName"];
+    [[NSUserDefaults standardUserDefaults] setObject:_mail forKey:@"userContactMail"];
 }
 
 - (NSString *)fullMailAddress

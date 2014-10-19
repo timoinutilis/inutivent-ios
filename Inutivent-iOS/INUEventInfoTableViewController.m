@@ -20,6 +20,7 @@
 #import "INUTextTableViewCell.h"
 #import "INUEditTableViewController.h"
 #import "INUInviteViewController.h"
+#import "Contact.h"
 
 @interface INUEventInfoTableViewController ()
 
@@ -74,6 +75,8 @@
     _detailsCell.parentTableView = self.tableView;
     _detailsCell.textView.editable = NO;
     
+    [self updateNamePlaceholder];
+    
     INUEventTabBarController *eventTabBarController = (INUEventTabBarController *)self.parentViewController;
     _bookmark = eventTabBarController.bookmark;
     _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
@@ -89,14 +92,19 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-/*
-- (void)viewDidAppear:(BOOL)animated
+
+- (void)updateNamePlaceholder
 {
-    [super viewDidAppear:animated];
-    [self.tableView layoutIfNeeded];
-    [self.tableView reloadData];
+    if ([INUDataManager sharedInstance].userContact.name.length > 0)
+    {
+        _nameField.placeholder = [INUDataManager sharedInstance].userContact.name;
+    }
+    else
+    {
+        _nameField.placeholder = NSLocalizedString(@"Enter your name", nil);
+    }
 }
-*/
+
 - (void)updateView
 {
     [self updateCoverImage];
@@ -151,7 +159,7 @@
 - (void)updateUserView
 {
     User *me = [self getMe];
-    self.nameField.text = [me.name isEqualToString:@"???"] ? @"" : me.name;
+    self.nameField.text = [me isNameUndefined] ? @"" : me.name;
     self.status1Cell.accessoryType = (me.status == UserStatusAttending) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     self.status2Cell.accessoryType = (me.status == UserStatusMaybeAttending) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     self.status3Cell.accessoryType = (me.status == UserStatusNotAttending) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
@@ -212,12 +220,20 @@
         User *me = [self getMe];
         me.status = [me parseStatus:newStatus];
         me.statusChanged = [[NSDate alloc] init];
-        [self updateUserView];
+        
+        NSMutableDictionary *paramsDict = [NSMutableDictionary dictionary];
+        paramsDict[@"event_id"] = _bookmark.eventId;
+        paramsDict[@"user_id"] = _bookmark.userId;
+        paramsDict[@"status"] = newStatus;
+        
+        if ([me isNameUndefined] && [INUDataManager sharedInstance].userContact.name.length > 0)
+        {
+            me.name = [INUDataManager sharedInstance].userContact.name;
+            paramsDict[@"name"] = me.name;
+        }
+        
         [[INUDataManager sharedInstance] notifyUserUpdate];
         
-        NSDictionary *paramsDict = @{@"event_id": _bookmark.eventId,
-                                     @"user_id": _bookmark.userId,
-                                     @"status": newStatus};
         [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateUser params:paramsDict info:nil onError:nil];
 
     }
@@ -262,7 +278,7 @@
     NSString *newName = self.nameField.text;
     if ([newName isEqualToString:@""])
     {
-        newName = @"???";
+        newName = USER_NO_NAME;
     }
     
     if (![newName isEqualToString:me.name])
@@ -275,6 +291,12 @@
                                      @"user_id": _bookmark.userId,
                                      @"name": newName};
         [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateUser params:paramsDict info:nil onError:nil];
+        
+        //update default user
+        [INUDataManager sharedInstance].userContact.name = self.nameField.text; // not me.name, should not be "???"
+        [[INUDataManager sharedInstance].userContact saveUserDefaults];
+        
+        [self updateNamePlaceholder];
     }
 }
 
@@ -288,6 +310,10 @@
         _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
         [self updateView];
         [self.tableView reloadData];
+    }
+    else if (notification.name == INUUserUpdatedNotification)
+    {
+        [self updateUserView];
     }
 }
 

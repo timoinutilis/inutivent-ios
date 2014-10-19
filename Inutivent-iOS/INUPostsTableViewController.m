@@ -15,6 +15,8 @@
 #import "INUDataManager.h"
 #import "INUUtils.h"
 #import "INUConstants.h"
+#import "User.h"
+#import "Contact.h"
 
 @interface INUPostsTableViewController ()
 
@@ -23,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *postButton;
 
 @property INUPostTableViewCell *layoutCell;
+@property BOOL notifyUserUpdateOnDisappear;
 
 @end
 
@@ -95,6 +98,12 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+    if (_notifyUserUpdateOnDisappear)
+    {
+        [[INUDataManager sharedInstance] notifyUserUpdate];
+        _notifyUserUpdateOnDisappear = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -208,6 +217,19 @@
         post.created = [[NSDate alloc] init];
         
         [_event.posts addObject:post];
+        
+        // save default name, if nothing saved yet.
+        User *me = [_event getUserWithId:_bookmark.userId];
+        if ([me isNameUndefined] && [INUDataManager sharedInstance].userContact.name.length > 0)
+        {
+            me.name = [INUDataManager sharedInstance].userContact.name;
+            _notifyUserUpdateOnDisappear = YES;
+            
+            NSDictionary *paramsDict = @{@"event_id": _bookmark.eventId,
+                                         @"user_id": _bookmark.userId,
+                                         @"name": me.name};
+            [[INUDataManager sharedInstance] requestFromServer:INUServiceUpdateUser params:paramsDict info:nil onError:nil];
+        }
         
         int row = (int)[_event.posts count] - 1;
         NSArray *indexPaths = @[[NSIndexPath indexPathForRow:row inSection:0]];

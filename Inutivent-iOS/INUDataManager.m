@@ -16,6 +16,7 @@
 #import "INUUtils.h"
 #import "ServiceError.h"
 #import "AFNetworking.h"
+#import "Contact.h"
 
 @implementation INUDataManager
 {
@@ -41,6 +42,7 @@ static INUDataManager *_sharedInstance;
     {
         _bookmarks = [[NSMutableArray alloc] init];
         _events = [[NSMutableDictionary alloc] init];
+        _userContact = [[Contact alloc] initWithUserDefaults];
     }
     return self;
 }

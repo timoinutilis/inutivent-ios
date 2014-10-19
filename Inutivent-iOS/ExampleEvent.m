@@ -40,7 +40,7 @@
         
         user = [[User alloc] init];
         user.userId = ExampleUserId;
-        user.name = @"???";
+        user.name = USER_NO_NAME;
         user.status = UserStatusUnknown;
         user.visited = [NSDate date];
         [self.users addObject:user];

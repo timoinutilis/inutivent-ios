@@ -8,7 +8,7 @@
 
 #import "INUInviteViewController.h"
 #import "INUUtils.h"
-#import "INUContact.h"
+#import "Contact.h"
 #import "INUDataManager.h"
 #import "INUSpinnerView.h"
 #import "INUConstants.h"
@@ -42,7 +42,7 @@
     _messageTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     _messageTextView.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     
-    _replyTextField.text = @"";
+    _replyTextField.text = [INUDataManager sharedInstance].userContact.mail;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
 }
@@ -50,6 +50,15 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // update default user
+    [INUDataManager sharedInstance].userContact.mail = _replyTextField.text;
+    [[INUDataManager sharedInstance].userContact saveUserDefaults];
 }
 
 - (void)removeSpinner
@@ -84,7 +93,7 @@
     UITableViewCell *cell;
     if (indexPath.section == 0)
     {
-        INUContact *contact = _recipients[indexPath.row];
+        Contact *contact = _recipients[indexPath.row];
         cell = [tableView dequeueReusableCellWithIdentifier:@"RecipientCell" forIndexPath:indexPath];
         if (contact.name)
         {
@@ -132,8 +141,8 @@
 // iOS 8 callback
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person
 {
-    NSString *name = [INUContact nameOfPerson:person];
-    NSString *mail = [INUContact valueOfPerson:person property:kABPersonEmailProperty];
+    NSString *name = [Contact nameOfPerson:person];
+    NSString *mail = [Contact valueOfPerson:person property:kABPersonEmailProperty];
     
     [self addRecipientWithName:name mail:mail];
 }
@@ -141,8 +150,8 @@
 // iOS 8 callback
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController*)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
-    NSString *name = [INUContact nameOfPerson:person];
-    NSString *mail = [INUContact valueOfPerson:person property:property identifier:identifier];
+    NSString *name = [Contact nameOfPerson:person];
+    NSString *mail = [Contact valueOfPerson:person property:property identifier:identifier];
     
     [self addRecipientWithName:name mail:mail];
 }
@@ -151,7 +160,7 @@
 // iOS 6/7 callback
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person
 {
-    if ([INUContact countMailAddressesOfPerson:person] == 1)
+    if ([Contact countMailAddressesOfPerson:person] == 1)
     {
         [self peoplePickerNavigationController:peoplePicker didSelectPerson:person];
 
@@ -173,10 +182,10 @@
 
 - (void)addRecipientWithName:(NSString *)name mail:(NSString *)mail
 {
-    INUContact *contact = [self findRecipientWithMail:mail];
+    Contact *contact = [self findRecipientWithMail:mail];
     if (!contact)
     {
-        contact = [[INUContact alloc] initWithName:name mail:mail];
+        contact = [[Contact alloc] initWithName:name mail:mail];
         [_recipients addObject:contact];
         [self.tableView beginUpdates];
         [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:(_recipients.count - 1) inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -184,10 +193,10 @@
     }
 }
 
-- (INUContact *)findRecipientWithMail:(NSString *)mail
+- (Contact *)findRecipientWithMail:(NSString *)mail
 {
     mail = mail.lowercaseString;
-    for (INUContact *contact in _recipients)
+    for (Contact *contact in _recipients)
     {
         if ([contact.mail.lowercaseString isEqualToString:mail])
         {
@@ -225,7 +234,7 @@
         _spinnerView = [INUSpinnerView addNewSpinnerToView:self.navigationController.view transparent:YES];
         
         NSMutableArray *mails = [NSMutableArray array];
-        for (INUContact *contact in _recipients)
+        for (Contact *contact in _recipients)
         {
             [mails addObject:contact.fullMailAddress];
         }
@@ -283,7 +292,7 @@
             [_recipients removeAllObjects];
             for (NSString *mail in failedMails)
             {
-                INUContact *contact = [[INUContact alloc] initWithFullMailAddress:mail];
+                Contact *contact = [[Contact alloc] initWithFullMailAddress:mail];
                 [_recipients addObject:contact];
             }
             [self.tableView reloadData];

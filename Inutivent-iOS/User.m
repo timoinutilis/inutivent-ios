@@ -9,6 +9,8 @@
 #import "User.h"
 #import "INUUtils.h"
 
+NSString *const USER_NO_NAME = @"???";
+
 @implementation User
 
 - (void)parseFromDictionary:(NSDictionary *)dict
@@ -35,6 +37,11 @@
         return UserStatusMaybeAttending;
     }
     return UserStatusUnknown;
+}
+
+- (BOOL)isNameUndefined
+{
+    return [_name isEqualToString:USER_NO_NAME];
 }
 
 @end

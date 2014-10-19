@@ -17,6 +17,7 @@
 #import "Bookmark.h"
 #import "INUConstants.h"
 #import "INUConfig.h"
+#import "Contact.h"
 
 @interface INUEditTableViewController ()
 
@@ -73,11 +74,13 @@
     
     _nameCell.textField.placeholder = NSLocalizedString(@"Enter your name", nil);
     _nameCell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
+    _nameCell.textField.text = [INUDataManager sharedInstance].userContact.name;
     
     _mailCell.textField.placeholder = NSLocalizedString(@"Enter your e-mail address", nil);
     _mailCell.textField.keyboardType = UIKeyboardTypeEmailAddress;
     _mailCell.textField.autocorrectionType = UITextAutocorrectionTypeNo;
     _mailCell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    _mailCell.textField.text = [INUDataManager sharedInstance].userContact.mail;
     
     if (_bookmarkToEdit)
     {
@@ -103,6 +106,16 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    // update default user
+    [INUDataManager sharedInstance].userContact.name = _nameCell.textField.text;
+    [INUDataManager sharedInstance].userContact.mail = _mailCell.textField.text;
+    [[INUDataManager sharedInstance].userContact saveUserDefaults];
 }
 
 - (void)didReceiveMemoryWarning
