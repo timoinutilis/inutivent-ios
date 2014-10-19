@@ -42,6 +42,8 @@
     _messageTextView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     _messageTextView.layer.backgroundColor = [[UIColor whiteColor] CGColor];
     
+    _replyTextField.text = @"";
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
 }
 
@@ -227,12 +229,13 @@
         {
             [mails addObject:contact.fullMailAddress];
         }
+        NSString *mailsString = [mails componentsJoinedByString:@","];
         
         NSString *appLocale = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
         
         NSDictionary *params = @{@"event_id": _bookmark.eventId,
                                  @"user_id": _bookmark.userId,
-                                 @"mails": [mails componentsJoinedByString:@","],
+                                 @"mails": mailsString,
                                  @"information": _messageTextView.text,
                                  @"reply_to": _replyTextField.text,
                                  @"locale": appLocale};
