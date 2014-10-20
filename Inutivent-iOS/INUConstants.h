@@ -12,6 +12,7 @@ extern NSString *const INUServiceGetEvent;
 extern NSString *const INUServiceUpdateEvent;
 extern NSString *const INUServiceCreateEvent;
 extern NSString *const INUServiceUploadCover;
+extern NSString *const INUServiceDeleteEvent;
 extern NSString *const INUServiceUpdateUser;
 extern NSString *const INUServicePost;
 extern NSString *const INUServiceInvite;

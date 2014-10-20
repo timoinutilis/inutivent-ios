@@ -113,24 +113,6 @@
 {
     [self addChildViewController:content];
     
-    // adjust scroll insets for content view
-/*    if ([content respondsToSelector:@selector(tableView)])
-    {
-        UITableView *contentTableView = (UITableView *)[content performSelector:@selector(tableView)];
-        
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
-        {
-            CGRect navBarFrame = self.navigationController.navigationBar.frame;
-            CGFloat topUIHeight = navBarFrame.origin.y + navBarFrame.size.height;
-            if (contentTableView.contentInset.top != topUIHeight)
-            {
-                UIEdgeInsets insets = UIEdgeInsetsMake(topUIHeight, 0.0, 0, 0.0);
-                contentTableView.contentInset = insets;
-                contentTableView.scrollIndicatorInsets = insets;
-            }
-        }
-    }*/
-    
     content.view.frame = self.view.bounds;
     [self.view insertSubview:content.view atIndex:0];
     [content didMoveToParentViewController:self];
@@ -184,6 +166,13 @@
         {
             _selectedViewController = _viewControllers[_tabControl.selectedSegmentIndex];
             [self displayContentController:_selectedViewController];
+        }
+    }
+    else if (notification.name == INUEventDeletedNotification)
+    {
+        if ([notification.userInfo[@"eventId"] isEqualToString:_bookmark.eventId])
+        {
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }

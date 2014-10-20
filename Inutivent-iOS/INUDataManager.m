@@ -116,6 +116,26 @@ static INUDataManager *_sharedInstance;
     [self saveBookmarks];
 }
 
+- (void)deleteBookmarksForEvent:(Event *)event
+{
+    int count = (int)[_bookmarks count];
+    BOOL anyChanged = NO;
+    for (int i = 0; i < count; i++)
+    {
+        Bookmark *bookmark = _bookmarks[i];
+        if ([bookmark.eventId isEqualToString:event.eventId])
+        {
+            anyChanged = YES;
+            [self deleteBookmark:bookmark];
+        }
+    }
+    if (anyChanged)
+    {
+        [self saveBookmarks];
+        [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarksDeletedNotification object:self userInfo:nil];
+    }
+}
+
 - (void)updateBookmarksForEvent:(Event *)event
 {
     int count = (int)[_bookmarks count];
@@ -279,6 +299,12 @@ static INUDataManager *_sharedInstance;
                 [[NSNotificationCenter defaultCenter] postNotificationName:INUEventLoadedNotification object:self userInfo:@{@"eventId": eventId}];
             }
         }
+        else if ([service isEqualToString:INUServiceDeleteEvent])
+        {
+            NSString *eventId = paramsDict[@"event_id"];
+            [self deleteBookmarksForEvent:[self getEventById:eventId]];
+            [[NSNotificationCenter defaultCenter] postNotificationName:INUEventDeletedNotification object:self userInfo:@{@"eventId": eventId}];
+        }
     }
 }
 
@@ -346,10 +372,12 @@ static INUDataManager *_sharedInstance;
 
 NSString *const INUBookmarkChangedNotification = @"INUBookmarksChanged";
 NSString *const INUBookmarkOpenedByURLNotification = @"INUBookmarkOpenedByURL";
+NSString *const INUBookmarksDeletedNotification = @"INUBookmarksDeleted";
 NSString *const INUEventCreatedNotification = @"INUEventCreated";
 NSString *const INUEventSavedNotification = @"INUEventSaved";
 NSString *const INUEventLoadedNotification = @"INUEventLoaded";
 NSString *const INUEventUpdatedNotification = @"INUEventUpdated";
+NSString *const INUEventDeletedNotification = @"INUEventDeleted";
 NSString *const INUNewEventViewClosedNotification = @"INUNewEventViewClosed";
 NSString *const INUUserUpdatedNotification = @"INUUserUpdated";
 NSString *const INUInvitedNotification = @"INUInvited";

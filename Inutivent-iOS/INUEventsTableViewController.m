@@ -377,6 +377,11 @@ typedef NS_ENUM(int, INUEventsAlertTag)
             }
         }
     }
+    else if (notification.name == INUBookmarksDeletedNotification)
+    {
+        [self updateSections];
+        [self.tableView reloadData];
+    }
     else if (   notification.name == INUBookmarkOpenedByURLNotification
              || notification.name == INUNewEventViewClosedNotification)
     {

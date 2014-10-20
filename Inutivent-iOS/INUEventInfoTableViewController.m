@@ -21,6 +21,7 @@
 #import "INUEditTableViewController.h"
 #import "INUInviteViewController.h"
 #import "Contact.h"
+#import "INUSpinnerView.h"
 
 @interface INUEventInfoTableViewController ()
 
@@ -38,6 +39,7 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *status3Cell;
 
 @property Event *event;
+@property INUSpinnerView *spinnerView;
 
 @end
 
@@ -91,6 +93,15 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)removeSpinner
+{
+    if (_spinnerView)
+    {
+        [_spinnerView removeFromSuperview];
+        _spinnerView = nil;
+    }
 }
 
 - (void)updateNamePlaceholder
@@ -197,7 +208,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 2)
+    if (indexPath.section == 0)
+    {
+        if (indexPath.row == 2)
+        {
+            // delete
+            NSString *title = [NSString stringWithFormat:NSLocalizedString(@"Do you really want to delete the event \"%@\"?", nil), _event.title];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:nil delegate:self cancelButtonTitle:NSLocalizedString(@"Delete", nil) otherButtonTitles:NSLocalizedString(@"Cancel", nil), nil];
+            [alert show];
+        }
+    }
+    else if (indexPath.section == 2)
     {
         [_nameField becomeFirstResponder];
     }
@@ -300,6 +321,23 @@
     }
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    // delete?
+    if (buttonIndex == 0)
+    {
+        _spinnerView = [INUSpinnerView addNewSpinnerToView:self.navigationController.view transparent:YES];
+        
+        NSDictionary *paramsDict = @{@"event_id": _bookmark.eventId,
+                                     @"user_id": _bookmark.userId};
+
+        [[INUDataManager sharedInstance] requestFromServer:INUServiceDeleteEvent params:paramsDict info:nil onError:^BOOL(ServiceError *error) {
+            [self removeSpinner];
+            return NO;
+        }];
+    }
+}
+
 #pragma mark - INUDataManager
 
 - (void)receivedNotification:(NSNotification *)notification
@@ -310,6 +348,13 @@
         _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
         [self updateView];
         [self.tableView reloadData];
+    }
+    else if (notification.name == INUEventDeletedNotification)
+    {
+        if ([notification.userInfo[@"eventId"] isEqualToString:_bookmark.eventId])
+        {
+            [self removeSpinner];
+        }
     }
     else if (notification.name == INUUserUpdatedNotification)
     {
