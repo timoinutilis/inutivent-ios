@@ -14,3 +14,5 @@ NSString *const INUConfigDeveloperURL = @"http://www.inutilis.com";
 NSString *const INUConfigDeveloperMail = @"support@inutilis.com";
 NSString *const INUConfigiTunesURL = @"itms-apps:itunes.apple.com/app/id899138813";
 int const INUConfigEventReloadTime = 60 * 60;
+int const INUConfigCoverMaxWidth = 1024;
+int const INUConfigCoverMaxHeight = 384;

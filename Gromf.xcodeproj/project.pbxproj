@@ -28,6 +28,7 @@
 		9248830F1955BDB20034BFDD /* INUAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9248830E1955BDB20034BFDD /* INUAboutTableViewController.m */; };
 		924883121955CCB80034BFDD /* INUVersionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */; };
 		924883151955CD890034BFDD /* Version-History.txt in Resources */ = {isa = PBXBuildFile; fileRef = 924883141955CD890034BFDD /* Version-History.txt */; };
+		924D12EE19F79198005625DE /* UIImage+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 924D12ED19F79198005625DE /* UIImage+Utils.m */; };
 		924F0FDA1981523A0076FDDF /* INUInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 924F0FD91981523A0076FDDF /* INUInputTableViewCell.m */; };
 		924F0FDD19815B010076FDDF /* INUTextTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 924F0FDC19815B010076FDDF /* INUTextTableViewCell.m */; };
 		9265B4A4196F2BD500FA8ED4 /* default_header.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9265B4A3196F2BD500FA8ED4 /* default_header.jpg */; };
@@ -131,6 +132,8 @@
 		924883101955CCB80034BFDD /* INUVersionHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUVersionHistoryViewController.h; sourceTree = "<group>"; };
 		924883111955CCB80034BFDD /* INUVersionHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUVersionHistoryViewController.m; sourceTree = "<group>"; };
 		924883141955CD890034BFDD /* Version-History.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Version-History.txt"; sourceTree = "<group>"; };
+		924D12EC19F79198005625DE /* UIImage+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Utils.h"; path = "Utils/UIImage+Utils.h"; sourceTree = "<group>"; };
+		924D12ED19F79198005625DE /* UIImage+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Utils.m"; path = "Utils/UIImage+Utils.m"; sourceTree = "<group>"; };
 		924F0FD81981523A0076FDDF /* INUInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUInputTableViewCell.h; sourceTree = "<group>"; };
 		924F0FD91981523A0076FDDF /* INUInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUInputTableViewCell.m; sourceTree = "<group>"; };
 		924F0FDB19815B010076FDDF /* INUTextTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUTextTableViewCell.h; sourceTree = "<group>"; };
@@ -289,6 +292,15 @@
 			name = Files;
 			sourceTree = "<group>";
 		};
+		924D12EB19F7914B005625DE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				924D12EC19F79198005625DE /* UIImage+Utils.h */,
+				924D12ED19F79198005625DE /* UIImage+Utils.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		92837561193A494D0000CCD6 = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +335,7 @@
 		92837573193A494D0000CCD6 /* Inutivent-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				924D12EB19F7914B005625DE /* Utils */,
 				9222DF4E19D9B5A3009C5A11 /* AFNetworking */,
 				924883131955CD610034BFDD /* Files */,
 				92BCB02B1947205F00A1E882 /* Images */,
@@ -613,6 +626,7 @@
 				9283757E193A494D0000CCD6 /* INUAppDelegate.m in Sources */,
 				9206DA45193F2A7900DA0F24 /* INUEventInfoTableViewController.m in Sources */,
 				92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */,
+				924D12EE19F79198005625DE /* UIImage+Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

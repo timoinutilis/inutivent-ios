@@ -18,6 +18,7 @@
 #import "INUConstants.h"
 #import "INUConfig.h"
 #import "Contact.h"
+#import "UIImage+Utils.h"
 
 @interface INUEditTableViewController ()
 
@@ -246,6 +247,8 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
+    image = [self scaledImage:image];
+    
     self.imageView.image = image;
     self.selectedCoverImage = image;
     
@@ -390,6 +393,24 @@
         
         [self dismissViewControllerAnimated:YES completion:nil];
     }
+}
+
+#pragma mark - Image Utils
+
+- (UIImage *)scaledImage:(UIImage *)sourceImage
+{
+    //scale down
+    CGFloat scaleX = INUConfigCoverMaxWidth / sourceImage.size.width;
+    CGFloat scaleY = INUConfigCoverMaxHeight / sourceImage.size.height;
+    CGFloat scale = MAX(scaleX, scaleY);
+    
+    if (scale < 1.0)
+    {
+        CGSize size = CGSizeMake(sourceImage.size.width * scale, sourceImage.size.height * scale);
+        UIImage *scaledImage = [sourceImage resizedImageWithSize:size];
+        return scaledImage;
+    }
+    return sourceImage;
 }
 
 @end
