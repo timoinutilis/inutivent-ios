@@ -22,6 +22,7 @@
 #import "INUInviteViewController.h"
 #import "Contact.h"
 #import "INUSpinnerView.h"
+#import "UIImageView+WebCache.h"
 
 @interface INUEventInfoTableViewController ()
 
@@ -45,24 +46,9 @@
 
 @implementation INUEventInfoTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [INUUtils initBackground:self.tableView];
     
@@ -136,23 +122,11 @@
     if (_event.cover && ![_event.cover isEqualToString:@""])
     {
         NSString *path = [NSString stringWithFormat:@"%@/uploads/%@/%@", INUConfigSiteURL, _event.eventId, _event.cover];
-        NSURL *url = [NSURL URLWithString:path];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            if (connectionError)
+        [_coverImage sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (error)
             {
                 // default image
                 _coverImage.image = [UIImage imageNamed:@"default_header.jpg"];
-            }
-            else
-            {
-                UIImage *image = [UIImage imageWithData:data];
-
-                dispatch_async( dispatch_get_main_queue(), ^(void) {
-                    _coverImage.image = image;
-                });
             }
         }];
     }
@@ -174,12 +148,6 @@
     self.status1Cell.accessoryType = (me.status == UserStatusAttending) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     self.status2Cell.accessoryType = (me.status == UserStatusMaybeAttending) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     self.status3Cell.accessoryType = (me.status == UserStatusNotAttending) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -266,7 +234,6 @@
 {
     return [_event getUserWithId:_bookmark.userId];
 }
-
 
 #pragma mark - Navigation
 

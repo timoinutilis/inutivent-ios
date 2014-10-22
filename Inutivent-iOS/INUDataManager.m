@@ -271,19 +271,29 @@ static INUDataManager *_sharedInstance;
             
             [[NSNotificationCenter defaultCenter] postNotificationName:INUEventCreatedNotification object:self userInfo:@{@"bookmark": bookmark}];
         }
-        else if (   [service isEqualToString:INUServiceUpdateEvent]
-                 || [service isEqualToString:INUServiceUploadCover] )
+        else if ([service isEqualToString:INUServiceUpdateEvent])
         {
-            NSString *filename = dataDict[@"filename"];
-            
-            if (filename && ![filename isEqualToString:@""])
+            NSDictionary *coverResult = dataDict[@"cover_result"];
+            if (coverResult)
             {
-                NSString *eventId = paramsDict[@"event_id"];
-                Event *event = [[INUDataManager sharedInstance] getEventById:eventId];
-                event.cover = filename;
-                [[INUDataManager sharedInstance] notifyEventUpdate];
+                NSString *coverErrorId = coverResult[@"error_id"];
+                NSString *coverError = coverResult[@"error"];
+                if (coverErrorId)
+                {
+                    ServiceError *error = [[ServiceError alloc] initWithErrorId:coverErrorId error:coverError];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:error.title message:error.message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+                    [alert show];
+                }
+                else
+                {
+                    [self updateCoverPhotoWithDict:coverResult eventId:paramsDict[@"event_id"]];
+                }
             }
-            
+            [[NSNotificationCenter defaultCenter] postNotificationName:INUEventSavedNotification object:self userInfo:nil];
+        }
+        else if ([service isEqualToString:INUServiceUploadCover])
+        {
+            [self updateCoverPhotoWithDict:dataDict eventId:paramsDict[@"event_id"]];
             [[NSNotificationCenter defaultCenter] postNotificationName:INUEventSavedNotification object:self userInfo:nil];
         }
         else if ([service isEqualToString:INUServiceInvite])
@@ -327,6 +337,17 @@ static INUDataManager *_sharedInstance;
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:error.title message:error.message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alert show];
+    }
+}
+
+- (void)updateCoverPhotoWithDict:(NSDictionary *)dict eventId:(NSString *)eventId
+{
+    NSString *filename = dict[@"filename"];
+    if (filename && ![filename isEqualToString:@""])
+    {
+        Event *event = [[INUDataManager sharedInstance] getEventById:eventId];
+        event.cover = filename;
+        [[INUDataManager sharedInstance] notifyEventUpdate];
     }
 }
 

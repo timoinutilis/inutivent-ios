@@ -19,6 +19,7 @@
 #import "INUConfig.h"
 #import "Contact.h"
 #import "UIImage+Utils.h"
+#import "UIImageView+WebCache.h"
 
 @interface INUEditTableViewController ()
 
@@ -37,24 +38,9 @@
 
 @implementation INUEditTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [INUUtils initNavigationBar:self.navigationController.navigationBar];
     [INUUtils initBackground:self.tableView];
@@ -119,12 +105,6 @@
     [[INUDataManager sharedInstance].userContact saveUserDefaults];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)removeSpinner
 {
     if (_spinnerView)
@@ -139,23 +119,11 @@
     if (event && event.cover && ![event.cover isEqualToString:@""])
     {
         NSString *path = [NSString stringWithFormat:@"%@/uploads/%@/%@", INUConfigSiteURL, event.eventId, event.cover];
-        NSURL *url = [NSURL URLWithString:path];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-        
-        [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            if (connectionError)
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            if (error)
             {
                 // default image
                 self.imageView.image = [UIImage imageNamed:@"default_header.jpg"];
-            }
-            else
-            {
-                UIImage *image = [UIImage imageWithData:data];
-                
-                dispatch_async( dispatch_get_main_queue(), ^(void) {
-                    self.imageView.image = image;
-                });
             }
         }];
     }
@@ -176,6 +144,7 @@
     }
     return UITableViewAutomaticDimension;
 }
+
 /*
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -187,15 +156,6 @@
     // Return the number of sections.
     return (_bookmarkToEdit) ? 3 : 4;
 }
-
-/*
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-*/
 
 #pragma mark - Actions
 
@@ -228,7 +188,6 @@
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         imagePicker.delegate = self;
-//        [INUUtils initNavigationBar:imagePicker.navigationBar];
         
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
@@ -238,7 +197,6 @@
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
         imagePicker.delegate = self;
-//        [INUUtils initNavigationBar:imagePicker.navigationBar];
         
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
@@ -358,16 +316,6 @@
     }
     return YES;
 }
-
-#pragma mark - Navigation
-/*
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - INUDataManager
 

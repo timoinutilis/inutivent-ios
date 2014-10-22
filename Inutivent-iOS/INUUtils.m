@@ -64,7 +64,6 @@
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
     {
         navigationBar.tintColor = [UIColor whiteColor];
-//        navigationBar.barStyle = UIBarStyleBlackOpaque;
         navigationBar.barTintColor = [INUUtils mainColor];
         navigationBar.translucent = NO;
         navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};

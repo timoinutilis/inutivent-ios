@@ -16,15 +16,6 @@
 
 @implementation INUVersionHistoryViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -34,12 +25,6 @@
     NSString *textFromFile = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
     
     self.textView.text = textFromFile;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
