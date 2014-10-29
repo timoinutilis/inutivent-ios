@@ -15,6 +15,7 @@
 #import "INUConfig.h"
 #import "INUConstants.h"
 #import "ServiceError.h"
+#import "ExampleEvent.h"
 
 @interface INUEventTabBarController ()
 
@@ -68,7 +69,7 @@
     }
     
     NSDate *now = [[NSDate alloc] init];
-    if (!event || [now timeIntervalSinceDate:event.lastUpdate] >= INUConfigEventReloadTime)
+    if (!event || [now timeIntervalSinceDate:event.lastUpdate] >= INUConfigEventReloadTime || _bookmark.hasNotification)
     {
         [self loadEvent];
     }
@@ -77,6 +78,21 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (![_bookmark.eventId isEqualToString:ExampleEventId])
+    {
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
+        {
+            // ask for permission to show notifications
+            UIUserNotificationType types = UIUserNotificationTypeBadge | UIUserNotificationTypeAlert;
+            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:types categories:nil]];
+        }
+    }
 }
 
 - (IBAction)onTapTab:(id)sender
@@ -140,16 +156,21 @@
 {
     if (notification.name == INUEventLoadedNotification)
     {
-        [self updateView];
-        if (_spinnerView)
+        if ([notification.userInfo[@"eventId"] isEqualToString:_bookmark.eventId])
         {
-            [_spinnerView removeFromSuperview];
-            _spinnerView = nil;
-        }
-        if (!_selectedViewController)
-        {
-            _selectedViewController = _viewControllers[_tabControl.selectedSegmentIndex];
-            [self displayContentController:_selectedViewController];
+            [[INUDataManager sharedInstance] onBookmarkOpened:_bookmark];
+
+            [self updateView];
+            if (_spinnerView)
+            {
+                [_spinnerView removeFromSuperview];
+                _spinnerView = nil;
+            }
+            if (!_selectedViewController)
+            {
+                _selectedViewController = _viewControllers[_tabControl.selectedSegmentIndex];
+                [self displayContentController:_selectedViewController];
+            }
         }
     }
     else if (notification.name == INUEventDeletedNotification)

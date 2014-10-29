@@ -19,6 +19,8 @@
         _userId = userId;
         _eventName = @"";
         _ownerUserId = @"";
+        _lastOpened = [NSDate date];
+        _hasNotification = NO;
     }
     return self;
 }
@@ -31,6 +33,8 @@
         _eventName = dict[@"eventName"];
         _ownerUserId = dict[@"ownerUserId"];
         _time = dict[@"time"];
+        _lastOpened = dict[@"lastOpened"] ? dict[@"lastOpened"] : [NSDate date];
+        _hasNotification = [dict[@"hasNotification"] boolValue];
     }
     return self;
 }
@@ -46,6 +50,8 @@
     {
         dict[@"time"] = _time;
     }
+    dict[@"lastOpened"] = _lastOpened;
+    dict[@"hasNotification"] = @(_hasNotification);
     return dict;
 }
 
@@ -56,6 +62,7 @@
         _eventName = event.title;
         _ownerUserId = event.owner;
         _time = event.time;
+        _lastOpened = [NSDate date];
         return YES;
     }
     return NO;

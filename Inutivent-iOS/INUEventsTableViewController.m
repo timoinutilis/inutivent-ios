@@ -30,6 +30,8 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 @property Bookmark *lastOpenedBookmark;
 @property NSIndexPath *tappedIndexPath;
 @property NSMutableArray *sections;
+@property UIImage *notificationImage;
+@property UIImage *emptyNotificationImage;
 
 // iPad
 @property (strong, nonatomic) INUSplitDetailViewController *detailViewController;
@@ -46,6 +48,9 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     [INUUtils initBackground:self.tableView];
 
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_white"]];
+    
+    _notificationImage = [self createNotificationImageEmpty:NO];
+    _emptyNotificationImage = [self createNotificationImageEmpty:YES];
     
     [self updateSections];
     
@@ -162,6 +167,23 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     return nil;
 }
 
+- (UIImage *)createNotificationImageEmpty:(BOOL)empty
+{
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(10, 10), NO, 0.0f);
+    
+    if (!empty)
+    {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetFillColorWithColor(context, [INUUtils buttonColor].CGColor);
+        CGContextFillEllipseInRect(context, CGRectMake(0, 0, 10, 10));
+    }
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -192,6 +214,14 @@ typedef NS_ENUM(int, INUEventsAlertTag)
         Bookmark *bookmark = item;
         cell.textLabel.text = bookmark.eventName.length > 0 ? bookmark.eventName : NSLocalizedString(@"Event", nil);
         cell.detailTextLabel.text = [NSDateFormatter localizedStringFromDate:bookmark.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterShortStyle];
+        if (bookmark.hasNotification)
+        {
+            cell.imageView.image = _notificationImage;
+        }
+        else
+        {
+            cell.imageView.image = _emptyNotificationImage;
+        }
     }
     else
     {

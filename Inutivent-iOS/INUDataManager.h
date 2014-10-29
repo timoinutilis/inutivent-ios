@@ -24,6 +24,7 @@
 - (Bookmark *)getBookmarkByEventId:(NSString *)eventId userId:(NSString *)userId;
 - (void)deleteBookmark:(Bookmark *)bookmark;
 - (void)updateBookmarksForEvent:(Event *)event;
+- (void)onBookmarkOpened:(Bookmark *)bookmark;
 
 - (BOOL)needsIntroduction;
 - (void)setIntroductionDone;
@@ -32,6 +33,7 @@
 
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict onError:(BOOL (^)(ServiceError *))errorBlock;
 - (void)requestFromServer:(NSString *)service params:(NSDictionary *)paramsDict info:(NSDictionary *)infoDict uploadData:(NSDictionary *)uploadDataDict onError:(BOOL (^)(ServiceError *))errorBlock;
+- (void)requestNotificationsWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler;
 
 - (void)notifyNewEventViewClosed:(Bookmark *)bookmark;
 - (void)notifyUserUpdate;

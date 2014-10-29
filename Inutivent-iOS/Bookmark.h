@@ -17,6 +17,8 @@
 @property NSString *eventName;
 @property NSString *ownerUserId;
 @property NSDate *time;
+@property NSDate *lastOpened;
+@property BOOL hasNotification;
 
 - (id)initWithEventId:(NSString *)eventId userId:(NSString *)userId;
 - (id)initFromDictionary:(NSDictionary *)dict;
