@@ -82,9 +82,9 @@
 		92BCB0331947478300A1E882 /* UI.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92BCB0321947478300A1E882 /* UI.xcassets */; };
 		92C00D79198A57BD00EAB7A3 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92C00D78198A57BD00EAB7A3 /* AddressBook.framework */; };
 		92C00D7D198A8A6400EAB7A3 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D7C198A8A6400EAB7A3 /* Contact.m */; };
+		92C5E55E1A7FE03400712ECE /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92C5E55D1A7FE03400712ECE /* Main-iPad.storyboard */; };
 		92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */; };
 		92CB1F29194791A100309850 /* INUListSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F28194791A100309850 /* INUListSection.m */; };
-		92D3ED701A7FD9120059BAC4 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D3ED6E1A7FD9120059BAC4 /* Main-iPad.storyboard */; };
 		92D3ED711A7FD9120059BAC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D3ED6F1A7FD9120059BAC4 /* Main.storyboard */; };
 		92D3ED741A7FDA520059BAC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92D3ED721A7FDA520059BAC4 /* Localizable.strings */; };
 		92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E0E2BB1940D1B100D9ACDD /* INUUtils.m */; };
@@ -236,11 +236,11 @@
 		92C00D78198A57BD00EAB7A3 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		92C00D7B198A8A6400EAB7A3 /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		92C00D7C198A8A6400EAB7A3 /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		92C5E55D1A7FE03400712ECE /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		92CB1F2419478A5800309850 /* INUGuestsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUGuestsTableViewController.h; sourceTree = "<group>"; };
 		92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUGuestsTableViewController.m; sourceTree = "<group>"; };
 		92CB1F27194791A100309850 /* INUListSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUListSection.h; sourceTree = "<group>"; };
 		92CB1F28194791A100309850 /* INUListSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUListSection.m; sourceTree = "<group>"; };
-		92D3ED6E1A7FD9120059BAC4 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
 		92D3ED6F1A7FD9120059BAC4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		92D3ED731A7FDA520059BAC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E0E2BA1940D1B100D9ACDD /* INUUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUUtils.h; sourceTree = "<group>"; };
@@ -490,8 +490,8 @@
 		92A5C31D1948AD5100D40CAC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				92D3ED6E1A7FD9120059BAC4 /* Main-iPad.storyboard */,
 				92D3ED6F1A7FD9120059BAC4 /* Main.storyboard */,
+				92C5E55D1A7FE03400712ECE /* Main-iPad.storyboard */,
 				928375A3193A6C670000CCD6 /* INUEventsTableViewController.h */,
 				928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */,
 				92F68FD01950D0CE00DCACB7 /* INUEventTabBarController.h */,
@@ -626,6 +626,7 @@
 			files = (
 				921976C419729CFC0043A2CD /* welcome_bg.jpg in Resources */,
 				92114B561961949A00039EFC /* introduction_welcome.png in Resources */,
+				92C5E55E1A7FE03400712ECE /* Main-iPad.storyboard in Resources */,
 				92A27756195C8CEE0016CCDB /* introduction_event_comments.png in Resources */,
 				92A27758195C8CEE0016CCDB /* introduction_event_info.png in Resources */,
 				92144D2E1971385900010BEB /* index_header.jpg in Resources */,
@@ -633,7 +634,6 @@
 				9265B4A4196F2BD500FA8ED4 /* default_header.jpg in Resources */,
 				924883151955CD890034BFDD /* Version-History.txt in Resources */,
 				92BCB0331947478300A1E882 /* UI.xcassets in Resources */,
-				92D3ED701A7FD9120059BAC4 /* Main-iPad.storyboard in Resources */,
 				92D3ED741A7FDA520059BAC4 /* Localizable.strings in Resources */,
 				92A2775C195C9AAF0016CCDB /* introduction_event_guests.png in Resources */,
 				92A07D0D19E0860D00099719 /* Launch.storyboard in Resources */,
