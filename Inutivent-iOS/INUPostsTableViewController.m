@@ -147,7 +147,7 @@
     CGFloat contentHeight = self.tableView.contentSize.height;
     CGFloat viewHeight = self.tableView.frame.size.height;
     
-    CGRect rawKeyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGRect rawKeyboardRect = [[notification.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     CGRect realKeyboardRect = [self.view.window convertRect:rawKeyboardRect toView:self.view.window.rootViewController.view];
     
     [self.tableView setContentOffset:CGPointMake(0.0f, contentHeight - viewHeight + realKeyboardRect.size.height) animated:YES];

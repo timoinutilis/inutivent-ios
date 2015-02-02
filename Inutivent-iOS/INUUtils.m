@@ -54,9 +54,10 @@
 
 + (void)initBackground:(UITableView *)tableView
 {
-    UIImage *image = [UIImage imageNamed:@"paper"];
-    tableView.backgroundView = nil;
-    tableView.backgroundColor = [UIColor colorWithPatternImage:image];
+//    UIImage *image = [UIImage imageNamed:@"paper"];
+//    tableView.backgroundView = nil;
+//    tableView.backgroundColor = [UIColor colorWithPatternImage:image];
+    tableView.backgroundColor = [UIColor colorWithWhite:0.99 alpha:1];
 }
 
 + (void)initNavigationBar:(UINavigationBar *)navigationBar

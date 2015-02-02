@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KWM-Dz-TqW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="KWM-Dz-TqW">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--Events Table View Controller-->
@@ -446,7 +447,7 @@
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="9B9-qU-N2Z">
-                                <string key="footerTitle">Copyright 2014 by Timo Kloss
+                                <string key="footerTitle">Copyright 2014-2015 by Timo Kloss
 Inutilis Software</string>
                                 <cells>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="G3n-up-Tt8" detailTextLabel="3gh-Mn-JgG" style="IBUITableViewCellStyleValue1" id="Qdt-wa-vOX">
@@ -1229,8 +1230,8 @@ Inutilis Software</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="DBS-2j-a2K"/>
         <segue reference="naq-pD-bQp"/>
-        <segue reference="cD6-PU-1ka"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.10588235294117647" green="0.43529411764705883" blue="0.55686274509803924" alpha="1" colorSpace="deviceRGB"/>
 </document>

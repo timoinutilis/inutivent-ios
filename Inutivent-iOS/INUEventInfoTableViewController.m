@@ -321,6 +321,7 @@
         if ([notification.userInfo[@"eventId"] isEqualToString:_bookmark.eventId])
         {
             [self removeSpinner];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
     else if (notification.name == INUUserUpdatedNotification)

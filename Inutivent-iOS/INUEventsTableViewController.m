@@ -45,7 +45,7 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     [INUUtils initNavigationBar:self.navigationController.navigationBar];
     [INUUtils initBackground:self.tableView];
 
-    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_white"]];
+    self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
     
     [self updateSections];
     

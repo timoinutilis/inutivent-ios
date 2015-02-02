@@ -152,13 +152,6 @@
             [self displayContentController:_selectedViewController];
         }
     }
-    else if (notification.name == INUEventDeletedNotification)
-    {
-        if ([notification.userInfo[@"eventId"] isEqualToString:_bookmark.eventId])
-        {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }
 }
 
 @end
