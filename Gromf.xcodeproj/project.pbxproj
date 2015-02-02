@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9206DA45193F2A7900DA0F24 /* INUEventInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9206DA44193F2A7900DA0F24 /* INUEventInfoTableViewController.m */; };
-		92114B461961841E00039EFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92114B481961841E00039EFC /* Main.storyboard */; };
-		92114B5419618BD600039EFC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92114B5219618BD600039EFC /* Localizable.strings */; };
 		92114B561961949A00039EFC /* introduction_welcome.png in Resources */ = {isa = PBXBuildFile; fileRef = 92114B551961949A00039EFC /* introduction_welcome.png */; };
 		92114B5A19619FFB00039EFC /* introduction_email.png in Resources */ = {isa = PBXBuildFile; fileRef = 92114B5919619FFB00039EFC /* introduction_email.png */; };
 		92114B5D1961AF6D00039EFC /* INUConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 92114B5C1961AF6D00039EFC /* INUConfig.m */; };
@@ -40,7 +38,6 @@
 		9283756E193A494D0000CCD6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9283756D193A494D0000CCD6 /* Foundation.framework */; };
 		92837570193A494D0000CCD6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9283756F193A494D0000CCD6 /* CoreGraphics.framework */; };
 		92837572193A494D0000CCD6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92837571193A494D0000CCD6 /* UIKit.framework */; };
-		92837578193A494D0000CCD6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92837576193A494D0000CCD6 /* InfoPlist.strings */; };
 		9283757A193A494D0000CCD6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 92837579193A494D0000CCD6 /* main.m */; };
 		9283757E193A494D0000CCD6 /* INUAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9283757D193A494D0000CCD6 /* INUAppDelegate.m */; };
 		92837580193A494D0000CCD6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9283757F193A494D0000CCD6 /* Images.xcassets */; };
@@ -87,9 +84,11 @@
 		92C00D7D198A8A6400EAB7A3 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 92C00D7C198A8A6400EAB7A3 /* Contact.m */; };
 		92CB1F2619478A5800309850 /* INUGuestsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */; };
 		92CB1F29194791A100309850 /* INUListSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1F28194791A100309850 /* INUListSection.m */; };
+		92D3ED701A7FD9120059BAC4 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D3ED6E1A7FD9120059BAC4 /* Main-iPad.storyboard */; };
+		92D3ED711A7FD9120059BAC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92D3ED6F1A7FD9120059BAC4 /* Main.storyboard */; };
+		92D3ED741A7FDA520059BAC4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 92D3ED721A7FDA520059BAC4 /* Localizable.strings */; };
 		92E0E2BC1940D1B100D9ACDD /* INUUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E0E2BB1940D1B100D9ACDD /* INUUtils.m */; };
 		92E6D55C19641A120096D562 /* INULabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92E6D55B19641A120096D562 /* INULabel.m */; };
-		92E6D55D196427CC0096D562 /* Main-iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92E6D55F196427CC0096D562 /* Main-iPad.storyboard */; };
 		92F68FD21950D0CE00DCACB7 /* INUEventTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92F68FD11950D0CE00DCACB7 /* INUEventTabBarController.m */; };
 /* End PBXBuildFile section */
 
@@ -106,17 +105,7 @@
 /* Begin PBXFileReference section */
 		9206DA43193F2A7900DA0F24 /* INUEventInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUEventInfoTableViewController.h; sourceTree = "<group>"; };
 		9206DA44193F2A7900DA0F24 /* INUEventInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUEventInfoTableViewController.m; sourceTree = "<group>"; };
-		92114B491961843400039EFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		92114B4A196185FA00039EFC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		92114B4B196185FA00039EFC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		92114B4C196185FA00039EFC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		92114B4D196185FE00039EFC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		92114B4E196185FE00039EFC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		92114B4F196185FE00039EFC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		92114B5319618BD600039EFC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92114B551961949A00039EFC /* introduction_welcome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_welcome.png; sourceTree = "<group>"; };
-		92114B571961967900039EFC /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		92114B581961967A00039EFC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92114B5919619FFB00039EFC /* introduction_email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduction_email.png; sourceTree = "<group>"; };
 		92114B5B1961AF6D00039EFC /* INUConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUConfig.h; sourceTree = "<group>"; };
 		92114B5C1961AF6D00039EFC /* INUConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUConfig.m; sourceTree = "<group>"; };
@@ -170,7 +159,6 @@
 		9283756F193A494D0000CCD6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		92837571193A494D0000CCD6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		92837575193A494D0000CCD6 /* Gromf-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Gromf-Info.plist"; sourceTree = "<group>"; };
-		92837577193A494D0000CCD6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		92837579193A494D0000CCD6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9283757B193A494D0000CCD6 /* Gromf-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Gromf-Prefix.pch"; sourceTree = "<group>"; };
 		9283757C193A494D0000CCD6 /* INUAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = INUAppDelegate.h; sourceTree = "<group>"; };
@@ -252,13 +240,13 @@
 		92CB1F2519478A5800309850 /* INUGuestsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUGuestsTableViewController.m; sourceTree = "<group>"; };
 		92CB1F27194791A100309850 /* INUListSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUListSection.h; sourceTree = "<group>"; };
 		92CB1F28194791A100309850 /* INUListSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUListSection.m; sourceTree = "<group>"; };
+		92D3ED6E1A7FD9120059BAC4 /* Main-iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Main-iPad.storyboard"; sourceTree = "<group>"; };
+		92D3ED6F1A7FD9120059BAC4 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		92D3ED731A7FDA520059BAC4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92E0E2BA1940D1B100D9ACDD /* INUUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUUtils.h; sourceTree = "<group>"; };
 		92E0E2BB1940D1B100D9ACDD /* INUUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUUtils.m; sourceTree = "<group>"; };
 		92E6D55A19641A120096D562 /* INULabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INULabel.h; sourceTree = "<group>"; };
 		92E6D55B19641A120096D562 /* INULabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INULabel.m; sourceTree = "<group>"; };
-		92E6D55E196427CC0096D562 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Base.lproj/Main-iPad.storyboard"; sourceTree = "<group>"; };
-		92E6D561196427D50096D562 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/Main-iPad.strings"; sourceTree = "<group>"; };
-		92E6D563196427DB0096D562 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/Main-iPad.strings"; sourceTree = "<group>"; };
 		92F68FD01950D0CE00DCACB7 /* INUEventTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INUEventTabBarController.h; sourceTree = "<group>"; };
 		92F68FD11950D0CE00DCACB7 /* INUEventTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INUEventTabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -412,8 +400,8 @@
 		92837574193A494D0000CCD6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				92D3ED721A7FDA520059BAC4 /* Localizable.strings */,
 				92837575193A494D0000CCD6 /* Gromf-Info.plist */,
-				92837576193A494D0000CCD6 /* InfoPlist.strings */,
 				92837579193A494D0000CCD6 /* main.m */,
 				9283757B193A494D0000CCD6 /* Gromf-Prefix.pch */,
 			);
@@ -502,9 +490,8 @@
 		92A5C31D1948AD5100D40CAC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				92114B481961841E00039EFC /* Main.storyboard */,
-				92E6D55F196427CC0096D562 /* Main-iPad.storyboard */,
-				92114B5219618BD600039EFC /* Localizable.strings */,
+				92D3ED6E1A7FD9120059BAC4 /* Main-iPad.storyboard */,
+				92D3ED6F1A7FD9120059BAC4 /* Main.storyboard */,
 				928375A3193A6C670000CCD6 /* INUEventsTableViewController.h */,
 				928375A4193A6C670000CCD6 /* INUEventsTableViewController.m */,
 				92F68FD01950D0CE00DCACB7 /* INUEventTabBarController.h */,
@@ -620,9 +607,6 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
-				es,
-				de,
 			);
 			mainGroup = 92837561193A494D0000CCD6;
 			productRefGroup = 9283756B193A494D0000CCD6 /* Products */;
@@ -640,18 +624,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92114B461961841E00039EFC /* Main.storyboard in Resources */,
 				921976C419729CFC0043A2CD /* welcome_bg.jpg in Resources */,
 				92114B561961949A00039EFC /* introduction_welcome.png in Resources */,
-				92114B5419618BD600039EFC /* Localizable.strings in Resources */,
 				92A27756195C8CEE0016CCDB /* introduction_event_comments.png in Resources */,
 				92A27758195C8CEE0016CCDB /* introduction_event_info.png in Resources */,
 				92144D2E1971385900010BEB /* index_header.jpg in Resources */,
-				92E6D55D196427CC0096D562 /* Main-iPad.storyboard in Resources */,
-				92837578193A494D0000CCD6 /* InfoPlist.strings in Resources */,
+				92D3ED711A7FD9120059BAC4 /* Main.storyboard in Resources */,
 				9265B4A4196F2BD500FA8ED4 /* default_header.jpg in Resources */,
 				924883151955CD890034BFDD /* Version-History.txt in Resources */,
 				92BCB0331947478300A1E882 /* UI.xcassets in Resources */,
+				92D3ED701A7FD9120059BAC4 /* Main-iPad.storyboard in Resources */,
+				92D3ED741A7FDA520059BAC4 /* Localizable.strings in Resources */,
 				92A2775C195C9AAF0016CCDB /* introduction_event_guests.png in Resources */,
 				92A07D0D19E0860D00099719 /* Launch.storyboard in Resources */,
 				92114B5A19619FFB00039EFC /* introduction_email.png in Resources */,
@@ -755,54 +738,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		92114B481961841E00039EFC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				92114B491961843400039EFC /* Base */,
-				92114B4A196185FA00039EFC /* es */,
-				92114B4D196185FE00039EFC /* de */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		92114B5219618BD600039EFC /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				92114B5319618BD600039EFC /* en */,
-				92114B571961967900039EFC /* es */,
-				92114B581961967A00039EFC /* de */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		92837576193A494D0000CCD6 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				92837577193A494D0000CCD6 /* en */,
-				92114B4B196185FA00039EFC /* es */,
-				92114B4E196185FE00039EFC /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		9283758F193A494D0000CCD6 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				92837590193A494D0000CCD6 /* en */,
-				92114B4C196185FA00039EFC /* es */,
-				92114B4F196185FE00039EFC /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		92E6D55F196427CC0096D562 /* Main-iPad.storyboard */ = {
+		92D3ED721A7FDA520059BAC4 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				92E6D55E196427CC0096D562 /* Base */,
-				92E6D561196427D50096D562 /* es */,
-				92E6D563196427DB0096D562 /* de */,
+				92D3ED731A7FDA520059BAC4 /* en */,
 			);
-			name = "Main-iPad.storyboard";
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

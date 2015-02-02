@@ -46,8 +46,9 @@
 
     self.dataSource = self;
     
-    UIImage *image = [UIImage imageNamed:@"paper"];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+//    UIImage *image = [UIImage imageNamed:@"paper"];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    self.view.backgroundColor = [UIColor whiteColor];
 
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];
