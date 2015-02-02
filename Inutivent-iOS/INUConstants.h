@@ -16,3 +16,4 @@ extern NSString *const INUServiceDeleteEvent;
 extern NSString *const INUServiceUpdateUser;
 extern NSString *const INUServicePost;
 extern NSString *const INUServiceInvite;
+extern NSString *const INUServiceNotifications;

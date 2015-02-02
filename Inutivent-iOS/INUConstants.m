@@ -16,3 +16,4 @@ NSString *const INUServiceDeleteEvent = @"deleteevent.php";
 NSString *const INUServiceUpdateUser = @"updateuser.php";
 NSString *const INUServicePost = @"post.php";
 NSString *const INUServiceInvite = @"invite.php";
+NSString *const INUServiceNotifications = @"notifications.php";

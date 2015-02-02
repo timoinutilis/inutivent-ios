@@ -22,12 +22,12 @@
 {
     int _numNumActivities;
     ExampleEvent *_exampleEvent;
+    int _oldNumNotifications;
 }
-
-static INUDataManager *_sharedInstance;
 
 + (INUDataManager *)sharedInstance
 {
+    static INUDataManager *_sharedInstance;
     if (_sharedInstance == nil)
     {
         _sharedInstance = [[super allocWithZone:NULL] init];
@@ -157,6 +157,38 @@ static INUDataManager *_sharedInstance;
     if (anyChanged)
     {
         [self saveBookmarks];
+    }
+}
+
+- (void)onBookmarkOpened:(Bookmark *)bookmark
+{
+    BOOL hadNotification = bookmark.hasNotification;
+    bookmark.hasNotification = NO;
+    bookmark.lastOpened = [NSDate date];
+    [self saveBookmarks];
+    
+    if (hadNotification)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
+        [self updateBadgeNumber];
+    }
+}
+
+- (void)updateBadgeNumber
+{
+    int currentNumNotifications = 0;
+    for (Bookmark *bookmark in _bookmarks)
+    {
+        if (bookmark.hasNotification)
+        {
+            currentNumNotifications++;
+        }
+    }
+    
+    if (currentNumNotifications != _oldNumNotifications)
+    {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = currentNumNotifications;
+        _oldNumNotifications = currentNumNotifications;
     }
 }
 
@@ -338,6 +370,92 @@ static INUDataManager *_sharedInstance;
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:error.title message:error.message delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
         [alert show];
     }
+}
+
+- (void)requestNotificationsWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
+{
+    NSString *url = [NSString stringWithFormat:@"%@/backend/%@", INUConfigSiteURL, INUServiceNotifications];
+    
+    // get all events from bookmarks
+    NSMutableArray *eventsArray = [NSMutableArray array];
+    for (Bookmark *bookmark in _bookmarks)
+    {
+        if (!bookmark.hasNotification && ![bookmark.eventId isEqualToString:ExampleEventId])
+        {
+            [eventsArray addObject:[NSString stringWithFormat:@"%@|%@", bookmark.eventId, bookmark.lastOpened]];
+        }
+    }
+    
+    if (eventsArray.count == 0)
+    {
+        if (completionHandler)
+        {
+            completionHandler(UIBackgroundFetchResultNoData);
+        }
+        return;
+    }
+    
+    // request notifications
+    NSString *events = [eventsArray componentsJoinedByString:@","];
+    NSDictionary *paramsDict = @{@"events": events};
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager POST:url parameters:paramsDict success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dataDict = responseObject;
+        
+        BOOL hasNotifications = NO;
+        NSString *errorId = dataDict[@"error_id"];
+        NSString *error = dataDict[@"error"];
+        if (errorId)
+        {
+            NSLog(@"Notifications error %@: %@", errorId, error);
+        }
+        else
+        {
+            NSArray *eventIds = dataDict[@"events"];
+            
+            hasNotifications = eventIds.count > 0;
+            if (hasNotifications)
+            {
+                NSMutableSet *eventNames = [NSMutableSet set];
+                for (NSString *eventId in eventIds)
+                {
+                    for (Bookmark *bookmark in _bookmarks)
+                    {
+                        if ([bookmark.eventId isEqualToString:eventId])
+                        {
+                            bookmark.hasNotification = YES;
+                            [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
+                            [eventNames addObject:bookmark.eventName];
+                        }
+                    }
+                }
+                [self saveBookmarks];
+                [self updateBadgeNumber];
+
+                if (completionHandler)
+                {
+                    // App is in background, show notification
+                    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+                    localNotification.alertBody = [NSString stringWithFormat:@"News in: %@", [eventNames.allObjects componentsJoinedByString:@", "]];
+                    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
+                }
+            }
+        }
+        if (completionHandler)
+        {
+            completionHandler(hasNotifications ? UIBackgroundFetchResultNewData : UIBackgroundFetchResultNoData);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        if (completionHandler)
+        {
+            completionHandler(UIBackgroundFetchResultFailed);
+        }
+        
+    }];
 }
 
 - (void)updateCoverPhotoWithDict:(NSDictionary *)dict eventId:(NSString *)eventId
