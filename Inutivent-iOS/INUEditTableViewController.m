@@ -95,6 +95,20 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    // correct table header size
+    CGFloat neededHeight = self.view.frame.size.width * 3 / 8;
+    if (neededHeight != self.tableView.tableHeaderView.frame.size.height)
+    {
+        CGRect newFrame = CGRectMake(0, 0, self.view.frame.size.width, neededHeight);
+        self.tableView.tableHeaderView.frame = newFrame;
+        self.tableView.tableHeaderView = self.tableView.tableHeaderView;
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -177,10 +191,12 @@
     {
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Choose Photo", nil];
     }
-    [actionSheet showInView:self.view];
+//    [actionSheet showInView:sender];
+    [actionSheet showFromRect:self.titleLabel.frame inView:self.tableView.tableHeaderView animated:YES];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0)
     {

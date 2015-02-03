@@ -52,10 +52,6 @@
     
     [INUUtils initBackground:self.tableView];
     
-    // correct table header size
-    CGRect newFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width * 3 / 8);
-    self.tableView.tableHeaderView.frame = newFrame;
-    
     _titleLabel.layer.shadowOpacity = 1;
     _titleLabel.layer.shadowOffset = CGSizeMake(0, 1);
     _titleLabel.layer.shadowRadius = 1.5;
@@ -74,6 +70,20 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    // correct table header size
+    CGFloat neededHeight = self.view.frame.size.width * 3 / 8;
+    if (neededHeight != self.tableView.tableHeaderView.frame.size.height)
+    {
+        CGRect newFrame = CGRectMake(0, 0, self.view.frame.size.width, neededHeight);
+        self.tableView.tableHeaderView.frame = newFrame;
+        self.tableView.tableHeaderView = self.tableView.tableHeaderView;
+    }
 }
 
 - (void)dealloc
