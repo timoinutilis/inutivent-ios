@@ -57,7 +57,7 @@
 //    UIImage *image = [UIImage imageNamed:@"paper"];
 //    tableView.backgroundView = nil;
 //    tableView.backgroundColor = [UIColor colorWithPatternImage:image];
-    tableView.backgroundColor = [UIColor colorWithWhite:0.99 alpha:1];
+    tableView.backgroundColor = [INUUtils bgColor];
 }
 
 + (void)initNavigationBar:(UINavigationBar *)navigationBar
@@ -103,6 +103,11 @@
 + (UIColor *)buttonHighlightColor
 {
     return [UIColor colorWithRed:87.0/255.0 green:165.0/255.0 blue:195.0/255.0 alpha:1.0];
+}
+
++ (UIColor *)bgColor
+{
+    return [UIColor colorWithWhite:0.95 alpha:1];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "INUWelcomeViewController.h"
 #import "INUWelcomeContentViewController.h"
+#import "INUUtils.h"
 
 @interface INUWelcomeViewController ()
 
@@ -48,7 +49,7 @@
     
 //    UIImage *image = [UIImage imageNamed:@"paper"];
 //    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [INUUtils bgColor];
 
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor lightGrayColor];

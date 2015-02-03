@@ -22,5 +22,6 @@
 + (UIColor *)mainColor;
 + (UIColor *)buttonColor;
 + (UIColor *)buttonHighlightColor;
++ (UIColor *)bgColor;
 
 @end

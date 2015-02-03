@@ -163,6 +163,8 @@ static NSString *const INUGuestsInvite = @"INUGuestsInvite";
         UINavigationController *destViewController = segue.destinationViewController;
         INUInviteViewController *inviteController = (INUInviteViewController *)destViewController.topViewController;
         inviteController.bookmark = _bookmark;
+        
+        [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
     }
 
 }

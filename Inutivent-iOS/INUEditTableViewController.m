@@ -205,7 +205,7 @@
         imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         imagePicker.delegate = self;
         
-        [self presentViewController:imagePicker animated:YES completion:nil];
+        [self showImagePicker:imagePicker];
     }
     else if (buttonIndex == 1 && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
@@ -218,6 +218,19 @@
     }
 }
 
+- (void)showImagePicker:(UIImagePickerController *)imagePicker
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:imagePicker];
+        [popover presentPopoverFromRect:self.titleLabel.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+    else
+    {
+        [self presentViewController:imagePicker animated:YES completion:nil];
+    }
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
@@ -226,7 +239,7 @@
     self.imageView.image = image;
     self.selectedCoverImage = image;
     
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onDone:(id)sender

@@ -126,6 +126,8 @@
         [self.view endEditing:YES];
         [self showContactsPicker];
     }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - ABPeoplePickerNavigationControllerDelegate
@@ -276,7 +278,15 @@
     
     [INUUtils initNavigationBar:picker.navigationBar];
     
-    [self presentViewController:picker animated:YES completion:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    {
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:picker];
+        [popover presentPopoverFromRect:CGRectMake(0, 0, self.view.bounds.size.width, 0) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+    else
+    {
+        [self presentViewController:picker animated:YES completion:nil];
+    }
 }
 
 - (void)receivedNotification:(NSNotification *)notification

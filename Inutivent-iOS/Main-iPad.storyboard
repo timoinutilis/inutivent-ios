@@ -1173,7 +1173,7 @@ Inutilis Software</string>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="8YY-We-ObY" kind="modal" identifier="GuestsInvite" id="MHO-gy-bQu"/>
+                                    <segue destination="8YY-We-ObY" kind="modal" identifier="GuestsInvite" modalPresentationStyle="formSheet" id="MHO-gy-bQu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1258,7 +1258,7 @@ Inutilis Software</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="KFm-25-gCR"/>
-        <segue reference="V46-No-xzb"/>
+        <segue reference="MHO-gy-bQu"/>
+        <segue reference="HW6-pQ-V9q"/>
     </inferredMetricsTieBreakers>
 </document>

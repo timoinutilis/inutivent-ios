@@ -120,7 +120,7 @@
 {
     int count = (int)[_bookmarks count];
     BOOL anyChanged = NO;
-    for (int i = 0; i < count; i++)
+    for (int i = count - 1; i >= 0; i--)
     {
         Bookmark *bookmark = _bookmarks[i];
         if ([bookmark.eventId isEqualToString:event.eventId])

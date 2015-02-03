@@ -26,8 +26,9 @@
     
     [INUUtils initNavigationBar:self.navigationBar];
     
-    UIImage *image = [UIImage imageNamed:@"paper"];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+//    UIImage *image = [UIImage imageNamed:@"paper"];
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
+    self.view.backgroundColor = [INUUtils bgColor];
 }
 
 - (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation

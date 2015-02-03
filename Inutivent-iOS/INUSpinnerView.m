@@ -7,6 +7,7 @@
 //
 
 #import "INUSpinnerView.h"
+#import "INUUtils.h"
 
 @interface INUSpinnerView ()
 
@@ -27,9 +28,10 @@
         
         self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         
-        UIImage *image = [UIImage imageNamed:@"paper"];
+//        UIImage *image = [UIImage imageNamed:@"paper"];
         _backgroundView = [[UIView alloc] initWithFrame:frame];
-        _backgroundView.backgroundColor = [UIColor colorWithPatternImage:image];
+//        _backgroundView.backgroundColor = [UIColor colorWithPatternImage:image];
+        _backgroundView.backgroundColor = [INUUtils bgColor];
         _backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         [self addSubview:_backgroundView];
         
