@@ -153,7 +153,7 @@
 {
     if (indexPath.section == 2 && indexPath.row == 0)
     {
-        CGFloat height = [_detailsCell requiredCellHeight];
+        CGFloat height = [_detailsCell requiredCellHeightForWidth:self.tableView.bounds.size.width];
         return MAX(88, height);
     }
     return UITableViewAutomaticDimension;

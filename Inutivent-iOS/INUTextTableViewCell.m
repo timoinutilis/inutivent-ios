@@ -16,7 +16,7 @@
 
 @property CGFloat cellHeight;
 @property CGFloat lastTextViewHeight;
-@property CGFloat lastWidth;
+@property CGFloat currentTableWidth;
 @property CGFloat paddingHorizontal;
 @property CGFloat paddingVertical;
 
@@ -40,7 +40,7 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     _lastTextViewHeight = 0;
-    _lastWidth = 0;
+    _currentTableWidth = 0;
     _cellHeight = 1;
     
     _textView = [[UITextView alloc] init];
@@ -98,15 +98,12 @@
 
 - (void)updateSizeWithTableUpdate:(BOOL)tableUpdate
 {
-    CGRect contentFrame = self.contentView.frame;
-    _lastWidth = contentFrame.size.width;
-    
-    CGFloat width = contentFrame.size.width - 2 * _paddingHorizontal;
+    CGFloat width = _currentTableWidth - 2 * _paddingHorizontal;
     CGSize textViewSize = [_textView sizeThatFits:CGSizeMake(width, FLT_MAX)];
     
     if (textViewSize.height != _lastTextViewHeight)
     {
-        [_textView setFrame:CGRectMake(_paddingHorizontal, _paddingVertical, contentFrame.size.width - 2 * _paddingHorizontal, textViewSize.height)];
+        [_textView setFrame:CGRectMake(_paddingHorizontal, _paddingVertical, _currentTableWidth - 2 * _paddingHorizontal, textViewSize.height)];
         _lastTextViewHeight = textViewSize.height;
 
         _cellHeight = textViewSize.height + 2 * _paddingVertical + 1; // 1 for separator line
@@ -125,14 +122,26 @@
     
 }
 
-- (CGFloat)requiredCellHeight
+- (CGFloat)requiredCellHeightForWidth:(CGFloat)width
 {
-    CGRect contentFrame = self.contentView.frame;
-    if (contentFrame.size.width != _lastWidth)
+    if (width != _currentTableWidth)
     {
+        _currentTableWidth = width;
         [self updateSizeWithTableUpdate:NO];
     }
     return _cellHeight;
+}
+
+- (void)setText:(NSString *)text
+{
+    self.textView.text = text;
+    _currentTableWidth = 0;
+}
+
+- (void)setAttributedText:(NSAttributedString *)text
+{
+    self.textView.attributedText = text;
+    _currentTableWidth = 0;
 }
 
 - (void)onButtonDone

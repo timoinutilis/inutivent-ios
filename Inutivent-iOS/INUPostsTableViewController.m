@@ -120,13 +120,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [_layoutCell setPost:_event.posts[indexPath.row] event:_event];
- 
-    _layoutCell.bounds = CGRectMake(0.0f, 0.0f, self.tableView.bounds.size.width, _layoutCell.bounds.size.height);
-    [_layoutCell setNeedsLayout];
-    [_layoutCell layoutIfNeeded];
-    
-    CGSize size = [_layoutCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    return size.height;
+    return [_layoutCell heightForWidth:tableView.bounds.size.width];
 }
 
 /*

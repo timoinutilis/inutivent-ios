@@ -1066,10 +1066,8 @@ Inutilis Software</string>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VqD-po-9U0">
-                                            <rect key="frame" x="4" y="0.0" width="312" height="44"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="gJ9-CL-1Gc"/>
-                                            </constraints>
+                                            <rect key="frame" x="4" y="0.0" width="312" height="33"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Label Text bla bla bla bla">
                                                     <attributes>
@@ -1092,7 +1090,6 @@ Inutilis Software</string>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="textHeightConstraint" destination="gJ9-CL-1Gc" id="yqf-PT-opQ"/>
                                     <outlet property="textView" destination="VqD-po-9U0" id="LbK-Kt-8Qq"/>
                                 </connections>
                             </tableViewCell>
@@ -1230,8 +1227,8 @@ Inutilis Software</string>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LJU-Np-Gj4"/>
-        <segue reference="DBS-2j-a2K"/>
+        <segue reference="naq-pD-bQp"/>
+        <segue reference="cD6-PU-1ka"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.10588235294117647" green="0.43529411764705883" blue="0.55686274509803924" alpha="1" colorSpace="deviceRGB"/>
 </document>

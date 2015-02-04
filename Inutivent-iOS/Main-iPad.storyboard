@@ -1083,11 +1083,8 @@ Inutilis Software</string>
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k7g-p2-tIm">
-                                            <rect key="frame" x="4" y="0.0" width="312" height="44"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="ofu-Zt-PTf"/>
-                                            </constraints>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k7g-p2-tIm">
+                                            <rect key="frame" x="4" y="0.0" width="760" height="33"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Label Text bla bla bla bla">
                                                     <attributes>
@@ -1110,7 +1107,6 @@ Inutilis Software</string>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="textHeightConstraint" destination="ofu-Zt-PTf" id="S0J-Sh-9ND"/>
                                     <outlet property="textView" destination="k7g-p2-tIm" id="Kkc-2T-D7D"/>
                                 </connections>
                             </tableViewCell>

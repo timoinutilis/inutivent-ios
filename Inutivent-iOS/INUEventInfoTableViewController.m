@@ -122,7 +122,7 @@
     _dateCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterFullStyle timeStyle:NSDateFormatterNoStyle];
     _hourCell.textLabel.text = [NSDateFormatter localizedStringFromDate:_event.time dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     
-    _detailsCell.textView.attributedText = [[NSAttributedString alloc] initWithString:_event.details attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18]}];
+    _detailsCell.attributedText = [[NSAttributedString alloc] initWithString:_event.details attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18]}];
     
     [self updateUserView];
 }
@@ -164,7 +164,7 @@
 {
     if (indexPath.section == 1 && indexPath.row == 3)
     {
-        return [_detailsCell requiredCellHeight];
+        return [_detailsCell requiredCellHeightForWidth:self.tableView.bounds.size.width];
     }
     return UITableViewAutomaticDimension;
 }

@@ -14,5 +14,6 @@
 @interface INUPostTableViewCell : UITableViewCell
 
 - (void)setPost:(Post *)post event:(Event *)event;
+- (CGFloat)heightForWidth:(CGFloat)width;
 
 @end

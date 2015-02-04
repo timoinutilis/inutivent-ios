@@ -14,7 +14,6 @@
 @interface INUPostTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textHeightConstraint;
 
 @end
 
@@ -59,9 +58,16 @@
     
     _textView.attributedText = string;
     
-    CGSize textViewSize = [_textView sizeThatFits:CGSizeMake([_textView frame].size.width, FLT_MAX)];
-    _textHeightConstraint.constant = textViewSize.height;
+//    CGSize textViewSize = [_textView sizeThatFits:CGSizeMake([_textView frame].size.width, FLT_MAX)];
+//    _textHeightConstraint.constant = textViewSize.height;
 
+}
+
+- (CGFloat)heightForWidth:(CGFloat)width
+{
+    CGFloat textWidth = width - 8;
+    CGSize textViewSize = [_textView sizeThatFits:CGSizeMake(textWidth, FLT_MAX)];
+    return textViewSize.height;
 }
 
 @end

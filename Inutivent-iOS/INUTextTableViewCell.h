@@ -13,6 +13,8 @@
 @property (readonly) UITextView *textView;
 @property (weak) UITableView *parentTableView;
 
-- (CGFloat)requiredCellHeight;
+- (CGFloat)requiredCellHeightForWidth:(CGFloat)width;
+- (void)setText:(NSString *)text;
+- (void)setAttributedText:(NSAttributedString *)text;
 
 @end
