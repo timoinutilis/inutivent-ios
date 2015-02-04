@@ -158,11 +158,11 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="GZ5-Ua-s2O" secondAttribute="trailing" constant="16" id="0VE-pa-hCa"/>
                             <constraint firstItem="GZ5-Ua-s2O" firstAttribute="top" secondItem="yCJ-pq-UUS" secondAttribute="bottom" constant="8" id="60Z-NA-zbT"/>
-                            <constraint firstItem="yCJ-pq-UUS" firstAttribute="top" secondItem="FUS-zh-TbN" secondAttribute="bottom" constant="8" id="7mw-Px-Ncj"/>
+                            <constraint firstItem="yCJ-pq-UUS" firstAttribute="top" secondItem="6tB-sH-l1y" secondAttribute="top" constant="28" id="Opk-5d-btg"/>
+                            <constraint firstAttribute="bottom" secondItem="kML-gj-g6V" secondAttribute="bottom" id="Rt2-Oj-vCE"/>
                             <constraint firstAttribute="trailing" secondItem="yCJ-pq-UUS" secondAttribute="trailing" constant="20" id="YEb-G2-cx4"/>
                             <constraint firstItem="yCJ-pq-UUS" firstAttribute="leading" secondItem="6tB-sH-l1y" secondAttribute="leading" constant="20" id="agW-Cg-roX"/>
                             <constraint firstAttribute="centerX" secondItem="kML-gj-g6V" secondAttribute="centerX" id="auM-Rb-QiG"/>
-                            <constraint firstItem="Smx-72-BRw" firstAttribute="top" secondItem="kML-gj-g6V" secondAttribute="bottom" id="geT-F6-RPG"/>
                             <constraint firstItem="GZ5-Ua-s2O" firstAttribute="leading" secondItem="6tB-sH-l1y" secondAttribute="leading" constant="16" id="lg9-IR-AGe"/>
                             <constraint firstItem="kML-gj-g6V" firstAttribute="top" secondItem="GZ5-Ua-s2O" secondAttribute="bottom" id="qre-cq-XeD"/>
                         </constraints>
@@ -173,7 +173,6 @@
                         <outlet property="skipButton" destination="kML-gj-g6V" id="byL-lE-AtA"/>
                         <outlet property="skipButtonHeightConstraint" destination="NNk-HU-82B" id="ZEg-5t-N3S"/>
                         <outlet property="textLabel" destination="yCJ-pq-UUS" id="zyW-ti-5bo"/>
-                        <outlet property="topLayoutConstraint" destination="7mw-Px-Ncj" id="4e5-bP-5xG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3H-8L-wbr" userLabel="First Responder" sceneMemberID="firstResponder"/>

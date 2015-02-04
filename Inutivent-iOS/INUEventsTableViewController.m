@@ -60,13 +60,6 @@ typedef NS_ENUM(int, INUEventsAlertTag)
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:nil object:[INUDataManager sharedInstance]];
-    
-    // Show introduction on first app start
-    if ([[INUDataManager sharedInstance] needsIntroduction])
-    {
-        INUWelcomeViewController *welcomeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WelcomeView"];
-        [self presentViewController:welcomeViewController animated:NO completion:nil];
-    }
 }
 
 - (void)dealloc
@@ -90,6 +83,14 @@ typedef NS_ENUM(int, INUEventsAlertTag)
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
         [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+    }
+    
+    // Show introduction on first app start
+    if ([[INUDataManager sharedInstance] needsIntroduction])
+    {
+        INUWelcomeViewController *welcomeViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"WelcomeView"];
+        welcomeViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:welcomeViewController animated:YES completion:nil];
     }
 }
 
