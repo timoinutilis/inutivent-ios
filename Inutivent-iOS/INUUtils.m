@@ -54,9 +54,7 @@
 
 + (void)initBackground:(UITableView *)tableView
 {
-//    UIImage *image = [UIImage imageNamed:@"paper"];
-//    tableView.backgroundView = nil;
-//    tableView.backgroundColor = [UIColor colorWithPatternImage:image];
+    tableView.backgroundView = nil;
     tableView.backgroundColor = [INUUtils bgColor];
 }
 

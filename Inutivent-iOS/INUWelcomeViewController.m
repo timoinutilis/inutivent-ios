@@ -34,11 +34,8 @@
     NSArray *filenames = @[@"introduction_welcome.png", @"introduction_email.png", @"introduction_event_info.png", @"introduction_event_guests.png", @"introduction_event_comments.png"];
     
     _images = [NSMutableArray array];
-//    NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
     for (int i = 0; i < [filenames count]; i++)
     {
-//        NSString *filename = [NSString stringWithFormat:@"%@/%@", bundlePath, filenames[i]];
-//        UIImage *image = [UIImage imageWithContentsOfFile:filename];
         UIImage *image = [UIImage imageNamed:filenames[i]];
         [_images addObject:image];
     }
@@ -47,8 +44,6 @@
 
     self.dataSource = self;
     
-//    UIImage *image = [UIImage imageNamed:@"paper"];
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     self.view.backgroundColor = [INUUtils bgColor];
 
     UIPageControl *pageControl = [UIPageControl appearance];
@@ -124,16 +119,5 @@
 {
     return 0;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

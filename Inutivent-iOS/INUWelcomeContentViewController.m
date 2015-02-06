@@ -59,30 +59,10 @@
 
 - (void)viewWillLayoutSubviews
 {
-/*    if (   SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")
-        && _buttonType == INUWelcomeButtonTypeNone ) // if skip button -> no navigation bar
-    {
-        // topLayoutGuide isn't working correctly, hack to fix it.
-        CGRect navBarFrame = self.navigationController.navigationBar.frame;
-        CGFloat topUIHeight = navBarFrame.origin.y + navBarFrame.size.height - self.topLayoutGuide.length;
-        _topLayoutConstraint.constant = topUIHeight + _originalTopSpace;
-    }*/
-    
     [super viewWillLayoutSubviews];
     
     _background.frame = self.view.bounds;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Actions
 
