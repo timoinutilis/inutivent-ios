@@ -231,13 +231,6 @@ typedef NS_ENUM(int, INUEventsAlertTag)
         cell.textLabel.text = label;
     }
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad && SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
-    {
-        UIView *bgView = [[UIView alloc] init];
-        bgView.backgroundColor = [INUUtils buttonColor];
-        cell.selectedBackgroundView = bgView;
-    }
-    
     return cell;
 }
 
@@ -372,12 +365,12 @@ typedef NS_ENUM(int, INUEventsAlertTag)
 {
     if (notification.name == INUBookmarkChangedNotification)
     {
-        Bookmark *bookmark = notification.userInfo[@"bookmark"];
+//        Bookmark *bookmark = notification.userInfo[@"bookmark"];
         
         [self updateSections];
         [self.tableView reloadData];
         
-        if (bookmark == _lastOpenedBookmark)
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
         {
             NSIndexPath *indexPath = [self getPathIndexOfBookmark:_lastOpenedBookmark];
             if (indexPath)

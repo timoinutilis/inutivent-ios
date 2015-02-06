@@ -22,7 +22,6 @@
 {
     int _numNumActivities;
     ExampleEvent *_exampleEvent;
-    int _oldNumNotifications;
 }
 
 + (INUDataManager *)sharedInstance
@@ -170,8 +169,8 @@
     if (hadNotification)
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:INUBookmarkChangedNotification object:self userInfo:@{@"bookmark":bookmark}];
-        [self updateBadgeNumber];
     }
+    [self updateBadgeNumber];
 }
 
 - (void)updateBadgeNumber
@@ -185,10 +184,9 @@
         }
     }
     
-    if (currentNumNotifications != _oldNumNotifications)
+    if (currentNumNotifications != [UIApplication sharedApplication].applicationIconBadgeNumber)
     {
         [UIApplication sharedApplication].applicationIconBadgeNumber = currentNumNotifications;
-        _oldNumNotifications = currentNumNotifications;
     }
 }
 
@@ -382,7 +380,7 @@
     {
         if (!bookmark.hasNotification && ![bookmark.eventId isEqualToString:ExampleEventId])
         {
-            [eventsArray addObject:[NSString stringWithFormat:@"%@|%@", bookmark.eventId, bookmark.lastOpened]];
+            [eventsArray addObject:[NSString stringWithFormat:@"%@|%@|%ld", bookmark.eventId, bookmark.userId, (unsigned long)bookmark.lastOpened.timeIntervalSince1970]];
         }
     }
     
@@ -438,7 +436,7 @@
                 {
                     // App is in background, show notification
                     UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-                    localNotification.alertBody = [NSString stringWithFormat:@"News in: %@", [eventNames.allObjects componentsJoinedByString:@", "]];
+                    localNotification.alertBody = [NSString stringWithFormat:@"News about %@", [eventNames.allObjects componentsJoinedByString:@", "]];
                     [[UIApplication sharedApplication] presentLocalNotificationNow:localNotification];
                 }
             }
