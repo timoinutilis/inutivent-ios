@@ -26,6 +26,7 @@
 
 @property INUPostTableViewCell *layoutCell;
 @property BOOL notifyUserUpdateOnDisappear;
+@property BOOL hasScrolledDown;
 
 @end
 
@@ -77,6 +78,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self checkScrollDown];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -88,6 +95,18 @@
     {
         [[INUDataManager sharedInstance] notifyUserUpdate];
         _notifyUserUpdateOnDisappear = NO;
+    }
+}
+
+- (void)checkScrollDown
+{
+    if (!self.hasScrolledDown && self.event)
+    {
+        if (self.event.posts.count > 0)
+        {
+            [self.tableView scrollRectToVisible:self.tableView.tableFooterView.frame animated:YES];
+        }
+        self.hasScrolledDown = YES;
     }
 }
 
@@ -122,17 +141,6 @@
     [_layoutCell setPost:_event.posts[indexPath.row] event:_event];
     return [_layoutCell heightForWidth:tableView.bounds.size.width];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Notifications
 
@@ -221,6 +229,8 @@
     {
         _event = [[INUDataManager sharedInstance] getEventById:_bookmark.eventId];
         [self.tableView reloadData];
+        self.hasScrolledDown = NO;
+        [self checkScrollDown];
     }
 }
 

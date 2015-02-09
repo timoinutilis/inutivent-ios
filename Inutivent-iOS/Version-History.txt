@@ -3,6 +3,7 @@ Version 2.0
 - Upload cover photos
 - Invite people
 - Supports higher resolutions of iPhone 6
+- Notifications (pulled from server in indeterminate intervals)
 
 Version 1.0
 - Initial release

@@ -158,6 +158,7 @@
     {
         if ([notification.userInfo[@"eventId"] isEqualToString:_bookmark.eventId])
         {
+            BOOL hadNotification = _bookmark.hasNotification;
             [[INUDataManager sharedInstance] onBookmarkOpened:_bookmark];
 
             [self updateView];
@@ -166,10 +167,33 @@
                 [_spinnerView removeFromSuperview];
                 _spinnerView = nil;
             }
+            
+            if (hadNotification)
+            {
+                // select comments tab
+                _tabControl.selectedSegmentIndex = 2;
+                if (_selectedViewController)
+                {
+                    [self hideContentController:_selectedViewController];
+                    _selectedViewController = nil;
+                }
+            }
+            
             if (!_selectedViewController)
             {
                 _selectedViewController = _viewControllers[_tabControl.selectedSegmentIndex];
                 [self displayContentController:_selectedViewController];
+            }
+        }
+    }
+    else if (notification.name == INUBookmarkChangedNotification)
+    {
+        Bookmark *bookmark = notification.userInfo[@"bookmark"];
+        if ([bookmark.eventId isEqualToString:self.bookmark.eventId])
+        {
+            if (self.bookmark.hasNotification)
+            {
+                [self loadEvent];
             }
         }
     }
