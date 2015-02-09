@@ -42,7 +42,7 @@
 		<string>fetch</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>Launch</string>
+	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIMainStoryboardFile~ipad</key>

@@ -124,6 +124,7 @@
 
 - (CGFloat)requiredCellHeightForWidth:(CGFloat)width
 {
+    width -= self.contentView.frame.origin.x * 2;
     if (width != _currentTableWidth)
     {
         _currentTableWidth = width;

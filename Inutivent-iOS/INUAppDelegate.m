@@ -15,7 +15,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [[INUDataManager sharedInstance] loadBookmarks];
-    [application setMinimumBackgroundFetchInterval:60*60];
+    
+    if ([application respondsToSelector:@selector(setMinimumBackgroundFetchInterval:)])
+    {
+        [application setMinimumBackgroundFetchInterval:60*60];
+    }
+    
     return YES;
 }
 

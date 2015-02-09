@@ -349,7 +349,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="AboutView" id="CLC-Ew-wII" customClass="INUAboutTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="kgH-35-a8E">
-                        <rect key="frame" x="0.0" y="64" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="index_header.jpg" id="weS-pz-B96">
@@ -528,7 +528,7 @@ Inutilis Software</string>
                         <viewControllerLayoutGuide type="bottom" id="JVP-w2-aVZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="RQ2-uf-coZ">
-                        <rect key="frame" x="0.0" y="64" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Lorem ipsum" translatesAutoresizingMaskIntoConstraints="NO" id="FxV-Yc-Zfy">
@@ -578,7 +578,7 @@ Inutilis Software</string>
                         <viewControllerLayoutGuide type="bottom" id="qym-Zd-rvP"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tkP-OU-4Qn">
-                        <rect key="frame" x="0.0" y="64" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -802,13 +802,13 @@ Inutilis Software</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="E1T-ou-pDE">
-                                                    <rect key="frame" x="15" y="11" width="89" height="22"/>
+                                                    <rect key="frame" x="15" y="10" width="89" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cyN-7H-XEl">
-                                                    <rect key="frame" x="119" y="11" width="193" height="22"/>
+                                                    <rect key="frame" x="119" y="10" width="193" height="22"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
@@ -1253,7 +1253,7 @@ Inutilis Software</string>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="MHO-gy-bQu"/>
         <segue reference="HW6-pQ-V9q"/>
+        <segue reference="V46-No-xzb"/>
     </inferredMetricsTieBreakers>
 </document>
